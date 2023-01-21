@@ -1,1 +1,1 @@
-# server
+# just a test server
