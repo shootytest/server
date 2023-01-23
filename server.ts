@@ -133,7 +133,7 @@ io.on("connection", (socket) => {
   player.team = id;
   player.create();
 
-  socket.emit("join", socket.id);
+  socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
 
   socket.emit("hello", "world");

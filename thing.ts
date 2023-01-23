@@ -576,9 +576,9 @@ export class Thing {
     const shape = this.shape;
     const options = {
       isStatic: this.fixed,
-      isBullet: this.is_bullet,
-      collisionFilter: this.collision_filter,
-      label: this.label,
+      isBullet: this.bullet,
+      // collisionFilter: this.collision_filter,
+      // label: this.label,
       density: this.density * config.physics.density_factor,
       restitution: this.restitution,
       frictionAir: this.friction * config.physics.friction_factor,
