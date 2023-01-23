@@ -11,6 +11,8 @@ const Vector = Matter.Vector;
 // initialize main
 main();
 
+console.log(Matter);
+
 // helper functions
 
 const _random_string = (length = 10) => {
@@ -32,8 +34,6 @@ const new_socket_id = () => ++socket_cumulative_id;
 
 const WIDTH = 1000;
 const HEIGHT = 1000;
-
-// thing class (main thingy)
 
 /*
 class Thing {
@@ -131,6 +131,7 @@ io.on("connection", (socket) => {
   const player = new Player();
   player.position = Vector.create(Math.floor(Math.random() * WIDTH), Math.floor(Math.random() * HEIGHT));
   player.team = id;
+  player.create();
 
   socket.emit("join", socket.id);
   socket.emit("id", id);
