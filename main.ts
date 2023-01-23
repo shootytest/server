@@ -1,6 +1,7 @@
 import { config } from "./config.ts";
 import { _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
+import { Thing } from "./thing.ts";
 
 const Engine = Matter.Engine,
       Runner = Matter.Runner,
@@ -39,6 +40,7 @@ const init = () => {
 
 export const tick = (_time: number) => {
   Runner.tick(runner, engine);
+  Thing.tick_things();
 };
 
 const done = () => {
