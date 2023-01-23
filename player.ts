@@ -49,9 +49,6 @@ export class Player extends Thing {
       // move player
       const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
       const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
-      if (move_x !== 0 || move_y !== 0) {
-        console.log(move_x, move_y);
-      }
       this.move_player(Vector.create(move_x, move_y));
       // shoot player
       this.shooting = this.player_autofire || this.controls.shoot;
