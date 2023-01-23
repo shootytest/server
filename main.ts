@@ -1,5 +1,6 @@
 import { Matter } from "./matter.js";
 import { config } from "./config.ts";
+import { _vectortype } from "./math.ts";
 
 const Engine = Matter.Engine,
       Runner = Matter.Runner,
@@ -17,10 +18,6 @@ const runner = Runner.create();
 const init = () => {
   // add some nice Matter.Vector extensions
   (() => {
-    class _vectortype {
-      x = 0;
-      y = 0;
-    }
     Vector.createpolar = function(theta = 0, r = 1) {
       return Vector.create(r * Math.cos(theta), r * Math.sin(theta));
     }
