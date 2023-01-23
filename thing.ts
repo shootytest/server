@@ -1,8 +1,8 @@
-import { Matter } from "./matter.js";
+import { config } from "./config.ts";
 import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
-import { config } from "./config.ts";
 import { math_util, _vectortype } from "./math.ts";
+import { Matter } from "./matter.js";
 
 const Body = Matter.Body,
       Bodies = Matter.Bodies,
@@ -13,10 +13,19 @@ const Body = Matter.Body,
 // let world = null;
 
 export interface matter_body {
-  position: _vectortype,
-  angle: number,
-  mass: number,
+  position: _vectortype;
+  angle: number;
+  mass: number;
   [key: string]: unknown;
+}
+
+export interface thing_data {
+  x: number;
+  y: number;
+  size: number;
+  health: number;
+  color: number;
+  team: number;
 }
 
 export class Thing {
@@ -27,11 +36,19 @@ export class Thing {
 
   static time = 1;
 
-  static tick_things = function() {
+  static tick_things = () => {
     for (const thing of Thing.things) {
       thing.tick();
     }
     Thing.time++;
+  }
+
+  static data = (): thing_data[] => {
+    const thingdata: thing_data[] = [];
+    for (const thing of Thing.things) {
+      thingdata.push(thing.data());
+    }
+    return thingdata;
   }
 
   // location variables
@@ -95,8 +112,8 @@ export class Thing {
 
   [key: string]: unknown;
 
-  constructor(position: _vectortype) {
-    if (position != null) {
+  constructor(position?: _vectortype) {
+    if (position != undefined) {
       this.position = Vector.clone(position);
     }
   }
@@ -599,6 +616,17 @@ export class Thing {
       this.shoots_time[i] = 0;
       this.shoots_duration[i] = 0;
     }
+  }
+  
+  data(): thing_data {
+    return {
+      x: this.x,
+      y: this.y,
+      size: this.size,
+      health: this.health,
+      color: this.color,
+      team: this.team,
+    };
   }
 
   remove() {

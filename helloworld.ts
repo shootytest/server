@@ -1,6 +1,12 @@
 import { serve, ConnInfo } from "https://deno.land/std@0.173.0/http/server.ts";
 import { Server } from "https://deno.land/x/socket_io@0.2.0/mod.ts";
-import { main } from "./main.ts";
+import { main, tick } from "./main.ts";
+import { Thing } from "./thing.ts";
+import { Matter } from "./matter.js";
+import { Controls } from "./controls.ts";
+import { Player } from "./player.ts";
+
+const Vector = Matter.Vector;
 
 // initialize main
 main();
@@ -26,14 +32,10 @@ const new_socket_id = () => ++socket_cumulative_id;
 
 const WIDTH = 1000;
 const HEIGHT = 1000;
-const SIZE = 25;
-const SPEED = 20;
-const FRICTION = 0.91;
-const things: Map<number, Thing> = new Map<number, Thing>();
-
 
 // thing class (main thingy)
 
+/*
 class Thing {
   static cumulative_id = 0;
   static tick() {
@@ -107,15 +109,7 @@ class Thing {
     things.delete(this.id);
   }
 }
-
-class Controls {
-  up = false;
-  down = false;
-  left = false;
-  right = false;
-  click = false;
-  rclick = false;
-}
+*/
 
 
 // socket.io part
@@ -134,9 +128,9 @@ io.on("connection", (socket) => {
 
   const id = new_socket_id();
 
-  const thing = new Thing();
-  thing.team = id;
-  thing.player = true;
+  const player = new Player();
+  player.position = Vector.create(Math.floor(Math.random() * WIDTH), Math.floor(Math.random() * HEIGHT));
+  player.team = id;
 
   socket.emit("join", socket.id);
   socket.emit("id", id);
@@ -149,23 +143,23 @@ io.on("connection", (socket) => {
   });
 
   socket.on("controls", (controls: Controls) => {
-    thing.controls = controls;
+    player.controls = controls;
   });
 
   socket.on("disconnecting", (reason) => {
-    thing.remove();
+    player.remove();
     console.log(`socket ${socket.id} disconnecting due to ${reason}`);
   });
 
   socket.on("disconnect", (reason) => {
-    thing.remove();
+    player.remove();
     console.log(`socket ${socket.id} disconnected due to ${reason}`);
   });
 
 });
 
 setInterval(() => {
-  Thing.tick();
+  tick(0);
   io.emit("gamedata", Thing.data());
 }, 16);
 

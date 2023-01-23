@@ -1,6 +1,6 @@
-import { Matter } from "./matter.js";
 import { config } from "./config.ts";
 import { _vectortype } from "./math.ts";
+import { Matter } from "./matter.js";
 
 const Engine = Matter.Engine,
       Runner = Matter.Runner,
@@ -37,7 +37,7 @@ const init = () => {
 
 };
 
-const tick = (_time: number) => {
+export const tick = (_time: number) => {
   Runner.tick(runner, engine);
 };
 
@@ -47,6 +47,6 @@ const done = () => {
 
 export const main = () => {
   init();
-  setInterval(tick, 16);
+  // setInterval(tick, 16);
   done();
 };
