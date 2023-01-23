@@ -11,8 +11,6 @@ const Vector = Matter.Vector;
 // initialize main
 main();
 
-console.log(Matter);
-
 // helper functions
 
 const _random_string = (length = 10) => {

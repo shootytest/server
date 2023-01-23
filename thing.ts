@@ -97,6 +97,7 @@ export class Thing {
   shape = 0;
   
   // pew
+  shooting = false;
   shoots = [];
   shoots_time: number[] = [];
   shoots_duration: number[] = [];
