@@ -24,6 +24,7 @@ export interface thing_data {
   x: number;
   y: number;
   size: number;
+  shape: number;
   health: number;
   color: number;
   team: number;
@@ -587,24 +588,25 @@ export class Thing {
       frictionStatic: 0,
     };
     let body: matter_body;
-    const location = Vector.create(0, 0);
-    const x = location.x;
-    const y = location.y;
+    const local_position = Vector.create(0, 0);
+    const local_x = local_position.x;
+    const local_y = local_position.y;
     if (shape === 0) {
-      body = Bodies.circle(x, y, this.size, options);
+      body = Bodies.circle(local_x, local_y, this.size, options);
     } else if (shape < 0) {
       // body = Bodies.rectangle(x, y, w, h, options);
-      console.error("Negative thing shape: " + shape);
+      console.error("negative thing shape: " + shape);
       return;
     } else if (shape > 0) {
-      const vertices = math_util.regpoly(shape, this.size, 0, x, y);
-      body = Bodies.fromVertices(x, y, [vertices], options); // Bodies.polygon(x, y, shape.sides, r, options);
+      const vertices = math_util.regpoly(shape, this.size, 0, local_x, local_y);
+      body = Bodies.fromVertices(local_x, local_y, [vertices], options); // Bodies.polygon(x, y, shape.sides, r, options);
     } else {
-      console.error("Invalid thing shape: " + shape);
+      console.error("invalid thing shape: " + shape);
       return;
     }
     body.thing = this;
     body.restitution = this.restitution;
+    Body.setPosition(body, this.target.position);
     Body.setAngle(body, this.target.angle);
     this.body = body;
     Composite.add(world, this.body);
@@ -624,6 +626,7 @@ export class Thing {
       x: this.x,
       y: this.y,
       size: this.size,
+      shape: this.shape,
       health: this.health,
       color: this.color,
       team: this.team,
