@@ -56,6 +56,7 @@ export class Thing {
   static data = (): thing_data[] => {
     const thingdata: thing_data[] = [];
     for (const thing of Thing.things) {
+      if (!thing.exists) continue;
       if (thing.wall) continue;
       thingdata.push(thing.data());
     }
@@ -65,6 +66,7 @@ export class Thing {
   static walldata = (): wall_data[] => {
     const walldata: wall_data[] = [];
     for (const thing of Thing.things) {
+      if (!thing.exists) continue;
       if (!thing.wall) continue;
       walldata.push(...thing.wall_data());
     }

@@ -14,7 +14,7 @@ console.log("initializing...")
 main();
 mapmaker.make("tutorial");
 const why_though = Thing.walldata();
-console.log(why_though);
+console.log(Thing.walls);
 
 // helper functions
 
@@ -50,6 +50,7 @@ io.on("connection", (socket) => {
 
   socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
+  console.log(Thing.walls);
   socket.emit("gamemap", why_though);
 
   socket.on("hello", (message) => {

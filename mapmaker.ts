@@ -91,7 +91,7 @@ const _make = (map_key: string) => {
 
     wall.create();
 
-    mapmaker.things?.push(wall);
+    mapmaker.things.push(wall);
   }
   
 }
