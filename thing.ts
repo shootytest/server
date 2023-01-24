@@ -98,6 +98,7 @@ export class Thing {
 
   // booleans
   exists = false;
+  invisible = false;
   fixed = false;
   wall = false;
   deleted = false;
@@ -662,7 +663,7 @@ export class Thing {
       health: math_util.round_to(this.health / this.health_capacity, 0.001),
       color: this.color,
       team: this.team,
-      flag: (this.player ? 1 : 0) + (this.show_health ? 2 : 0),
+      flag: (this.player ? 1 : 0) + (this.show_health ? 2 : 0) + (this.invisible ? 4 : 0),
     };
   }
 
@@ -775,6 +776,16 @@ export class Thing {
     if (this.body != undefined && this.position != undefined && push.x != undefined && push.y != undefined) {
       Body.applyForce(this.body, this.position, push);
     }
+  }
+
+  make_invisible() {
+    this.invisible = true;
+    Composite.remove(world, this.body);
+  }
+
+  make_visible() {
+    this.invisible = false;
+    Composite.add(world, this.body);
   }
 
 }
