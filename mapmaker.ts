@@ -41,8 +41,16 @@ const _make = (map_key: string) => {
   mapmaker.width = M.width;
   mapmaker.height = M.height;
 
-  const w = M.width + 1;
-  const h = M.height + 1;
+  let w = M.width;
+  let h = M.height;
+
+  makeborder(-w, -h, -w, h);
+  makeborder(w, -h, w, h);
+  makeborder(-w, -h, w, -h);
+  makeborder(-w, h, w, h);
+  
+  w++;
+  h++;
 
   makeborder(-w, -h, -w, h);
   makeborder(w, -h, w, h);
@@ -55,7 +63,7 @@ const _make = (map_key: string) => {
   makeborder(M.width + thick, 0, thick, M.height + thick * 2);
   makeborder(-M.width - thick, 0, thick, M.height + thick * 2);
   */
- 
+
   for (const S of M.shapes) {
     const wall = new Thing(Vector.create(S.x || 0 , S.y || 0));
     // originally: new Thing(Vector.create((S.x || 0) * M.width, (S.y || 0) * M.height));
