@@ -1,3 +1,4 @@
+import { init_collide } from "./collide.ts";
 import { config } from "./config.ts";
 import { _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
@@ -35,7 +36,7 @@ const init = () => {
       return radians * 180 / Math.PI;
     }
   })();
-
+  init_collide();
 };
 
 export const tick = (_time: number) => {

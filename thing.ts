@@ -104,6 +104,7 @@ export class Thing {
   player = false;
   bullet = false;
   bullet_deleter = false;
+  show_health = false;
 
   // number
   team = 0;
@@ -658,10 +659,10 @@ export class Thing {
       angle: math_util.round_to(this.angle, 0.001),
       size: Math.round(this.size),
       shape: this.shape,
-      health: Math.round(this.health),
+      health: math_util.round_to(this.health / this.health_capacity, 0.001),
       color: this.color,
       team: this.team,
-      flag: (this.player ? 1 : 0),
+      flag: (this.player ? 1 : 0) + (this.show_health ? 1 : 0),
     };
   }
 

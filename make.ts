@@ -9,6 +9,7 @@ export class maketype {
   wall?: boolean;
   blocks_sight?: boolean;
   bullet_deleter?: boolean;
+  show_health?: boolean;
   size?: number;
   shape?: number;
   speed?: number;
@@ -42,6 +43,7 @@ make.player = {
   color: 0,
   health: 50,
   health_capacity: 50,
+  show_health: true,
   collision_filter: category.thing,
 };
 
