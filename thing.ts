@@ -1,7 +1,7 @@
 import { config } from "./config.ts";
 import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
-import { math_util, _vectortype } from "./math.ts";
+import { math_util, _segmenttype, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
 
 const Body = Matter.Body,
@@ -30,6 +30,14 @@ export interface thing_data {
   team: number;
 }
 
+export interface wall_data {
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  color: number,
+}
+
 export class Thing {
 
   static things: Thing[] = [];
@@ -48,9 +56,19 @@ export class Thing {
   static data = (): thing_data[] => {
     const thingdata: thing_data[] = [];
     for (const thing of Thing.things) {
+      if (thing.wall) continue;
       thingdata.push(thing.data());
     }
     return thingdata;
+  }
+
+  static walldata = (): wall_data[] => {
+    const walldata: wall_data[] = [];
+    for (const thing of Thing.things) {
+      if (!thing.wall) continue;
+      walldata.push(...thing.wall_data());
+    }
+    return walldata;
   }
 
   // location variables
@@ -77,6 +95,7 @@ export class Thing {
   deleted = false;
   player = false;
   bullet = false;
+  bullet_deleter = false;
 
   // number
   team = 0;
@@ -111,6 +130,9 @@ export class Thing {
   shoot_delay: number[] = []; // use pq?
   shoot_parent: Thing = this;
   shoot_children: Thing[] = [];
+
+  // only for walls
+  segment?: _segmenttype;
 
   [key: string]: unknown;
 
@@ -593,6 +615,14 @@ export class Thing {
     const local_y = local_position.y;
     if (shape === 0) {
       body = Bodies.circle(local_x, local_y, this.size, options);
+    } else if (shape === 1 && this.segment != undefined) {
+      const dx = this.segment.x2 - this.segment.x1;
+      const dy = this.segment.y2 - this.segment.y1;
+      const x = 0;
+      const y = 0;
+      const w = 1;
+      const h = Math.sqrt(dx * dx + dy * dy) / 2;
+      body = Bodies.rectangle(x, y, w, h, options);
     } else if (shape < 0) {
       // body = Bodies.rectangle(x, y, w, h, options);
       console.error("negative thing shape: " + shape);
@@ -631,6 +661,42 @@ export class Thing {
       color: this.color,
       team: this.team,
     };
+  }
+
+  points_data(): _vectortype[] {
+    const points: _vectortype[] = [];
+    if (this.wall && this.segment != undefined && this.segment.x1 != undefined) {
+      points.push(
+        Vector.create(this.segment.x1, this.segment.y1),
+        Vector.create(this.segment.x2, this.segment.y2)
+      );
+    } else {
+      const sides = this.shape === 0 ? 16 : Math.abs(this.shape);
+      points.push(...math_util.regpoly(sides, this.size, this.angle, this.x, this.y));
+    }
+    return points;
+  }
+
+  wall_data(): wall_data[] {
+    const points = this.points_data();
+    const points_length = points.length;
+    const segments: wall_data[] = [ ];
+
+    if (points_length === 2) {
+      const p1 = points[0];
+      const p2 = points[1];
+      segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, color: this.color, });
+    } else if (points_length > 2) {
+      for (let i = 0; i < points_length; i++) {
+        const p1 = points[i];
+        const p2 = points[(i + 1) % points_length];
+        segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, color: this.color, });
+      }
+    } else {
+      console.error("thing.wall_data(): less than 2 points!");
+    }
+
+    return segments;
   }
 
   remove() {

@@ -1,13 +1,18 @@
 import { _vectortype  } from "./math.ts";
 
 export class maketype {
-  parent?: string;
+  parent?: string[];
   fixed?: boolean;
+  player?: boolean;
+  wall?: boolean;
+  blocks_sight?: boolean;
+  bullet_deleter?: boolean;
   size?: number;
   shape?: number;
   speed?: number;
   density?: number;
   friction?: number;
+  restitution?: number;
   color?: number;
   health?: number;
   movement_controller?: string;
@@ -31,4 +36,27 @@ make.player = {
   friction: 0.1,
   color: 0,
   health: 1,
+};
+
+make.wall = {
+  fixed: true,
+  wall: true,
+  blocks_sight: true,
+  bullet_deleter: true,
+  color: 0,
+};
+
+make.wall_bounce = {
+  parent: ["wall"],
+  bullet_deleter: false,
+  restitution: 1,
+  color: 1,
+};
+
+make.bullet = {
+  friction: 0,
+  density: 0.002,
+  damage: 1,
+  bullet: true,
+  shape: 0,
 };

@@ -3,6 +3,13 @@ export class _vectortype {
   y = 0;
 }
 
+export interface _segmenttype {
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+}
+
 // deno-lint-ignore ban-types
 export const math_util: Record<string, Function> = { };
 
@@ -11,7 +18,7 @@ export const SQRT_3 = Math.sqrt(3);
 export const SQRT_5 = Math.sqrt(5);
 
 math_util.regpoly = function(sides: number, size: number, angle = 0, x = 0, y = 0) {
-  const ans = [];
+  const ans: _vectortype[] = [];
   let a = angle;
   size *= math_util.get_real_regpoly_size(sides);
   for (let i = 0; i < sides; ++i) {
