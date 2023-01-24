@@ -19,3 +19,42 @@ export const config = {
     map_border_wall_thickness: 10,
   },
 };
+
+// collision categories
+
+const category_group = {
+  none: 0x0000,
+  thing: 0x0001,
+  wall: 0x0002,
+  all: 0xFFFF,
+};
+
+export interface _collision_filter {
+  group: number,
+  category: number,
+  mask: number,
+}
+
+export const category = {
+  group: category_group,
+  all: {
+    group: 0,
+    category: category_group.thing,
+    mask: category_group.all,
+  },
+  none: {
+    group: 0,
+    category: category_group.thing,
+    mask: category_group.none,
+  },
+  thing: {
+    group: -1,
+    category: category_group.thing,
+    mask: category_group.all,
+  },
+  wall: {
+    group: 0,
+    category: category_group.wall,
+    mask: category_group.all,
+  },
+};

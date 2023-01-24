@@ -1,3 +1,4 @@
+import { category, _collision_filter } from "./config.ts";
 import { _vectortype  } from "./math.ts";
 import { shoots, shoot_stats } from "./shoot.ts";
 
@@ -19,6 +20,7 @@ export class maketype {
   health_capacity?: number;
   movement_controller?: string;
   rotation_controller?: string;
+  collision_filter?: _collision_filter;
   shoots?: shoot_stats[];
   [key: string]: unknown;
 }
@@ -40,6 +42,7 @@ make.player = {
   color: 0,
   health: 50,
   health_capacity: 50,
+  collision_filter: category.thing,
 };
 
 make.player_shoot = {
@@ -52,6 +55,7 @@ make.wall = {
   blocks_sight: true,
   bullet_deleter: true,
   color: 0,
+  collision_filter: category.wall,
 };
 
 make.wall_bounce = {
@@ -67,4 +71,5 @@ make.bullet = {
   damage: 1,
   bullet: true,
   shape: 0,
+  collision_filter: category.thing,
 };

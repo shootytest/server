@@ -1,8 +1,3 @@
-import { _vectortype } from "./math.ts";
-import { Matter } from "./matter.js";
-
-const Vector = Matter.Vector;
-
 export class Controls {
   up = false;
   down = false;

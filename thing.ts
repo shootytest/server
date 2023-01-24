@@ -1,4 +1,4 @@
-import { config } from "./config.ts";
+import { category, config, _collision_filter } from "./config.ts";
 import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
 import { math_util, _segmenttype, _vectortype } from "./math.ts";
@@ -121,7 +121,7 @@ export class Thing {
   friction = 0;
   restitution = 0;
   density = 0.001;
-  // collision_filter = category.all;
+  collision_filter: _collision_filter = category.thing;
 
   // display variables
   color = 0;
@@ -590,11 +590,12 @@ export class Thing {
     if (this.body != undefined) {
       this.remove_body();
     }
+    this.collision_filter.group = -this.team;
     const shape = this.shape;
     const options = {
       isStatic: this.fixed,
       isBullet: this.bullet,
-      // collisionFilter: this.collision_filter,
+      collisionFilter: this.collision_filter,
       // label: this.label,
       density: this.density * config.physics.density_factor,
       restitution: this.restitution,
