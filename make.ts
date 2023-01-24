@@ -66,10 +66,11 @@ make.wall_bounce = {
 };
 
 make.bullet = {
+  bullet: true,
+  player: false,
   friction: 0,
   density: 0.002,
   damage: 1,
-  bullet: true,
   shape: 0,
   collision_filter: category.thing,
 };

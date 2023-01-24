@@ -396,7 +396,9 @@ export class Thing {
     }
     if (this.wall) return;
     if (this.time_death > -1) {
-      if (this.time_death <= Thing.time) {
+      if (this.time_death > 0) {
+        this.time_death--;
+      } else {
         this.remove();
       }
     }
