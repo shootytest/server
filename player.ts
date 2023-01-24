@@ -1,7 +1,9 @@
 import { config } from "./config.ts";
 import { Controls } from "./controls.ts";
 import { make } from "./make.ts";
-import { _vectortype } from "./math.ts";
+import { mapmaker } from "./mapmaker.ts";
+import { maps } from "./maps.ts";
+import { math_util, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
 import { Thing } from "./thing.ts";
 
@@ -9,6 +11,20 @@ const Body = Matter.Body,
       Vector = Matter.Vector;
 
 export class Player extends Thing {
+
+  static get_spawn_zones() {
+    const M = maps[mapmaker.map_key];
+    const zones = M.spawn || [{ x: -M.width, y: -M.height, w: M.width * 2, h: M.height * 2, }];
+    return zones;
+  }
+
+  static random_spawn_location(padding = 0) {
+    const zone = math_util.randpick(Player.get_spawn_zones());
+    return Vector.create(
+      math_util.rand(zone.x + padding, zone.x + zone.w - padding),
+      math_util.rand(zone.y + padding, zone.y + zone.h - padding)
+    );
+  }
 
   static nearest_bullet(position_vector: _vectortype) {
     let result;
@@ -30,7 +46,7 @@ export class Player extends Thing {
   old_player_position: _vectortype = Vector.create();
 
   constructor() {
-    super(Vector.create(0, 0));
+    super(Player.random_spawn_location());
     this.make(make.player);
   }
 

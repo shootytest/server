@@ -9,6 +9,7 @@ const Vector = Matter.Vector;
 
 const width = 0;
 const height = 0;
+const map_key = "";
 const things: Thing[] = [];
 
 // const border_wall_thickness = config.game.map_border_wall_thickness;
@@ -116,7 +117,8 @@ const check_outside_map = (position: _vectortype) => {
 }
 
 export const mapmaker = {
-  width, height, things,
+  width, height, map_key,
+  things,
   makeborder, make: _make,
   remove, check_outside_map,
 };

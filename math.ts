@@ -153,6 +153,10 @@ const randstring = (length = 10) => {
   return result;
 };
 
+const randpick = <Type>(array: Type[]) => {
+  return array[randint(0, array.length - 1)];
+}
+
 export const math_util = {
   regpoly, get_real_regpoly_size,
   in_rect, in_rectangle,
@@ -161,5 +165,5 @@ export const math_util = {
   deg_to_rad, rad_to_deg,
   lerp, bounce,
   vector_create,
-  rand, randint, randbool, randgauss, randstring,
+  rand, randint, randbool, randgauss, randstring, randpick,
 };
