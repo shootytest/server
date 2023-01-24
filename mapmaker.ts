@@ -60,6 +60,9 @@ const _make = (map_key: string) => {
     if (S.bouncy) {
       wall.make(make.wall_bounce);
     }
+    if (S.window) {
+      wall.make(make.wall_window);
+    }
     /*
     if (S.bulletblock) {
       wall.make(make.wall_bulletblock);

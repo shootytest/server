@@ -44,6 +44,7 @@ make.player = {
   density: 0.001,
   friction: 0.1,
   color: 0,
+  damage: 5,
   health: {
     capacity: config.game.player_health,
     regen: config.game.player_regen,
@@ -55,7 +56,7 @@ make.player = {
 
 make.player_shoot = {
   shoots: [shoots.basic],
-}
+};
 
 make.wall = {
   fixed: true,
@@ -70,7 +71,13 @@ make.wall_bounce = {
   parent: ["wall"],
   bullet_deleter: false,
   restitution: 1,
-  color: 1,
+  color: 3,
+};
+
+make.wall_window = {
+  parent: ["wall"],
+  blocks_sight: false,
+  color: 4,
 };
 
 make.bullet = {
@@ -85,4 +92,4 @@ make.bullet = {
 
 make.bullet_basic = {
   parent: ["bullet"],
-}
+};

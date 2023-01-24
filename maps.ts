@@ -8,6 +8,7 @@ export interface map_shape {
   size: number;
   angle?: number;
   bouncy?: boolean;
+  window?: boolean;
 }
 
 export interface map_zone {

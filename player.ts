@@ -116,6 +116,7 @@ export class Player extends Thing {
   }
 
   remove() {
+    // this shouldn't happen unless socket disconnect
     this.player_dead = true;
     super.remove();
   }

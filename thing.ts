@@ -26,6 +26,7 @@ export interface matter_body {
 }
 
 export interface thing_data {
+  id: number;
   x: number;
   y: number;
   angle: number;
@@ -51,6 +52,7 @@ export class Thing {
   static walls: Thing[] = [];
   static enemies: Thing[] = [];
 
+  static cumulative_id = 0;
   static time = 1;
 
   static tick_things = () => {
@@ -79,6 +81,9 @@ export class Thing {
     }
     return walldata;
   }
+
+  // thing id
+  id: number = ++Thing.cumulative_id;
 
   // location variables
   body?: matter_body = undefined; // physics body
@@ -665,6 +670,7 @@ export class Thing {
   
   data(): thing_data {
     return {
+      id: this.id,
       x: Math.round(this.x),
       y: Math.round(this.y),
       angle: math_util.round_to(this.angle, 0.001),
