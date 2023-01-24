@@ -24,6 +24,7 @@ export interface matter_body {
 export interface thing_data {
   x: number;
   y: number;
+  angle: number;
   size: number;
   shape: number;
   health: number;
@@ -110,6 +111,7 @@ export class Thing {
   size_death = -1;
   time_death = -1;
   homing_amount = 0.05;
+  spin_rate = 0;
 
   // properties
   killer?: Thing = undefined;
@@ -226,7 +228,7 @@ export class Thing {
     this.target.angle = angle;
   }
   
-  get rotation(): number {
+  get rotation() {
     return this.angle;
   }
 
@@ -440,10 +442,10 @@ export class Thing {
     for (let index = 0; index < this.shoots.length; index++) {
       const s = this.shoots[index];
       // shoot conditions
-      if (s.never_shoot || s.death) continue;
+      // if (s.never_shoot || s.death) continue;
       if (this.shooting || s.shooting || s.always_shoot) {
-        if (s.activate_below != undefined && this.health / this.health_capacity > s.activate_below) continue;
-        if (s.activate_above != undefined && this.health / this.health_capacity < s.activate_above) continue;
+        //if (s.activate_below != undefined && this.health / this.health_capacity > s.activate_below) continue;
+        //if (s.activate_above != undefined && this.health / this.health_capacity < s.activate_above) continue;
         this.shoot_index(index);
       }
     }
@@ -493,12 +495,7 @@ export class Thing {
     if (this.body == undefined) return;
     const location = Vector.clone(this.position);
     const b = new Thing(location);
-    // setup the bullet
-    if (this.shoot_parent.player) {
-      b.make(make.player_bullet);
-    } else if (this.shoot_parent.enemy) {
-      b.make(make.enemy_bullet);
-    }
+    b.make(make.bullet);
     b.make(make["bullet_" + S.type]);
     // bullet properties (optional, might have already been set up in the previous step)
     if (S.size != undefined) {
@@ -651,6 +648,7 @@ export class Thing {
     return {
       x: this.x,
       y: this.y,
+      angle: this.angle,
       size: this.size,
       shape: this.shape,
       health: this.health,

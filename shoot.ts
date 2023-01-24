@@ -17,6 +17,7 @@ export interface shoot_stats {
   delay?: number;
   target_type?: string;
   move?: boolean;
+  always_shoot?: boolean;
   options?: maketype;
   parent?: shoot_stats;
   [key: string]: unknown;

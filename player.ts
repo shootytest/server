@@ -57,10 +57,9 @@ export class Player extends Thing {
 
   tick_player() {
     // if not dead
-    // deno-lint-ignore no-constant-condition
-    if (true || !this.player_dead) {
+    if (!this.player_dead) {
       // rotate player
-      this.target.facing = Vector.create(0, 0);
+      this.target.facing = Vector.clone(this.controls.facing);
       // move player
       const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
       const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
@@ -110,11 +109,9 @@ export class Player extends Thing {
     this.move_force(Vector.normalise(v));
   }
 
-  /*
   shoot() {
     if (this.player_dead) return;
     super.shoot();
   }
-  */
   
 }
