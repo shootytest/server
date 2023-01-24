@@ -5,11 +5,13 @@ import { Thing } from "./thing.ts";
 import { Matter } from "./matter.js";
 import { Controls } from "./controls.ts";
 import { Player } from "./player.ts";
+import { mapmaker } from "./mapmaker.ts";
 
 const Vector = Matter.Vector;
 
 // initialize main
 main();
+mapmaker.make("tutorial");
 
 // helper functions
 
@@ -135,6 +137,8 @@ io.on("connection", (socket) => {
   socket.emit("id", id);
 
   socket.emit("hello", "world");
+
+  socket.emit("gamemap", Thing.walldata());
 
   socket.on("hello", (message) => {
     console.log(message);

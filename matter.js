@@ -1,3 +1,4 @@
+// also consider using https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/matter-js/index.d.ts
 const exports = {};
 /*!
  * matter-js 0.18.0 by @liabru

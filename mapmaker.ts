@@ -7,17 +7,9 @@ import { Thing } from "./thing.ts";
 
 const Vector = Matter.Vector;
 
-export const mapmaker: {
-  width?: number;
-  height?: number;
-  things?: Thing[];
-  make?: (map_key: string) => void;
-  [key: string]: unknown;
-} = {};
-
-mapmaker.width = 0;
-mapmaker.height = 0;
-mapmaker.things = [];
+const width = 0;
+const height = 0;
+const things: Thing[] = [];
 
 // const border_wall_thickness = config.game.map_border_wall_thickness;
 
@@ -39,7 +31,7 @@ const makeborder = (x1: number, y1: number, x2: number, y2: number) => {
   return wall;
 }
 
-mapmaker.make = (map_key: string) => {
+const _make = (map_key: string) => {
 
   const M = maps[map_key];
 
@@ -104,7 +96,7 @@ mapmaker.make = (map_key: string) => {
   
 }
 
-mapmaker.remove = function(shape_index: number) {
+const remove = (shape_index: number) => {
   const thing = mapmaker.things?.at(shape_index);
   if (thing == undefined) return;
   thing.remove();
@@ -115,10 +107,16 @@ mapmaker.remove = function(shape_index: number) {
   }
 }
 
-mapmaker.check_outside_map = function(position: _vectortype) {
+const check_outside_map = (position: _vectortype) => {
   const w = mapmaker.width, h = mapmaker.height;
   if (w == undefined || h == undefined) return true;
   const b = config.game.map_border_wall_thickness;
   const x = position.x, y = position.y;
   return x > w - b || x < b - w || y > h - b || y < b - h;
 }
+
+export const mapmaker = {
+  width, height, things,
+  makeborder, make: _make,
+  remove, check_outside_map,
+};
