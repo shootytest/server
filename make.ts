@@ -33,7 +33,7 @@ make.player = {
   player: true,
   rotation_controller: "player",
   size: 30,
-  shape: 0,
+  shape: 5,
   speed: 50,
   density: 0.001,
   friction: 0.1,
