@@ -1,4 +1,5 @@
 import { _vectortype  } from "./math.ts";
+import { shoot_stats } from "./shoot.ts";
 
 export class maketype {
   parent?: string[];
@@ -17,6 +18,7 @@ export class maketype {
   health?: number;
   movement_controller?: string;
   rotation_controller?: string;
+  shoots?: shoot_stats[];
   [key: string]: unknown;
 }
 

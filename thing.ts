@@ -3,6 +3,7 @@ import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
 import { math_util, _segmenttype, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
+import { shoots, shoot_stats } from "./shoot.ts";
 
 const Body = Matter.Body,
       Bodies = Matter.Bodies,
@@ -125,7 +126,7 @@ export class Thing {
   
   // pew
   shooting = false;
-  shoots = [];
+  shoots: shoot_stats[] = [];
   shoots_time: number[] = [];
   shoots_duration: number[] = [];
   shoots_duration_time: number[] = [];
@@ -160,33 +161,31 @@ export class Thing {
     for (const k in o) {
       if (o[k] != undefined && Object.prototype.hasOwnProperty.call(o, k)) {
 
-        // shoots
-        /*
-        if (k === "shoots") {
-          if (o.shoots[0] === "delete") {
+        if (k === "shoots" && o.shoots != undefined) {
+          if (o.shoots[0].type === "delete") {
             this.shoots = [];
             this.shoots_time = [];
             this.shoots_duration = [];
             this.shoots_duration_time = [];
           }
-          for (const S of o[k]) {
+          for (const S of o.shoots) {
             if (typeof S === "string") continue;
-            const to_push = {};
-            function recursive_add(shoot_obj, parented = false) {
-              if (shoot_obj.hasOwnProperty("parent") && !parented) {
+            const to_push: shoot_stats = shoots.default;
+            const recursive_add = (shoot_obj: shoot_stats, parented = false) => {
+              if (shoot_obj.parent != undefined && !parented) {
                 recursive_add(shoot_obj.parent);
                 recursive_add(shoot_obj, true);
                 return;
               }
               for (const key in shoot_obj) {
-                if (!shoot_obj.hasOwnProperty(key) || key == "parent") continue;
+                if (!Object.prototype.hasOwnProperty.call(shoot_obj, key) || key === "parent" || shoot_obj[key] == undefined) continue;
                 to_push[key] = shoot_obj[key];
               }
             }
             recursive_add(S);
             this.shoots.push(to_push);
           }
-          for (const not_used of o[k]) {
+          for (const _not_used of o.shoots) {
             // init shoots_time and others
             this.shoots_time.push(0);
             this.shoots_duration.push(0);
@@ -194,7 +193,6 @@ export class Thing {
           }
           continue;
         }
-        */
 
         // normal properties
         this[k] = o[k];

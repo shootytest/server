@@ -30,9 +30,9 @@ io.on("connection", (socket) => {
 
   // a new connection! welcome!
 
-  console.log(`socket ${socket.id} connected`);
-
   const id = new_socket_id();
+
+  console.log(`socket #${id} "${socket.id}" connected`);
 
   const player = new Player();
   player.team = id;
@@ -51,14 +51,14 @@ io.on("connection", (socket) => {
     player.controls = controls;
   });
 
-  socket.on("disconnecting", (reason) => {
+  socket.on("disconnecting", (_reason) => {
     player.remove();
-    console.log(`socket ${socket.id} disconnecting due to ${reason}`);
+    //console.log(`socket ${socket.id} disconnecting due to ${reason}`);
   });
 
-  socket.on("disconnect", (reason) => {
+  socket.on("disconnect", (_reason) => {
     player.remove();
-    console.log(`socket ${socket.id} disconnected due to ${reason}`);
+    //console.log(`socket ${socket.id} disconnected due to ${reason}`);
   });
 
 });
