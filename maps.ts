@@ -54,7 +54,7 @@ maps.test = {
     { type: "line", x: -1000, y: -500, x2: -840, y2: -500, },
     { type: "line", x: -1000, y: -360, x2: -500, y2: -360, },
     { type: "line", x: 0, y: -1000, x2: 0, y2: -500, },
-    { type: "square", x: -500, y: -680, size: 40, },
+    { type: "square", x: -500, y: -680, size: 60, },
     // center walls
     { type: "line", x: -500, y: -360, x2: -500, y2: 500, },
     { type: "line", x: 500, y: -500, x2: 500, y2: 360, },

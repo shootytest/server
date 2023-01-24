@@ -49,8 +49,8 @@ const _make = (map_key: string) => {
   makeborder(-w, -h, w, -h);
   makeborder(-w, h, w, h);
   
-  w++;
-  h++;
+  w += 5;
+  h += 5;
 
   makeborder(-w, -h, -w, h);
   makeborder(w, -h, w, h);
@@ -90,7 +90,7 @@ const _make = (map_key: string) => {
     } else if (S.type === "square") {
       wall.shape = 4;
       wall.size = S.size || 0;
-      wall.angle = S.angle || 0;
+      wall.angle = (S.angle || 0) + Math.PI / 8;
     } else if (S.type === "line" && S.x2 != undefined && S.y2 != undefined) {
       const newx = (S.x + S.x2) / 2;
       const newy = (S.y + S.y2) / 2;
