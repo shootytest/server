@@ -113,5 +113,9 @@ export class Player extends Thing {
     if (this.player_dead) return;
     super.shoot();
   }
+
+  remove() {
+    super.remove();
+  }
   
 }

@@ -662,7 +662,7 @@ export class Thing {
       health: math_util.round_to(this.health / this.health_capacity, 0.001),
       color: this.color,
       team: this.team,
-      flag: (this.player ? 1 : 0) + (this.show_health ? 1 : 0),
+      flag: (this.player ? 1 : 0) + (this.show_health ? 2 : 0),
     };
   }
 
