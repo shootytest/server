@@ -13,8 +13,7 @@ const Vector = Matter.Vector;
 console.log("initializing...")
 main();
 mapmaker.make("tutorial");
-const why_though = Thing.walldata();
-console.log(Thing.walls);
+const memo_walldata = Thing.walldata();
 
 // helper functions
 
@@ -50,8 +49,8 @@ io.on("connection", (socket) => {
 
   socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
-  console.log(Thing.walls);
-  socket.emit("gamemap", why_though);
+  console.log(Thing.walls.length);
+  socket.emit("gamemap", memo_walldata);
 
   socket.on("hello", (message) => {
     console.log(message);
