@@ -409,7 +409,7 @@ export class Thing {
         this.remove();
       }
     }
-    if (this.health <= 0) {
+    if (this.health <= 0 && this.health_capacity > 0) {
       if (!this.player) {
         this.remove();
       }
@@ -503,9 +503,9 @@ export class Thing {
       const size = spreadsize === 0 ? S.size : math_util.randgauss(S.size, spreadsize);
       b.size = size;
     }
-    if (S.damage != undefined) {
-      b.damage = S.damage;
-    }
+    b.damage = S.damage;
+    b.health = S.health;
+    b.health_capacity = S.health;
     if (S.color != undefined) {
       b.color = S.color;
     }

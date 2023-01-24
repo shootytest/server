@@ -38,8 +38,8 @@ make.player = {
   density: 0.001,
   friction: 0.1,
   color: 0,
-  health: 5,
-  health_capacity: 5,
+  health: 50,
+  health_capacity: 50,
 };
 
 make.player_shoot = {

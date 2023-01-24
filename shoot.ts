@@ -9,6 +9,7 @@ export interface shoot_stats {
   spreadv?: number;
   spreadsize?: number;
   damage: number;
+  health: number;
   time: number;
   color?: number;
   friction?: number;
@@ -23,10 +24,10 @@ export interface shoot_stats {
   [key: string]: unknown;
 }
 
-const normal: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.04, damage: 3, time: 240, };
+const normal: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.04, damage: 5, health: 5, time: 240, };
 
 
-const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.04, damage: 3, time: 240, };
+const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.04, damage: 5, health: 5, time: 240, };
 
 export const shoots = {
   normal,
