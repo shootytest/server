@@ -1,4 +1,5 @@
 import { category, config, _collision_filter } from "./config.ts";
+import { Health } from "./health.ts";
 import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
 import { math_util, _segmenttype, _vectortype } from "./math.ts";
@@ -109,8 +110,7 @@ export class Thing {
 
   // number
   team = 0;
-  health = 0;
-  health_capacity = 0;
+  health = new Health(this);
   damage = 0;
   speed = 0;
   speed_death = -1;
@@ -203,6 +203,21 @@ export class Thing {
           continue;
         }
 
+        // health stuff
+        if (k === "health" && o.health != undefined) {
+          const h = o.health;
+          if (h.capacity != undefined) {
+            this.health.set_capacity(h.capacity);
+          }
+          if (h.regen != undefined) {
+            this.health.regen = h.regen / 60;
+          }
+          if (h.regen_time != undefined) {
+            this.health.hit_clear = h.regen_time * 60;
+          }
+          continue;
+        }
+
         // normal properties
         this[k] = o[k];
 
@@ -264,17 +279,13 @@ export class Thing {
   }
 
   tick() {
-    this.tick_health();
+    this.health.tick();
     this.tick_rotate();
     this.tick_move();
     this.tick_shoot();
     this.tick_body();
     this.tick_death();
     this.shoot();
-  }
-
-  tick_health() {
-
   }
 
   tick_move() {
@@ -417,7 +428,7 @@ export class Thing {
         this.remove();
       }
     }
-    if (this.health <= 0 && this.health_capacity > 0) {
+    if (this.health.zero()) {
       if (!this.player) {
         this.remove();
       }
@@ -452,8 +463,8 @@ export class Thing {
       // shoot conditions
       // if (s.never_shoot || s.death) continue;
       if (this.shooting || s.shooting || s.always_shoot) {
-        //if (s.activate_below != undefined && this.health / this.health_capacity > s.activate_below) continue;
-        //if (s.activate_above != undefined && this.health / this.health_capacity < s.activate_above) continue;
+        //if (s.activate_below != undefined && this.health.health / this.health.capacity > s.activate_below) continue;
+        //if (s.activate_above != undefined && this.health.health / this.health.capacity < s.activate_above) continue;
         this.shoot_index(index);
       }
     }
@@ -512,8 +523,7 @@ export class Thing {
       b.size = size;
     }
     b.damage = S.damage;
-    b.health = S.health;
-    b.health_capacity = S.health;
+    b.health.set_capacity(S.health);
     if (S.color != undefined) {
       b.color = S.color;
     }
@@ -660,10 +670,13 @@ export class Thing {
       angle: math_util.round_to(this.angle, 0.001),
       size: Math.round(this.size),
       shape: this.shape,
-      health: math_util.round_to(this.health / this.health_capacity, 0.001),
+      health: math_util.round_to(this.health.display, 0.001),
       color: this.color,
       team: this.team,
-      flag: (this.player ? 1 : 0) + (this.show_health ? 2 : 0) + (this.invisible ? 4 : 0),
+      flag: (this.player ? 0x0001 : 0) +
+            (this.show_health ? 0x0002 : 0) +
+            (this.invisible ? 0x0004 : 0) +
+            (this.health.invincible ? 0x0008 : 0),
     };
   }
 

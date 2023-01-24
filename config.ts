@@ -12,6 +12,7 @@ export const config = {
     player_health: 5, // total health capacity
     player_regen: 0.5, // health per second
     player_regen_delay: 3, // in seconds
+    health_display_smoothness: 0.05,
     respawn_time: 180,
     respawn_invincibility: 180,
     health_mult: 10,

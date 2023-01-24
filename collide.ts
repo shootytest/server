@@ -15,16 +15,13 @@ function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
   if (t.deleter && u.bullet) {
     u.deleted = true;
   }
-  if (t.health_capacity > 0 && u.damage > 0 && t.team !== u.team) {
-    const old_health = t.health;
-    t.health -= u.damage;
-    t.hit_time = Thing.time;
-    const _real_damage = Math.max(0, Math.min(u.damage, old_health));
+  if (t.health.capacity > 0 && u.damage > 0 && t.team !== u.team) {
+    const _damage = t.health.hit(u.damage);
     t.killer = u.shoot_parent;
     u.deleted = true;
   }
   /*
-  if (t.damage > 0 && u.health_capacity > 0 && t.team !== u.team) {
+  if (t.health.damage > 0 && u.health.capacity > 0 && t.team !== u.team) {
     u.health.hit_add(t.health.damage);
     u.killer = t.shoot_parent;
   }
@@ -35,7 +32,7 @@ function collide_end(a: matter_body, b: matter_body, _pair: matter_pair) {
   const _t = a.thing;
   const _u = b.thing;
   /*
-  if (t.damage > 0 && u.health.capacity > 0) {
+  if (t.health.damage > 0 && u.health.capacity > 0) {
     u.health.hit_remove(t.health.damage);
   }
   */

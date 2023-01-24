@@ -42,6 +42,7 @@ export class Player extends Thing {
   player_autofire = false;
   player_dead = false;
   player_dead_time = 0;
+  player_invincibility_time = 0;
   controls: Controls = new Controls();
   old_player_position: _vectortype = Vector.create();
 
@@ -76,7 +77,7 @@ export class Player extends Thing {
 
   tick_death() {
     super.tick_death();
-    if (this.health <= 0 && this.health_capacity > 0) {
+    if (this.health.zero()) {
       // you are dead
       if (!this.player_dead) {
         this.player_dead = true;
@@ -92,19 +93,17 @@ export class Player extends Thing {
     if (this.player_dead_time != 0 && this.player_dead_time < Thing.time) {
       this.player_dead = false;
       this.player_dead_time = 0;
-      this.health = this.health_capacity;
+      this.health.restore();
       this.make_visible();
       this.position = this.old_player_position;
       Body.setPosition(this.body, this.old_player_position);
-      //this.health.invincible = true;
-      //this.player_invincibility_time = Thing.time + config.game.respawn_invincibility;
+      this.health.invincible = true;
+      this.player_invincibility_time = Thing.time + config.game.respawn_invincibility;
     }
-    /*
     if (this.player_invincibility_time != 0 && this.player_invincibility_time < Thing.time) {
       this.player_invincibility_time = 0;
       this.health.invincible = false;
     }
-    */
   }
 
   move_player(v: _vectortype) {

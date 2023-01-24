@@ -17,8 +17,11 @@ export class maketype {
   friction?: number;
   restitution?: number;
   color?: number;
-  health?: number;
-  health_capacity?: number;
+  health?: {
+    capacity?: number;
+    regen?: number;
+    regen_time?: number;
+  };
   movement_controller?: string;
   rotation_controller?: string;
   collision_filter?: _collision_filter;
@@ -41,8 +44,9 @@ make.player = {
   density: 0.001,
   friction: 0.1,
   color: 0,
-  health: 50,
-  health_capacity: 50,
+  health: {
+    capacity: 50,
+  },
   show_health: true,
   collision_filter: category.thing,
 };
