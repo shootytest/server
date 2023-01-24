@@ -10,8 +10,10 @@ import { mapmaker } from "./mapmaker.ts";
 const Vector = Matter.Vector;
 
 // initialize main
+console.log("initializing...")
 main();
 mapmaker.make("tutorial");
+console.log(Thing.walldata());
 
 // helper functions
 
