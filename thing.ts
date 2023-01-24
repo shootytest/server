@@ -18,6 +18,9 @@ export interface matter_body {
   velocity: _vectortype;
   angle: number;
   mass: number;
+  friction: number;
+  restitution: number;
+  thing: Thing;
   [key: string]: unknown;
 }
 
