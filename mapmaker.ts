@@ -22,6 +22,7 @@ const makeborder = (x1: number, y1: number, x2: number, y2: number) => {
   wall.shape = 1;
   wall.size = 1;
   wall.angle = Math.atan2(x - x2, y2 - y);
+  wall.wall_border = true;
   wall.segment = {
     x1: x1,
     y1: y1,
@@ -41,16 +42,8 @@ const _make = (map_key: string) => {
   mapmaker.width = M.width;
   mapmaker.height = M.height;
 
-  let w = M.width;
-  let h = M.height;
-
-  makeborder(-w, -h, -w, h);
-  makeborder(w, -h, w, h);
-  makeborder(-w, -h, w, -h);
-  makeborder(-w, h, w, h);
-  
-  w += 5;
-  h += 5;
+  const w = M.width;
+  const h = M.height;
 
   makeborder(-w, -h, -w, h);
   makeborder(w, -h, w, h);

@@ -708,7 +708,7 @@ export class Thing {
     const segments: wall_data[] = [ ];
     const color = this.color;
     const flag: number =  (this.blocks_sight ? 0x0001 : 0) +
-                          (this.show_health ? 0x0002 : 0);
+                          (this.wall_border ? 0x0002 : 0);
 
     if (points_length === 2) {
       const p1 = points[0];
