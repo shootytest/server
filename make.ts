@@ -1,5 +1,5 @@
 import { _vectortype  } from "./math.ts";
-import { shoot_stats } from "./shoot.ts";
+import { shoots, shoot_stats } from "./shoot.ts";
 
 export class maketype {
   parent?: string[];
@@ -41,6 +41,10 @@ make.player = {
   health: 5,
   health_capacity: 5,
 };
+
+make.player_shoot = {
+  shoots: [shoots.basic],
+}
 
 make.wall = {
   fixed: true,

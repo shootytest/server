@@ -171,7 +171,7 @@ export class Thing {
           }
           for (const S of o.shoots) {
             if (typeof S === "string") continue;
-            const to_push: shoot_stats = shoots.default;
+            const to_push: shoot_stats = shoots.normal;
             const recursive_add = (shoot_obj: shoot_stats, parented = false) => {
               if (shoot_obj.parent != undefined && !parented) {
                 recursive_add(shoot_obj.parent);
@@ -259,7 +259,6 @@ export class Thing {
     this.tick_health();
     this.tick_rotate();
     this.tick_move();
-    if (this.dummy) return;
     this.tick_shoot();
     this.tick_body();
     this.tick_death();
