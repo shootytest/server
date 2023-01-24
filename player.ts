@@ -59,7 +59,7 @@ export class Player extends Thing {
     // if not dead
     if (!this.player_dead) {
       // rotate player
-      this.target.facing = Vector.clone(this.controls.facing);
+      this.target.facing = Vector.create(this.controls.facingx, this.controls.facingy);
       // move player
       const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
       const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);

@@ -10,5 +10,6 @@ export class Controls {
   right = false;
   shoot = false;
   rshoot = false;
-  facing: _vectortype = Vector.create(0, 0);
+  facingx = 0;
+  facingy = 0;
 }
