@@ -83,7 +83,7 @@ const _make = (map_key: string) => {
     } else if (S.type === "square") {
       wall.shape = 4;
       wall.size = S.size || 0;
-      wall.angle = (S.angle || 0) + Math.PI / 8;
+      wall.angle = (S.angle || 0) + Math.PI / 4;
     } else if (S.type === "line" && S.x2 != undefined && S.y2 != undefined) {
       const newx = (S.x + S.x2) / 2;
       const newy = (S.y + S.y2) / 2;
