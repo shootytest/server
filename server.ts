@@ -12,6 +12,7 @@ const Vector = Matter.Vector;
 // initialize main
 main();
 mapmaker.make("tutorial");
+console.log(Thing.walldata());
 
 // helper functions
 
@@ -135,9 +136,6 @@ io.on("connection", (socket) => {
 
   socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
-
-  socket.emit("hello", "world");
-
   socket.emit("gamemap", Thing.walldata());
 
   socket.on("hello", (message) => {
