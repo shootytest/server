@@ -18,7 +18,9 @@ function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
   if (t.health.capacity > 0 && u.damage > 0 && t.team !== u.team) {
     const _damage = t.health.hit(u.damage);
     t.killer = u.shoot_parent;
-    //u.deleted = true;
+    if (t.player && u.bullet) {
+      u.deleted = true;
+    }
   }
   /*
   if (t.health.damage > 0 && u.health.capacity > 0 && t.team !== u.team) {

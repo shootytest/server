@@ -24,10 +24,10 @@ export interface shoot_stats {
   [key: string]: unknown;
 }
 
-const normal: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 10, health: 10, time: 100, };
+const normal: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 15, health: 10, time: 100, };
 
 
-const basic: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 10, health: 10, time: 100, };
+const basic: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 15, health: 10, time: 100, };
 
 export const shoots = {
   normal,
