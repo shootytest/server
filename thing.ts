@@ -624,7 +624,7 @@ export class Thing {
       const x = 0;
       const y = 0;
       const w = 1;
-      const h = Math.sqrt(dx * dx + dy * dy) / 2;
+      const h = Math.sqrt(dx * dx + dy * dy);
       body = Bodies.rectangle(x, y, w, h, options);
     } else if (shape < 0) {
       // body = Bodies.rectangle(x, y, w, h, options);

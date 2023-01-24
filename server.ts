@@ -10,9 +10,9 @@ import { mapmaker } from "./mapmaker.ts";
 const Vector = Matter.Vector;
 
 // initialize main
-console.log("initializing...")
+console.log("initializing...");
 main();
-mapmaker.make("tutorial");
+mapmaker.make("test");
 const memo_walldata = Thing.walldata();
 
 // helper functions
@@ -49,7 +49,6 @@ io.on("connection", (socket) => {
 
   socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
-  console.log(Thing.walls.length);
   socket.emit("gamemap", memo_walldata);
 
   socket.on("hello", (message) => {

@@ -29,7 +29,7 @@ export interface game_map {
 export const maps: Record<string, game_map> = { };
 
 maps.empty = {
-  name: "Empty Map",
+  name: "Empty",
   width: 300,
   height: 300,
   spawn: [
@@ -42,8 +42,8 @@ maps.empty = {
   ],
 }
 
-maps.tutorial = {
-  name: "Tutorial Map",
+maps.test = {
+  name: "Test",
   width: 400,
   height: 400,
   spawn: [
