@@ -34,6 +34,8 @@ const makeborder = (x1: number, y1: number, x2: number, y2: number) => {
 
 const _make = (map_key: string) => {
 
+  mapmaker.map_key = map_key;
+
   const M = maps[map_key];
 
   mapmaker.width = M.width;
@@ -116,9 +118,13 @@ const check_outside_map = (position: _vectortype) => {
   return x > w - b || x < b - w || y > h - b || y < b - h;
 }
 
+const get_current_map = () => {
+  return maps[mapmaker.map_key];
+}
+
 export const mapmaker = {
   width, height, map_key,
   things,
   makeborder, make: _make,
-  remove, check_outside_map,
+  remove, check_outside_map, get_current_map
 };

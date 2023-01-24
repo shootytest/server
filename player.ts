@@ -2,7 +2,6 @@ import { config } from "./config.ts";
 import { Controls } from "./controls.ts";
 import { make } from "./make.ts";
 import { mapmaker } from "./mapmaker.ts";
-import { maps } from "./maps.ts";
 import { math_util, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
 import { Thing } from "./thing.ts";
@@ -13,7 +12,7 @@ const Body = Matter.Body,
 export class Player extends Thing {
 
   static get_spawn_zones() {
-    const M = maps[mapmaker.map_key];
+    const M = mapmaker.get_current_map();
     const zones = M.spawn || [{ x: -M.width, y: -M.height, w: M.width * 2, h: M.height * 2, }];
     return zones;
   }
