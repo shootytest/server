@@ -82,3 +82,7 @@ make.bullet = {
   shape: 0,
   collision_filter: category.thing,
 };
+
+make.bullet_basic = {
+  parent: ["bullet"],
+}

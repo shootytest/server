@@ -1,6 +1,6 @@
 import { engine } from "./main.ts";
 import { Matter } from "./matter.js"
-import { matter_body, Thing } from "./thing.ts";
+import { matter_body } from "./thing.ts";
 
 const Events = Matter.Events;
 
