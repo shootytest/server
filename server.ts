@@ -2,12 +2,9 @@ import { serve, ConnInfo } from "https://deno.land/std@0.173.0/http/server.ts";
 import { Server } from "https://deno.land/x/socket_io@0.2.0/mod.ts";
 import { main, tick } from "./main.ts";
 import { Thing } from "./thing.ts";
-import { Matter } from "./matter.js";
 import { Controls } from "./controls.ts";
 import { Player } from "./player.ts";
 import { mapmaker } from "./mapmaker.ts";
-
-const Vector = Matter.Vector;
 
 // initialize main
 console.log("initializing...");
@@ -20,11 +17,6 @@ const memo_walldata = Thing.walldata();
 let socket_cumulative_id = 0;
 const new_socket_id = () => ++socket_cumulative_id;
 
-
-// constants
-
-const WIDTH = 1000;
-const HEIGHT = 1000;
 
 // socket.io part
 
@@ -43,7 +35,6 @@ io.on("connection", (socket) => {
   const id = new_socket_id();
 
   const player = new Player();
-  player.position = Vector.create(Math.floor(Math.random() * WIDTH), Math.floor(Math.random() * HEIGHT));
   player.team = id;
   player.create();
 
