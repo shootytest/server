@@ -7,8 +7,16 @@ export interface shoot_stats {
   speed : number;
   spread: number;
   spreadv?: number;
+  spreadsize?: number;
   damage: number;
   time: number;
+  color?: number;
+  friction?: number;
+  recoil?: number;
+  duration_reload?: number;
+  delay?: number;
+  target_type?: string;
+  move?: boolean;
   options?: maketype;
   parent?: shoot_stats;
   [key: string]: unknown;

@@ -103,6 +103,7 @@ export class Thing {
   // number
   team = 0;
   health = 0;
+  health_capacity = 0;
   damage = 0;
   speed = 0;
   speed_death = -1;
@@ -130,7 +131,7 @@ export class Thing {
   shoots_time: number[] = [];
   shoots_duration: number[] = [];
   shoots_duration_time: number[] = [];
-  shoot_delay: number[] = []; // use pq?
+  shoot_delay: { time: number, s: shoot_stats }[] = []; // use pq?
   shoot_parent: Thing = this;
   shoot_children: Thing[] = [];
 
@@ -259,10 +260,10 @@ export class Thing {
     this.tick_rotate();
     this.tick_move();
     if (this.dummy) return;
-    // this.tick_shoot();
+    this.tick_shoot();
     this.tick_body();
     this.tick_death();
-    // this.shoot();
+    this.shoot();
   }
 
   tick_health() {
@@ -350,7 +351,6 @@ export class Thing {
     }
   }
 
-  /*
   tick_shoot() {
     for (let i = 0; i < this.shoots.length; i++) {
       const reload = this.shoots[i].reload;
@@ -383,7 +383,6 @@ export class Thing {
       }
     }
   }
-  */
 
   tick_body() {
     if (this.body == undefined) return;
@@ -416,11 +415,13 @@ export class Thing {
     }
   }
 
-  /*
   get_shoot_ratio(shoot_index: number, is_duration: boolean) {
     if (this.shoots.length <= 0) return 0;
     if (this.dummy) return 1;
-    if (is_duration) return this.get_shoot_duration_ratio(shoot_index);
+    if (is_duration) {
+      shoot_index = shoot_index || 0;
+      return Math.min(1, this.shoots_duration_time[shoot_index] / (this.shoots[shoot_index]?.duration_reload || 1));
+    }
     shoot_index = shoot_index || 0;
     const reload = this.shoots[shoot_index].reload || 0;
     const delay = this.shoots[shoot_index].delay || 0;
@@ -436,26 +437,20 @@ export class Thing {
     return math_util.bound(result, 0, 1);
   }
 
-  get_shoot_duration_ratio(shoot_index) {
-    if (this.shoots.length <= 0) return 0;
-    shoot_index = shoot_index || 0;
-    return Math.min(1, this.shoots_duration_time[shoot_index] / this.shoots[shoot_index].duration_reload);
-  }
-
   shoot() {
     for (let index = 0; index < this.shoots.length; index++) {
       const s = this.shoots[index];
       // shoot conditions
       if (s.never_shoot || s.death) continue;
       if (this.shooting || s.shooting || s.always_shoot) {
-        if (s.activate_below != undefined && this.health.health / this.health.capacity > s.activate_below) continue;
-        if (s.activate_above != undefined && this.health.health / this.health.capacity < s.activate_above) continue;
+        if (s.activate_below != undefined && this.health / this.health_capacity > s.activate_below) continue;
+        if (s.activate_above != undefined && this.health / this.health_capacity < s.activate_above) continue;
         this.shoot_index(index);
       }
     }
   }
 
-  shoot_index(index) {
+  shoot_index(index: number) {
     const s = this.shoots[index];
     let t = this.shoots_time[index];
     while (t >= s.reload) {
@@ -483,21 +478,21 @@ export class Thing {
     this.shoots_time[index] = t;
   }
 
-  shoot_do(s) {
+  shoot_do(s: shoot_stats) {
     if (s.move) {
       this.shoot_move(s);
     } else {
       if (s.delay && s.delay > 0) {
-        this.shoot_delay.push({ time: Thing.time + s.delay, s: s });
+        this.shoot_delay.push({ time: Thing.time + (s?.delay || 0), s: s });
       } else {
         this.shoot_bullet(s);
       }
     }
   }
 
-  shoot_bullet(S) {
+  shoot_bullet(S: shoot_stats) {
     if (this.body == undefined) return;
-    const location = this.real_point_location(Vector.create(S.x, S.y));
+    const location = Vector.clone(this.position);
     const b = new Thing(location);
     // setup the bullet
     if (this.shoot_parent.player) {
@@ -508,8 +503,8 @@ export class Thing {
     b.make(make["bullet_" + S.type]);
     // bullet properties (optional, might have already been set up in the previous step)
     if (S.size != undefined) {
-      let spreadsize = S.spreadsize || 0;
-      let size = spreadsize === 0 ? S.size : random.gauss(S.size, spreadsize);
+      const spreadsize = S.spreadsize || 0;
+      const size = spreadsize === 0 ? S.size : math_util.randgauss(S.size, spreadsize);
       b.size = size;
     }
     if (S.damage != undefined) {
@@ -528,26 +523,28 @@ export class Thing {
       b.keep_this = true;
     }
     if (S.options != undefined) {
-      for (let k in S.options) {
-        if (!S.options.hasOwnProperty(k)) continue;
+      for (const k in S.options) {
+        if (!S.options[k] != undefined) continue;
         b[k] = S.options[k];
       }
     }
     b.team = this.team;
     b.shoot_parent = this.shoot_parent;
     // shoot the bullet with correct rotation and speed
-    let rot = random.gauss(this.target.rotation + (Vector.deg_to_rad(S.rotation || 0)), S.spread || 0);
-    let facing = this.target.facing;
-    let spreadv = S.spreadv || 0;
-    let spd = spreadv === 0 ? S.speed : random.gauss(S.speed, spreadv);
+    const rot = math_util.randgauss(this.target.angle + (Vector.deg_to_rad(S.rotation || 0)), S.spread || 0);
+    const facing = this.target.facing;
+    const spreadv = S.spreadv || 0;
+    let spd = spreadv === 0 ? S.speed : math_util.randgauss(S.speed, spreadv);
     const thing_velocity = Vector.rotate(this.velocity, -rot).x;
     if (spd !== 0) spd += thing_velocity * config.physics.velocity_shoot_boost;
     if (S.target_type != undefined) {
+      /*
       if (S.target_type === "enemy") {
         const nearest_enemy = Enemy.nearest(location);
         if (nearest_enemy != undefined) facing = nearest_enemy.position;
         rot = Vector.angle(location, facing);
       }
+      */
     }
     const rotvector = Vector.create(Math.cos(rot), Math.sin(rot));
     b.velocity = Vector.mult(rotvector, spd);
@@ -561,18 +558,17 @@ export class Thing {
 
     // also do stuff to body of thing
     // do recoil
-    if (S.recoil != false && this.body != undefined && spd && S.speed) {
+    if (S.recoil !== 0 && this.body != undefined && spd && S.speed) {
       let recoil = (S.recoil == undefined) ? 1 : S.recoil;
-      recoil *= spd * b.body.mass * config.physics.force_factor * config.physics.recoil_factor;
+      recoil *= spd * (b.body?.mass || 0) * config.physics.force_factor * config.physics.recoil_factor;
       this.push_to(Vector.add(this.position, rotvector), -recoil);
     }
   }
 
-  shoot_move(S) {
+  shoot_move(S: shoot_stats) {
     if (!S.move || this.body == undefined) return;
     this.push_to(this.target.facing, S.speed * this.body.mass * config.physics.force_factor);
   }
-  */
 
   create() {
     this.create_list();

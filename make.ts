@@ -16,6 +16,7 @@ export class maketype {
   restitution?: number;
   color?: number;
   health?: number;
+  health_capacity?: number;
   movement_controller?: string;
   rotation_controller?: string;
   shoots?: shoot_stats[];
@@ -37,7 +38,8 @@ make.player = {
   density: 0.001,
   friction: 0.1,
   color: 0,
-  health: 1,
+  health: 5,
+  health_capacity: 5,
 };
 
 make.wall = {
