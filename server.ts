@@ -5,6 +5,7 @@ import { Thing } from "./thing.ts";
 import { Controls } from "./controls.ts";
 import { Player } from "./player.ts";
 import { mapmaker } from "./mapmaker.ts";
+import { make } from "./make.ts";
 
 // initialize main
 console.log("initializing...");
@@ -35,6 +36,7 @@ io.on("connection", (socket) => {
   console.log(`socket #${id} "${socket.id}" connected`);
 
   const player = new Player();
+  player.make(make.player_shoot);
   player.team = id;
   player.create();
 
