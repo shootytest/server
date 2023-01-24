@@ -13,20 +13,10 @@ const Vector = Matter.Vector;
 console.log("initializing...")
 main();
 mapmaker.make("tutorial");
-console.log(Thing.walldata());
+const why_though = Thing.walldata();
+console.log(why_though);
 
 // helper functions
-
-const _random_string = (length = 10) => {
-  const letters = "abcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += letters.charAt(
-      Math.floor(Math.random() * letters.length),
-    );
-  }
-  return result;
-}
 
 let socket_cumulative_id = 0;
 const new_socket_id = () => ++socket_cumulative_id;
@@ -36,83 +26,6 @@ const new_socket_id = () => ++socket_cumulative_id;
 
 const WIDTH = 1000;
 const HEIGHT = 1000;
-
-/*
-class Thing {
-  static cumulative_id = 0;
-  static tick() {
-    for (const [_, thing] of things) {
-      thing.tick();
-    }
-  }
-  static data() {
-    const thingdata = [];
-    for (const [_, thing] of things) {
-      thingdata.push(thing.data());
-    }
-    return thingdata;
-  }
-  id: number = ++Thing.cumulative_id;
-  x: number = Math.floor(Math.random() * WIDTH);
-  y: number = Math.floor(Math.random() * HEIGHT);
-  size: number = SIZE;
-  speed: number = SPEED;
-  vx = 0;
-  vy = 0;
-  health = 0;
-  player = false;
-  delete = false;
-  team = -1;
-  color: string = "#" +
-    ("000000" + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
-  controls: Controls = new Controls();
-  timeout_update: number = Date.now();
-
-  constructor() {
-    things.set(this.id, this);
-  }
-
-  tick() {
-    if (this.player) {
-      this.do_controls();
-    }
-    this.x += this.vx / 60;
-    this.y += this.vy / 60;
-    if (this.health < 0) {
-      this.remove();
-    }
-  }
-
-  do_controls() {
-    const C = this.controls;
-    const dx = (C.left ? -1 : 0) + (C.right ? 1 : 0);
-    const dy = (C.up ? -1 : 0) + (C.down ? 1 : 0);
-    this.vx += dx * this.speed;
-    this.vy += dy * this.speed;
-    this.vx *= FRICTION;
-    this.vy *= FRICTION;
-    if (C.rclick) {
-      this.x += this.vx / 20;
-      this.y += this.vy / 20;
-    }
-  }
-
-  data() {
-    return {
-      x: this.x,
-      y: this.y,
-      size: this.size,
-      health: this.health,
-      team: this.team,
-    };
-  }
-
-  remove() {
-    things.delete(this.id);
-  }
-}
-*/
-
 
 // socket.io part
 
@@ -137,8 +50,7 @@ io.on("connection", (socket) => {
 
   socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
-  console.log(Thing.walldata());
-  socket.emit("gamemap", Thing.walldata());
+  socket.emit("gamemap", why_though);
 
   socket.on("hello", (message) => {
     console.log(message);
