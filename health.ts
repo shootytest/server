@@ -35,7 +35,7 @@ export class Health {
     if (this.hit_tick > 0.000001) {
       this.hit(this.hit_tick);
     }
-    if (time - this.hit_time > this.hit_clear && this.regen !== 0 && this.health < this.capacity) {
+    if ((time - this.hit_time) > this.hit_clear && this.regen !== 0 && this.health < this.capacity) {
       // can regenerate
       this.health += this.regen;
     }

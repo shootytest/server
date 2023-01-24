@@ -1,4 +1,4 @@
-import { category, _collision_filter } from "./config.ts";
+import { category, config, _collision_filter } from "./config.ts";
 import { _vectortype  } from "./math.ts";
 import { shoots, shoot_stats } from "./shoot.ts";
 
@@ -45,7 +45,9 @@ make.player = {
   friction: 0.1,
   color: 0,
   health: {
-    capacity: 50,
+    capacity: config.game.player_health,
+    regen: config.game.player_regen,
+    regen_time: config.game.player_regen_delay,
   },
   show_health: true,
   collision_filter: category.thing,
