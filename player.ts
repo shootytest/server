@@ -17,7 +17,7 @@ export class Player extends Thing {
     return zones;
   }
 
-  static random_spawn_location(padding = 0) {
+  static random_spawn_location(padding = 0): _vectortype {
     const zone = math_util.randpick(Player.get_spawn_zones());
     return Vector.create(
       math_util.rand(zone.x + padding, zone.x + zone.w - padding),
@@ -44,7 +44,7 @@ export class Player extends Thing {
   player_dead_time = 0;
   player_invincibility_time = 0;
   controls: Controls = new Controls();
-  old_player_position: _vectortype = Vector.create();
+  // old_player_position: _vectortype = Vector.create();
 
   constructor() {
     super(Player.random_spawn_location());
@@ -84,7 +84,7 @@ export class Player extends Thing {
         this.player_dead_time = Thing.time + config.game.respawn_time;
         Body.setVelocity(this.body, Vector.create());
         this.make_invisible();
-        this.old_player_position = this.position;
+        // this.old_player_position = this.position;
       }
       if (this.killer != undefined) {
         Body.setPosition(this.body, this.killer.position);
@@ -95,8 +95,9 @@ export class Player extends Thing {
       this.player_dead_time = 0;
       this.health.restore();
       this.make_visible();
-      this.position = this.old_player_position;
-      Body.setPosition(this.body, this.old_player_position);
+      const new_spawn_position = Player.random_spawn_location();
+      this.position = new_spawn_position;
+      Body.setPosition(this.body, new_spawn_position);
       this.health.invincible = true;
       this.player_invincibility_time = Thing.time + config.game.respawn_invincibility;
     }

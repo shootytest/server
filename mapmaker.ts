@@ -74,11 +74,11 @@ const _make = (map_key: string) => {
     // shape
     if (S.type === "circle") {
       wall.shape = 0;
-      wall.size = S.size;
+      wall.size = S.size || 0;
       wall.angle = S.angle || 0;
     } else if (S.type === "square") {
       wall.shape = 4;
-      wall.size = S.size;
+      wall.size = S.size || 0;
       wall.angle = S.angle || 0;
     } else if (S.type === "line" && S.x2 != undefined && S.y2 != undefined) {
       const newx = (S.x + S.x2) / 2;
