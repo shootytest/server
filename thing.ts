@@ -30,6 +30,7 @@ export interface thing_data {
   health: number;
   color: number;
   team: number;
+  flag: number;
 }
 
 export interface wall_data {
@@ -647,14 +648,15 @@ export class Thing {
   
   data(): thing_data {
     return {
-      x: this.x,
-      y: this.y,
-      angle: this.angle,
-      size: this.size,
+      x: Math.round(this.x),
+      y: Math.round(this.y),
+      angle: math_util.round_to(this.angle, 0.001),
+      size: Math.round(this.size),
       shape: this.shape,
-      health: this.health,
+      health: Math.round(this.health),
       color: this.color,
       team: this.team,
+      flag: (this.player ? 1 : 0),
     };
   }
 
