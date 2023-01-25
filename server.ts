@@ -43,6 +43,7 @@ io.on("connection", (socket) => {
   socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
   socket.emit("gamemap", memo_walldata);
+  socket.emit("mapdata", mapmaker.get_current_map());
 
   socket.on("hello", (message) => {
     console.log(message);
