@@ -33,6 +33,7 @@ export interface thing_data {
   size: number;
   shape: number;
   health: number;
+  ability: number;
   color: number;
   team: number;
   flag: number;
@@ -215,6 +216,12 @@ export class Thing {
           const h = o.health;
           if (h.capacity != undefined) {
             this.health.set_capacity(h.capacity);
+          }
+          if (h.ability_capacity != undefined) {
+            this.health.set_capacity(h.ability_capacity);
+          }
+          if (h.ability_regen != undefined) {
+            this.health.ability_regen = h.ability_regen;
           }
           if (h.regen != undefined) {
             this.health.regen = h.regen / 60;
@@ -678,7 +685,8 @@ export class Thing {
       angle: math_util.round_to(this.angle, 0.001),
       size: Math.round(this.size),
       shape: this.shape,
-      health: math_util.round_to(this.health.display, 0.001),
+      health: (this.show_health ? math_util.round_to(this.health.display, 0.001) : 0),
+      ability: (this.show_health ? math_util.round_to(this.health.ability_display, 0.001) : 0),
       color: this.color,
       team: this.team,
       flag: (this.player ? 0x0001 : 0) +

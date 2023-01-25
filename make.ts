@@ -19,6 +19,8 @@ export class maketype {
   color?: number;
   health?: {
     capacity?: number;
+    ability_capacity?: number;
+    ability_regen?: number;
     regen?: number;
     regen_time?: number;
   };
@@ -47,6 +49,8 @@ make.player = {
   damage: 5,
   health: {
     capacity: config.game.player_health,
+    ability_capacity: config.game.player_ability_capacity,
+    ability_regen: config.game.player_ability_regen,
     regen: config.game.player_regen,
     regen_time: config.game.player_regen_delay,
   },

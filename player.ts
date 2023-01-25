@@ -43,6 +43,7 @@ export class Player extends Thing {
   player_dead = false;
   player_dead_time = 0;
   player_invincibility_time = 0;
+  ability_number = 0;
   controls: Controls = new Controls();
   // old_player_position: _vectortype = Vector.create();
 
@@ -75,7 +76,10 @@ export class Player extends Thing {
     this.shooting = this.player_autofire || this.controls.shoot;
     // dash player
     if (this.controls.rshoot) {
-      this.move_player(Vector.create(move_x, move_y), 1);      
+      if (this.health.use_ability(2)) {
+        // additional move
+        this.move_player(Vector.create(move_x, move_y), 1);
+      }
     }
   }
 

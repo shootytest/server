@@ -10,9 +10,11 @@ export const config = {
   },
   game: {
     player_health: 50, // total health capacity
+    player_ability_capacity: 100, // total ability capacity
+    player_ability_regen: 20, // total ability regen per second
     player_regen: 4, // health per second
     player_regen_delay: 4, // in seconds
-    health_display_smoothness: 0.05,
+    health_display_smoothness: 0.08,
     respawn_time: 180,
     respawn_invincibility: 180,
     map_border_wall_thickness: 10,

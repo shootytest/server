@@ -11,6 +11,11 @@ export class Health {
   regen = 0;
   display = 0;
 
+  ability = 0;
+  ability_capacity = 0;
+  ability_regen = 0;
+  ability_display = 0;
+
   invincible = false;
 
   hit_time = -1000000;
@@ -25,12 +30,17 @@ export class Health {
     return this.health / this.capacity;
   }
 
+  get ability_ratio() {
+    return this.ability / this.ability_capacity;
+  }
+
   get percentage() {
     return this.ratio * 100;
   }
 
   tick() {
     this.display = math_util.lerp(this.display, this.ratio, config.game.health_display_smoothness);
+    this.ability_display = math_util.lerp(this.ability_display, this.ability_ratio, config.game.health_display_smoothness);
     const time = Thing.time;
     if (this.hit_tick > 0.000001) {
       this.hit(this.hit_tick);
@@ -39,8 +49,14 @@ export class Health {
       // can regenerate
       this.health += this.regen;
     }
+    if (this.ability < this.ability_capacity) {
+      this.ability += this.ability_regen;
+    }
     if (this.health > this.capacity) {
       this.health = this.capacity;
+    }
+    if (this.ability > this.ability_capacity) {
+      this.ability = this.ability_capacity;
     }
   }
 
@@ -70,6 +86,19 @@ export class Health {
   set_capacity(capacity: number) {
     this.capacity = capacity;
     this.health = capacity;
+  }
+
+  set_ability_capacity(ability_capacity: number) {
+    this.ability_capacity = ability_capacity;
+    this.ability = ability_capacity;
+  }
+
+  use_ability(amount: number) {
+    if (this.ability < amount) {
+      return false;
+    }
+    this.ability -= amount;
+    return true;
   }
 
   zero() {
