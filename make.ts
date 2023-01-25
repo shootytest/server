@@ -41,7 +41,7 @@ make.player = {
   player: true,
   rotation_controller: "player",
   size: 30,
-  shape: 5,
+  shape: 0,
   speed: 50,
   density: 0.001,
   friction: 0.1,
@@ -59,7 +59,7 @@ make.player = {
 };
 
 make.player_shoot = {
-  shoots: [shoots.basic],
+  shoots: [shoots.p_basic],
 };
 
 make.wall = {
