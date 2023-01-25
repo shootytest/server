@@ -218,10 +218,10 @@ export class Thing {
             this.health.set_capacity(h.capacity);
           }
           if (h.ability_capacity != undefined) {
-            this.health.set_capacity(h.ability_capacity);
+            this.health.set_ability_capacity(h.ability_capacity);
           }
           if (h.ability_regen != undefined) {
-            this.health.ability_regen = h.ability_regen;
+            this.health.ability_regen = h.ability_regen / 60;
           }
           if (h.regen != undefined) {
             this.health.regen = h.regen / 60;
