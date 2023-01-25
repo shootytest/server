@@ -11,6 +11,8 @@ const Body = Matter.Body,
 
 export class Player extends Thing {
 
+  static players: Player[] = [];
+
   static get_spawn_zones() {
     const M = mapmaker.get_current_map();
     const zones = M.spawn || [{ x: -M.width, y: -M.height, w: M.width * 2, h: M.height * 2, }];
@@ -49,6 +51,7 @@ export class Player extends Thing {
 
   constructor() {
     super(Player.random_spawn_location());
+    Player.players.push(this);
     this.make(make.player);
   }
 
@@ -132,6 +135,17 @@ export class Player extends Thing {
     // this shouldn't happen unless socket disconnect
     this.player_dead = true;
     super.remove();
+  }
+
+  remove_list() {
+    for (const array of [Player.players]) {
+      // remove this from array
+      const index = array.indexOf(this);
+      if (index != undefined && index > -1) {
+        array.splice(index, 1);
+      }
+    }
+    super.remove_list();
   }
   
 }

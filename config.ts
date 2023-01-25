@@ -18,6 +18,7 @@ export const config = {
     respawn_time: 180,
     respawn_invincibility: 180,
     map_border_wall_thickness: 10,
+    enemy_spawn_delay: 1, // in seconds
   },
 };
 
