@@ -783,9 +783,9 @@ export class Thing {
     return Query.point([this.body], v);
   }
 
-  move_force(v: _vectortype) {
+  move_force(v: _vectortype, mult = 0) {
     if (this.body == undefined) return;
-    const move_v = Vector.mult(v, this.speed * this.body.mass * config.physics.force_factor);
+    const move_v = Vector.mult(v, mult * this.speed * this.body.mass * config.physics.force_factor);
     if (this.body != undefined) {
       Body.applyForce(this.body, this.position, move_v);
     }

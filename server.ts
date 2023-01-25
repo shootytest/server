@@ -15,7 +15,8 @@ const memo_walldata = Thing.walldata();
 
 // helper functions
 
-let socket_cumulative_id = 0;
+// socket ids start from 100
+let socket_cumulative_id = 100;
 const new_socket_id = () => ++socket_cumulative_id;
 
 

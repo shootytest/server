@@ -60,14 +60,22 @@ export class Player extends Thing {
   tick_player() {
     // if not dead
     if (!this.player_dead) {
-      // rotate player
-      this.target.facing = Vector.create(this.controls.facingx, this.controls.facingy);
-      // move player
-      const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
-      const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
-      this.move_player(Vector.create(move_x, move_y));
-      // shoot player
-      this.shooting = this.player_autofire || this.controls.shoot;
+      this.do_controls();
+    }
+  }
+
+  do_controls() {
+    // rotate player
+    this.target.facing = Vector.create(this.controls.facingx, this.controls.facingy);
+    // move player
+    const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
+    const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
+    this.move_player(Vector.create(move_x, move_y), 1);
+    // shoot player
+    this.shooting = this.player_autofire || this.controls.shoot;
+    // dash player
+    if (this.controls.rshoot) {
+      this.move_player(Vector.create(move_x, move_y), 1);      
     }
   }
 
@@ -107,8 +115,8 @@ export class Player extends Thing {
     }
   }
 
-  move_player(v: _vectortype) {
-    this.move_force(Vector.normalise(v));
+  move_player(v: _vectortype, mult = 0) {
+    this.move_force(Vector.normalise(v), mult);
   }
 
   shoot() {
