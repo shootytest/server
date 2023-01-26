@@ -192,7 +192,7 @@ export class Thing {
           }
           for (const S of o.shoots) {
             if (typeof S === "string") continue;
-            const to_push: shoot_stats = shoots.normal;
+            const to_push: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 15, health: 10, time: 1.5, };
             const recursive_add = (shoot_obj: shoot_stats, parented = false) => {
               if (shoot_obj.parent != undefined && !parented) {
                 recursive_add(shoot_obj.parent);
@@ -585,7 +585,7 @@ export class Thing {
     }
     if (S.options != undefined) {
       for (const k in S.options) {
-        if (!S.options[k] != undefined) continue;
+        if (S.options[k] == undefined) continue;
         b[k] = S.options[k];
       }
     }
