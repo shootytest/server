@@ -26,7 +26,7 @@ export interface matter_body {
 }
 
 export interface thing_data {
-  id: number;
+  // id: number;
   x: number;
   y: number;
   angle: number;
@@ -449,6 +449,7 @@ export class Thing {
     }
   }
 
+  /*
   get_shoot_ratio(shoot_index: number, is_duration: boolean) {
     if (this.shoots.length <= 0) return 0;
     if (this.dummy) return 1;
@@ -470,6 +471,7 @@ export class Thing {
     if (result === 0) return 1;
     return math_util.bound(result, 0, 1);
   }
+  */
 
   shoot() {
     for (let index = 0; index < this.shoots.length; index++) {
@@ -679,7 +681,7 @@ export class Thing {
   
   data(): thing_data {
     return {
-      id: this.id,
+      // id: this.id,
       x: Math.round(this.x),
       y: Math.round(this.y),
       angle: math_util.round_to(this.angle, 0.001),

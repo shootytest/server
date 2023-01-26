@@ -1,3 +1,4 @@
+import { colors } from "./color.ts";
 import { category, config, _collision_filter } from "./config.ts";
 import { _vectortype  } from "./math.ts";
 import { shoots, shoot_stats } from "./shoot.ts";
@@ -45,7 +46,7 @@ make.player = {
   speed: 50,
   density: 0.001,
   friction: 0.1,
-  color: 0,
+  color: colors.blue,
   damage: 5,
   health: {
     capacity: config.game.player_health,
@@ -67,7 +68,7 @@ make.wall = {
   wall: true,
   blocks_sight: true,
   bullet_deleter: true,
-  color: 0,
+  color: colors.white,
   collision_filter: category.wall,
 };
 
@@ -75,13 +76,13 @@ make.wall_bounce = {
   parent: ["wall"],
   bullet_deleter: false,
   restitution: 1,
-  color: 3,
+  color: colors.yellow,
 };
 
 make.wall_window = {
   parent: ["wall"],
   blocks_sight: false,
-  color: 4,
+  color: colors.window_blue,
 };
 
 make.bullet = {

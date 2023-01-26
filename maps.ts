@@ -71,8 +71,15 @@ maps.test = {
     { type: "circle", x: 300, y: 300, size: 50, },
     // corridor
     { type: "line", x: 200, y: -760, x2: 760, y2: -760, },
-    { type: "line", x: 760, y: -760, x2: 760, y2: 760, },
-    { type: "line", x: 760, y: 760, x2: -760, y2: 760, },
+
+    { type: "line", x: 760, y: -760, x2: 760, y2: -250, },
+    { type: "line", x: 760, y: -250, x2: 760, y2: 250, window: true, },
+    { type: "line", x: 760, y: 250, x2: 760, y2: 760, },
+    
+    { type: "line", x: -760, y: 760, x2: -250, y2: 760, },
+    { type: "line", x: 250, y: 760, x2: 250, y2: 760, window: true, },
+    { type: "line", x: 250, y: 760, x2: 760, y2: 760, },
+
     { type: "line", x: -760, y: 760, x2: -760, y2: -140, },
     // debug...
     /*
