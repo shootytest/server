@@ -4,7 +4,7 @@ import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
 import { math_util, _segmenttype, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
-import { shoots, shoot_stats } from "./shoot.ts";
+import { shoot_stats } from "./shoot.ts";
 
 const Body = Matter.Body,
       Bodies = Matter.Bodies,

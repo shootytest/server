@@ -66,7 +66,15 @@ make.player = {
   collision_filter: category.thing,
 };
 
-make.player_shoot = {
+make.player_basic = {
+  shoots: [shoots.p_basic],
+};
+
+make.player_fast = {
+  shoots: [shoots.p_fast],
+};
+
+make.player_trap = {
   shoots: [shoots.p_trap],
 };
 
@@ -123,9 +131,7 @@ make.bullet_tower = {
 
 make.bullet_tower_basic = {
   parent: ["bullet_tower"],
-  shoots: [
-    shoots.tower_basic,
-  ],
+  shoots: [shoots.tower_basic],
 };
 
 make.bullet_trap = {

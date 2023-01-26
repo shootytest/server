@@ -99,26 +99,14 @@ export class Player extends Thing {
     if (this.health.zero()) {
       // you are dead
       if (!this.player_dead) {
-        this.player_dead = true;
-        this.player_dead_time = Thing.time + config.game.respawn_time;
-        Body.setVelocity(this.body, Vector.create());
-        this.make_invisible();
-        // this.old_player_position = this.position;
+        this.temp_remove(true);
       }
       if (this.killer != undefined) {
         Body.setPosition(this.body, this.killer.position);
       }
     }
     if (this.player_dead_time != 0 && this.player_dead_time < Thing.time) {
-      this.player_dead = false;
-      this.player_dead_time = 0;
-      this.health.restore();
-      this.make_visible();
-      const new_spawn_position = Player.random_spawn_location();
-      this.position = new_spawn_position;
-      Body.setPosition(this.body, new_spawn_position);
-      this.health.invincible = true;
-      this.player_invincibility_time = Thing.time + config.game.respawn_invincibility;
+      this.temp_create();
     }
     if (this.player_invincibility_time != 0 && this.player_invincibility_time < Thing.time) {
       this.player_invincibility_time = 0;
@@ -150,6 +138,29 @@ export class Player extends Thing {
       }
     }
     super.remove_list();
+  }
+
+  temp_remove(respawn: boolean) {
+    this.player_dead = true;
+    if (respawn) {
+      this.player_dead_time = Thing.time + config.game.respawn_time;
+    } else {
+      this.player_dead_time = 0;
+    }
+    Body.setVelocity(this.body, Vector.create());
+    this.make_invisible();
+  }
+
+  temp_create() {    
+    this.player_dead = false;
+    this.player_dead_time = 0;
+    this.health.restore();
+    this.make_visible();
+    const new_spawn_position = Player.random_spawn_location();
+    this.position = new_spawn_position;
+    Body.setPosition(this.body, new_spawn_position);
+    this.health.invincible = true;
+    this.player_invincibility_time = Thing.time + config.game.respawn_invincibility;
   }
   
 }

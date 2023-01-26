@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
   console.log(`socket #${id} "${socket.id}" connected`);
 
   const player = new Player();
-  player.make(make.player_shoot);
+  player.make(make.player_basic);
   player.team = id;
   player.create();
 
@@ -45,11 +45,6 @@ io.on("connection", (socket) => {
   socket.emit("id", id);
   socket.emit("gamemap", memo_walldata);
   socket.emit("mapdata", mapmaker.get_current_map());
-
-  socket.on("hello", (message) => {
-    console.log(message);
-    io.emit("hello", message);
-  });
 
   socket.on("controls", (controls: Controls) => {
     player.controls = controls;
