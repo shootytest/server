@@ -864,7 +864,7 @@ export class Thing {
     let best = (this.fov * this.size) * (this.fov * this.size); // only can see within its field of view
     for (const player of Thing.players) {
       if (player.team === this.shoot_parent.team) continue;
-      distance2 = Vector.magnitudeSquared(Vector.sub(disposition, player.position));
+      distance2 = Vector.magnitudeSquared(Vector.sub(disposition, player.position)) - player.size;
       if (distance2 <= best) {
         best = distance2;
         result = player;

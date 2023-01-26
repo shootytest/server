@@ -67,7 +67,7 @@ make.player = {
 };
 
 make.player_shoot = {
-  shoots: [shoots.p_basic],
+  shoots: [shoots.p_trap],
 };
 
 
@@ -117,6 +117,7 @@ make.bullet_tower = {
   controller: "target",
   rotation_controller: "target",
   tower: true,
+  show_health: true,
   fov: 20,
 };
 
@@ -126,3 +127,9 @@ make.bullet_tower_basic = {
     shoots.tower_basic,
   ],
 };
+
+make.bullet_trap = {
+  parent: ["bullet"],
+  tower: true,
+  fov: 15,
+}
