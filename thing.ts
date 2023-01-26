@@ -29,15 +29,15 @@ export interface thing_data {
   // id: number;
   x: number;
   y: number;
-  angle: number;
-  size: number;
+  a: number;
+  r: number;
   shape: number;
-  health: number;
-  ability: number;
+  hp: number;
+  ab: number;
   fov: number;
-  color: number;
-  team: number;
-  flag: number;
+  c: number;
+  t: number;
+  f: number;
 }
 
 export interface wall_data {
@@ -45,7 +45,7 @@ export interface wall_data {
   y1: number,
   x2: number,
   y2: number,
-  color: number,
+  c: number,
   flag: number,
 }
 
@@ -686,15 +686,15 @@ export class Thing {
       // id: this.id,
       x: Math.round(this.x),
       y: Math.round(this.y),
-      angle: math_util.round_to(this.angle, 0.001),
-      size: Math.round(this.size),
+      a: math_util.round_to(this.angle, 0.001),
+      r: Math.round(this.size),
       shape: this.shape,
-      health: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
-      ability: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
+      hp: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
+      ab: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
       fov: math_util.round_to(this.fov, 0.1),
-      color: this.color,
-      team: this.team,
-      flag: (this.player ? 0x0001 : 0) +
+      c: this.color,
+      t: this.team,
+      f: (this.player ? 0x0001 : 0) +
             (this.show_health ? 0x0002 : 0) +
             (this.invisible ? 0x0004 : 0) +
             (this.health.invincible ? 0x0008 : 0),
@@ -726,12 +726,12 @@ export class Thing {
     if (points_length === 2) {
       const p1 = points[0];
       const p2 = points[1];
-      segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, color, flag });
+      segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, c, flag });
     } else if (points_length > 2) {
       for (let i = 0; i < points_length; i++) {
         const p1 = points[i];
         const p2 = points[(i + 1) % points_length];
-        segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, color, flag });
+        segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, c, flag });
       }
     } else {
       console.error(`thing.wall_data(): less than 2 (${points_length}) points!`);
