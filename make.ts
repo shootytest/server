@@ -117,6 +117,7 @@ make.bullet_tower = {
   controller: "target",
   rotation_controller: "target",
   tower: true,
+  fov: 20,
 };
 
 make.bullet_tower_basic = {
