@@ -8,6 +8,9 @@ export class maketype {
   fixed?: boolean;
   player?: boolean;
   wall?: boolean;
+  enemy?: boolean;
+  bullet?: boolean;
+  tower?: boolean;
   blocks_sight?: boolean;
   bullet_deleter?: boolean;
   show_health?: boolean;
@@ -109,10 +112,15 @@ make.bullet_basic = {
   parent: ["bullet"],
 };
 
-make.bullet_tower_basic = {
+make.bullet_tower = {
   parent: ["bullet"],
   controller: "target",
   rotation_controller: "target",
+  tower: true,
+};
+
+make.bullet_tower_basic = {
+  parent: ["bullet_tower"],
   shoots: [
     shoots.tower_basic,
   ],

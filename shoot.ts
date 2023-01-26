@@ -34,7 +34,7 @@ const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, sp
 
 const ability_tower: shoot_stats = { type: "tower_basic", reload: 1000000, size: 15, speed: 10, friction: 0.05, spread: 0.04, damage: 12, health: 10, time: 10.0, };
 
-const tower_basic: shoot_stats = { type: "basic", reload: 50, size: 5, speed: 8, spread: 0.02, damage: 8, health: 12, time: 2.5, };
+const tower_basic: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 7.5, spread: 0.02, damage: 8, health: 10, time: 2.0, };
 
 export const shoots = {
   normal,

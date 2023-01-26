@@ -115,6 +115,7 @@ export class Thing {
   deleted = false;
   player = false;
   bullet = false;
+  tower = false;
   bullet_deleter = false;
   blocks_sight = false;
   show_health = false;

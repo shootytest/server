@@ -12,7 +12,7 @@ interface matter_pair {
 function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
   const t = a.thing;
   const u = b.thing;
-  if (t.bullet_deleter && u.bullet) {
+  if (t.bullet_deleter && u.bullet && !u.tower) {
     u.deleted = true;
   }
   if (t.health.capacity > 0 && u.damage > 0 && t.team !== u.team) {
