@@ -34,6 +34,7 @@ export interface thing_data {
   shape: number;
   health: number;
   ability: number;
+  fov: number;
   color: number;
   team: number;
   flag: number;
@@ -121,6 +122,7 @@ export class Thing {
   health = new Health(this);
   damage = 0;
   speed = 0;
+  fov = 10;
   speed_death = -1;
   size_death = -1;
   time_death = -1;
@@ -687,8 +689,9 @@ export class Thing {
       angle: math_util.round_to(this.angle, 0.001),
       size: Math.round(this.size),
       shape: this.shape,
-      health: (this.show_health ? math_util.round_to(this.health.display, 0.001) : 0),
-      ability: (this.show_health ? math_util.round_to(this.health.ability_display, 0.001) : 0),
+      health: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
+      ability: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
+      fov: math_util.round_to(this.fov, 0.1),
       color: this.color,
       team: this.team,
       flag: (this.player ? 0x0001 : 0) +
