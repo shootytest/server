@@ -4,7 +4,6 @@ import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
 import { math_util, _segmenttype, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
-import { Player } from "./player.ts";
 import { shoots, shoot_stats } from "./shoot.ts";
 
 const Body = Matter.Body,
@@ -55,6 +54,7 @@ export class Thing {
   static things: Thing[] = [];
   static walls: Thing[] = [];
   static enemies: Thing[] = [];
+  static players: Thing[] = [];
 
   static cumulative_id = 0;
   static time = 1;
@@ -637,6 +637,9 @@ export class Thing {
     if (!Thing.things.includes(this)) {
       Thing.things.push(this);
     }
+    if (this.player && !Thing.players.includes(this)) {
+      Thing.players.push(this);
+    }
     if (this.enemy && !Thing.enemies.includes(this)) {
       Thing.enemies.push(this);
     }
@@ -785,7 +788,7 @@ export class Thing {
   }
 
   remove_list() {
-    for (const array of [Thing.things, Thing.walls, Thing.enemies, this.shoot_parent.shoot_children]) {
+    for (const array of [Thing.things, Thing.walls, Thing.enemies, Thing.players, this.shoot_parent.shoot_children]) {
       // remove this from array
       const index = array.indexOf(this);
       if (index != undefined && index > -1) {
@@ -854,7 +857,7 @@ export class Thing {
     let result;
     let distance2 = 0;
     let best = (this.fov * this.size) * (this.fov * this.size); // only can see within its field of view
-    for (const player of Player.players) {
+    for (const player of Thing.players) {
       if (player.team === this.shoot_parent.team) continue;
       distance2 = Vector.magnitudeSquared(Vector.sub(disposition, player.position));
       if (distance2 <= best) {
