@@ -25,6 +25,7 @@ export class maketype {
     regen?: number;
     regen_time?: number;
   };
+  controller?: string;
   movement_controller?: string;
   rotation_controller?: string;
   collision_filter?: _collision_filter;
@@ -37,6 +38,9 @@ export const make: Record<string, maketype> = {};
 make.default = {
   // nothing here for now, all defaults should be in the Thing class.
 };
+
+
+// _PLAYERS
 
 make.player = {
   player: true,
@@ -63,6 +67,9 @@ make.player_shoot = {
   shoots: [shoots.p_basic],
 };
 
+
+// _WALLS
+
 make.wall = {
   fixed: true,
   wall: true,
@@ -85,6 +92,9 @@ make.wall_window = {
   color: colors.wall_blue,
 };
 
+
+// _BULLETS
+
 make.bullet = {
   bullet: true,
   player: false,
@@ -97,4 +107,13 @@ make.bullet = {
 
 make.bullet_basic = {
   parent: ["bullet"],
+};
+
+make.bullet_tower_basic = {
+  parent: ["bullet"],
+  controller: "target",
+  rotation_controller: "homing",
+  shoots: [
+    shoots.tower_basic,
+  ],
 };

@@ -4,6 +4,7 @@ import { world } from "./main.ts";
 import { make, maketype } from "./make.ts";
 import { math_util, _segmenttype, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
+import { Player } from "./player.ts";
 import { shoots, shoot_stats } from "./shoot.ts";
 
 const Body = Matter.Body,
@@ -102,6 +103,7 @@ export class Thing {
     facing: Vector.create(),
     angle: 0,
   };
+  controller = "none";
   movement_controller = "none";
   rotation_controller = "none";
 
@@ -296,6 +298,7 @@ export class Thing {
 
   tick() {
     this.health.tick();
+    this.tick_control();
     this.tick_rotate();
     this.tick_move();
     this.tick_shoot();
@@ -304,20 +307,42 @@ export class Thing {
     this.shoot();
   }
 
+  tick_control() {
+    switch (this.controller) {
+      case "none":
+        break;
+      case "target": {
+        const target = this.nearest_player();
+        if (target === undefined) {
+          this.shooting = false;
+          break;
+        }
+        this.shooting = true;
+        this.target.facing = target.position;
+        break;
+      }
+      default: {
+        console.error("Unknown controller: " + this.controller);
+        break;
+      }
+    }
+  }
+
   tick_move() {
     if (this.body == undefined) return;
     switch (this.movement_controller) {
       case "fixed":
         break;
-      case "homing":
+      case "homing": {
         Body.setVelocity(this.body, Vector.createpolar(this.angle, Vector.magnitude(this.body.velocity)));
         break;
+      }
       case "none":
         break;
-      default:
-        console.log(this);
+      default: {
         console.error("Unknown movement controller: " + this.movement_controller);
         break;
+      }
     }
   }
 
@@ -375,7 +400,6 @@ export class Thing {
       case "none":
         break;
       default: {
-        console.log(this);
         console.error("Unknown rotation controller: " + this.rotation_controller);
         break;
       }
@@ -546,7 +570,7 @@ export class Thing {
       b.color = S.color;
     }
     if (S.time != undefined) {
-      b.time_death = S.time;
+      b.time_death = S.time * 60;
     }
     if (S.friction != undefined) {
       b.friction = S.friction;
@@ -823,6 +847,22 @@ export class Thing {
   make_visible() {
     this.invisible = false;
     Composite.add(world, this.body);
+  }
+  
+  nearest_player() {
+    const disposition = this.position;
+    let result;
+    let distance2 = 0;
+    let best = (this.fov * this.size) * (this.fov * this.size); // only can see within its field of view
+    for (const player of Player.players) {
+      if (player.team === this.shoot_parent.team) continue;
+      distance2 = Vector.magnitudeSquared(Vector.sub(disposition, player.position));
+      if (distance2 <= best) {
+        best = distance2;
+        result = player;
+      }
+    }
+    return result;
   }
 
 }

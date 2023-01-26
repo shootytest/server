@@ -4,6 +4,7 @@ import { make } from "./make.ts";
 import { mapmaker } from "./mapmaker.ts";
 import { math_util, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
+import { shoots } from "./shoot.ts";
 import { Thing } from "./thing.ts";
 
 const Body = Matter.Body,
@@ -79,6 +80,9 @@ export class Player extends Thing {
     this.shooting = this.player_autofire || this.controls.shoot;
     // dash player
     if (this.controls.rshoot) {
+      if (this.health.use_ability(100)) {
+        this.shoot_bullet(shoots.ability_tower);
+      }
       if (this.health.use_ability(2)) {
         // additional move
         this.move_player(Vector.create(move_x, move_y), 1);

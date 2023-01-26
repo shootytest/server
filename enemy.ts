@@ -47,10 +47,11 @@ export class Enemy extends Thing {
 
   static nearest(v: _vectortype) {
     let result;
-    let distance2 = 0, best = 1234567890;
+    let distance2 = 0;
+    let best = 1234567890;
     for (const e of Thing.enemies) {
       distance2 = Vector.magnitudeSquared(Vector.sub(v, e.position));
-      if (best === 1000000 || distance2 < best) {
+      if (best === 1234567890 || distance2 < best) {
         best = distance2;
         result = e;
       }

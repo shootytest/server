@@ -24,16 +24,22 @@ export interface shoot_stats {
   [key: string]: unknown;
 }
 
-const normal: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 15, health: 10, time: 100, };
+const normal: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 15, health: 10, time: 1.5, };
 
 
-const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.05, damage: 15, health: 10, time: 200, };
+const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.05, damage: 15, health: 10, time: 3.0, };
 
-const p_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 10, spread: 0.03, damage: 12, health: 10, time: 200, };
-const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.05, damage: 7, health: 6, time: 120, };
+const p_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 10, spread: 0.03, damage: 12, health: 10, time: 3.0, };
+const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.05, damage: 7, health: 6, time: 2.0, };
+
+const ability_tower: shoot_stats = { type: "tower_basic", reload: 1000000, size: 15, speed: 10, friction: 0.05, spread: 0.04, damage: 12, health: 10, time: 10.0, };
+
+const tower_basic: shoot_stats = { type: "basic", reload: 50, size: 5, speed: 8, spread: 0.02, damage: 8, health: 12, time: 2.5, };
 
 export const shoots = {
   normal,
   basic,
   p_basic, p_fast,
+  ability_tower,
+  tower_basic,
 };
