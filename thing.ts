@@ -350,9 +350,13 @@ export class Thing {
     if (this.body == undefined) return;
     switch (this.rotation_controller) {
       case "fixed":
-      case "target":
       case "homing": { // slowly turn towards target
         const new_rotation: number = Vector.angle(this.position, this.shoot_parent.target.facing);
+        this.target.angle = Vector.lerp_angle(this.target.angle, new_rotation, this.homing_amount || 0.1);
+        break;
+      }
+      case "target": { // slowly turn towards my target
+        const new_rotation: number = Vector.angle(this.position, this.target.facing);
         this.target.angle = Vector.lerp_angle(this.target.angle, new_rotation, this.homing_amount || 0.1);
         break;
       }

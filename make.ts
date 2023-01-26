@@ -112,7 +112,7 @@ make.bullet_basic = {
 make.bullet_tower_basic = {
   parent: ["bullet"],
   controller: "target",
-  rotation_controller: "homing",
+  rotation_controller: "target",
   shoots: [
     shoots.tower_basic,
   ],
