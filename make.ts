@@ -76,13 +76,13 @@ make.wall_bounce = {
   parent: ["wall"],
   bullet_deleter: false,
   restitution: 1,
-  color: colors.yellow,
+  color: colors.wall_yellow,
 };
 
 make.wall_window = {
   parent: ["wall"],
   blocks_sight: false,
-  color: colors.window_blue,
+  color: colors.wall_blue,
 };
 
 make.bullet = {
