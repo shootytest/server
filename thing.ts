@@ -46,7 +46,7 @@ export interface wall_data {
   x2: number,
   y2: number,
   c: number,
-  flag: number,
+  f: number,
 }
 
 export class Thing {
@@ -719,19 +719,19 @@ export class Thing {
     const points = this.points_data();
     const points_length = points.length;
     const segments: wall_data[] = [ ];
-    const color = this.color;
-    const flag: number =  (this.blocks_sight ? 0x0001 : 0) +
+    const c = this.color;
+    const f: number =  (this.blocks_sight ? 0x0001 : 0) +
                           (this.wall_border ? 0x0002 : 0);
 
     if (points_length === 2) {
       const p1 = points[0];
       const p2 = points[1];
-      segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, c, flag });
+      segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, c, f });
     } else if (points_length > 2) {
       for (let i = 0; i < points_length; i++) {
         const p1 = points[i];
         const p2 = points[(i + 1) % points_length];
-        segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, c, flag });
+        segments.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, c, f });
       }
     } else {
       console.error(`thing.wall_data(): less than 2 (${points_length}) points!`);
