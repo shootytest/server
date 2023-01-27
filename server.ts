@@ -41,6 +41,7 @@ io.on("connection", (socket) => {
   player.team = id;
   player.create();
   player.temp_remove(false);
+  player.killer = player.nearest_player(true) || { x: 0, y: 0, };
 
   // socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);

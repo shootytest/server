@@ -102,7 +102,7 @@ export class Player extends Thing {
         this.temp_remove(true);
       }
       if (this.killer != undefined) {
-        Body.setPosition(this.body, this.killer.position);
+        Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
       }
     }
     if (this.player_dead_time != 0 && this.player_dead_time < Thing.time) {

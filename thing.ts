@@ -134,7 +134,7 @@ export class Thing {
   spin_rate = 0;
 
   // properties
-  killer?: Thing = undefined;
+  killer: Thing | _vectortype | undefined = undefined;
   make_type = "";
 
   // physics
@@ -860,11 +860,12 @@ export class Thing {
     Composite.add(world, this.body);
   }
   
-  nearest_player() {
+  nearest_player(ignore_fov = false) {
     const disposition = this.position;
     let result;
     let distance2 = 0;
-    let best = (this.fov * this.size) * (this.fov * this.size); // only can see within its field of view
+    // if not ignore_fov, the thing only can see within its field of view
+    let best = ignore_fov ? 1234567890 : (this.fov * this.size) * (this.fov * this.size);
     for (const player of Thing.players) {
       if (player.team === this.shoot_parent.team) continue;
       distance2 = Vector.magnitudeSquared(Vector.sub(disposition, player.position)) - player.size;
