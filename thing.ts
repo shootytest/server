@@ -121,6 +121,7 @@ export class Thing {
   bullet_deleter = false;
   blocks_sight = false;
   show_health = false;
+  show_time_left = false;
 
   // number
   team = 0;
@@ -163,7 +164,8 @@ export class Thing {
   // only for walls
   segment?: _segmenttype;
 
-  [key: string]: unknown;
+  // deno-lint-ignore no-explicit-any
+  [key: string]: any;
 
   constructor(position?: _vectortype) {
     if (position != undefined) {
@@ -424,7 +426,8 @@ export class Thing {
 
   tick_shoot() {
     for (let i = 0; i < this.shoots.length; i++) {
-      const reload = this.shoots[i].reload || 0;
+      const reload_ = (this.shoots[i].reload || 0);
+      const reload = this.reload_boost_time ? reload_ / 2 : reload_;
       const duration = this.shoots[i].duration;
       const duration_reload = this.shoots[i].duration_reload;
       let canshoot = this.shoots[i].auto;
@@ -527,8 +530,9 @@ export class Thing {
 
   shoot_index(index: number) {
     const s = this.shoots[index];
+    const reload = this.reload_boost_time ? (this.shoots[index].reload || 0) / 2 : this.shoots[index].reload;
     let t = this.shoots_time[index];
-    while (s.reload != undefined && t >= s.reload) {
+    while (reload != undefined && t >= reload) {
       if (s.duration != undefined && s.duration > 0 && s.duration_reload) {
         // duration_reload time
         while (this.shoots_duration_time[index] >= s.duration_reload) {
@@ -541,13 +545,13 @@ export class Thing {
       }
       if (s.duration != undefined && s.duration > 0) {
         if (this.shoots_duration[index] >= s.duration) {
-          t -= s.reload;
+          t -= reload;
           this.shoots_duration[index] = 0;
         } else {
           break;
         }
       } else {
-        t -= s.reload;
+        t -= reload;
       }
     }
     this.shoots_time[index] = t;
@@ -733,14 +737,15 @@ export class Thing {
       deco: Math.round(this.deco),
       hp: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
       ab: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
-      tl: (this.show_health ? math_util.round_to(this.time_death_ratio, 0.01) : 0),
+      tl: (this.show_time_left ? math_util.round_to(this.time_death_ratio, 0.01) : 0),
       fov: math_util.round_to(this.fov, 0.1),
       c: this.color,
       t: this.team,
       f:  (this.player ? 0x0001 : 0) +
           (this.show_health ? 0x0002 : 0) +
           (this.invisible ? 0x0004 : 0) +
-          (this.health.invincible ? 0x0008 : 0),
+          (this.health.invincible ? 0x0008 : 0) +
+          (this.show_time_left ? 0x0010 : 0),
     };
   }
 

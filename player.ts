@@ -65,6 +65,7 @@ export class Player extends Thing {
 
   // specific ability stuff
   speed_boost_time?: number;
+  reload_boost_time?: number;
 
   constructor() {
     super(Player.random_spawn_location());
@@ -83,8 +84,11 @@ export class Player extends Thing {
     if (!this.player_dead) {
       this.do_controls();
     }
-    if (this.speed_boost_time != undefined && this.speed_boost_time > 0) {
-      this.speed_boost_time -= 1;
+    // boosts
+    for (const boost_time of ["speed_boost_time", "reload_boost_time"]) {
+      if (this[boost_time] != undefined && this[boost_time] > 0) {
+        this[boost_time] -= 1;
+      }
     }
   }
 
@@ -108,6 +112,13 @@ export class Player extends Thing {
     const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
     switch (this.ability) {
       case "none": {
+        break;
+      }
+      case "reload_boost": {
+        if (this.health.use_ability(100)) {
+          // reload boost mode on
+          this.reload_boost_time = 60;
+        }
         break;
       }
       case "speed_boost": {

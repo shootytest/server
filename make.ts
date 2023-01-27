@@ -14,6 +14,7 @@ export class maketype {
   blocks_sight?: boolean;
   bullet_deleter?: boolean;
   show_health?: boolean;
+  show_time_left?: boolean;
   size?: number;
   shape?: number;
   deco?: number;
@@ -75,7 +76,7 @@ make.player_basic = {
 
 make.player_fast = {
   shoots: [shoots.p_fast],
-  deco: 1,
+  deco: 6,
 };
 
 make.player_double = {
@@ -87,9 +88,20 @@ make.player_double = {
   deco: 2,
 };
 
+make.player_triple = {
+  shoots: [{
+    parent: shoots.p_triple, y: -0.3,
+  }, {
+    parent: shoots.p_triple, delay: 10,
+  }, {
+    parent: shoots.p_triple, y: 0.3, delay: 20,
+  }],
+  deco: 7,
+};
+
 make.player_trap = {
   shoots: [shoots.p_trap],
-  deco: 1,
+  deco: 4,
 };
 
 
@@ -141,6 +153,7 @@ make.bullet_tower = {
   rotation_controller: "target",
   tower: true,
   show_health: true,
+  show_time_left: true,
   fov: 20,
 };
 
@@ -153,4 +166,11 @@ make.bullet_trap = {
   parent: ["bullet"],
   tower: true,
   fov: 15,
-}
+};
+
+make.bullet_trap_large = {
+  parent: ["bullet"],
+  tower: true,
+  show_time_left: true,
+  fov: 12.5,
+};
