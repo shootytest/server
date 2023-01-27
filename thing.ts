@@ -561,8 +561,9 @@ export class Thing {
     if (s.move) {
       this.shoot_move(s);
     } else {
-      if (s.delay && s.delay > 0) {
-        this.shoot_delay.push({ time: Thing.time + (s?.delay || 0), s: s });
+      if (s.delay != undefined && s.delay > 0) {
+        const delay = this.reload_boost_time ? s.delay / 2 : s.delay;
+        this.shoot_delay.push({ time: Thing.time + delay, s: s });
       } else {
         this.shoot_bullet(s);
       }
