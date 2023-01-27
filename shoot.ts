@@ -43,4 +43,5 @@ export const shoots = {
   p_basic, p_fast, p_trap,
   ability_tower,
   tower_basic,
+  // reload server
 };
