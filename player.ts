@@ -46,7 +46,7 @@ export class Player extends Thing {
   player_dead = false;
   player_dead_time = 0;
   player_invincibility_time = 0;
-  ability_number = 0;
+  ability = "none";
   controls: Controls = new Controls();
   // old_player_position: _vectortype = Vector.create();
 
