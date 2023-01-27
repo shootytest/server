@@ -127,6 +127,7 @@ make.bullet = {
   density: 0.002,
   damage: 1,
   shape: 0,
+  deco: 0,
   collision_filter: category.thing,
 };
 

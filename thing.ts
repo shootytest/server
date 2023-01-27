@@ -561,7 +561,7 @@ export class Thing {
 
   shoot_bullet(S: shoot_stats) {
     if (this.body == undefined) return;
-    const location = Vector.add(this.position, Vector.rotate(Vector.create((S.x || 0) * this.size, (S.y || 0) * this.size, this.rotation)));
+    const location: _vectortype = Vector.add(this.position, Vector.rotate(Vector.create((S.x || 0) * this.size, (S.y || 0) * this.size), this.angle));
     const b = new Thing(location);
     b.make(make.bullet);
     b.make(make["bullet_" + S.type]);
