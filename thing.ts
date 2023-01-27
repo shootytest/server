@@ -26,7 +26,7 @@ export interface matter_body {
 }
 
 export interface thing_data {
-  // id: number;
+  id: number;
   x: number;
   y: number;
   a: number;
@@ -717,7 +717,7 @@ export class Thing {
   
   data(): thing_data {
     return {
-      // id: this.id,
+      id: this.id,
       x: Math.round(this.x),
       y: Math.round(this.y),
       a: math_util.round_to(this.angle, 0.001),

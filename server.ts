@@ -28,6 +28,10 @@ const io = new Server({
   },
 });
 
+const broadcast_players = () => {
+  io.emit("players", Player.player_data());
+}
+
 io.on("connection", (socket) => {
 
   // a new connection! welcome!
@@ -48,11 +52,13 @@ io.on("connection", (socket) => {
   socket.emit("gamemap", memo_walldata);
   socket.emit("mapdata", mapmaker.get_current_map());
 
-  socket.on("join", (data: { upgrade: string, ability: string }) => {
+  socket.on("join", (data: { upgrade: string, ability: string, name: string, }) => {
     player.remove_shoots();
     player.make(make["player_" + data.upgrade]);
     player.ability = data.ability;
+    player.name = data.name;
     player.temp_create();
+    broadcast_players();
   });
 
   socket.on("controls", (controls: Controls) => {

@@ -42,11 +42,24 @@ export class Player extends Thing {
     return result;
   }
 
+  static player_data() {
+    const playerdata = [];
+    for (const player of Player.players) {
+      if (!player.exists) continue;
+      playerdata.push({
+        id: player.id,
+        name: player.name,
+      });
+    }
+    return playerdata;
+  }
+
   player_autofire = false;
   player_dead = false;
   player_dead_time = 0;
   player_invincibility_time = 0;
   ability = "none";
+  name = "unnamed";
   controls: Controls = new Controls();
   // old_player_position: _vectortype = Vector.create();
 
@@ -119,7 +132,7 @@ export class Player extends Thing {
     if (this.health.zero()) {
       // you are dead
       if (!this.player_dead) {
-        this.temp_remove(true);
+        this.temp_remove(false);
       }
       if (this.killer != undefined) {
         Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
