@@ -63,6 +63,9 @@ export class Player extends Thing {
   controls: Controls = new Controls();
   // old_player_position: _vectortype = Vector.create();
 
+  // specific ability stuff
+  speed_boost_time?: number;
+
   constructor() {
     super(Player.random_spawn_location());
     Player.players.push(this);
@@ -80,6 +83,9 @@ export class Player extends Thing {
     if (!this.player_dead) {
       this.do_controls();
     }
+    if (this.speed_boost_time != undefined && this.speed_boost_time > 0) {
+      this.speed_boost_time -= 1;
+    }
   }
 
   do_controls() {
@@ -88,7 +94,7 @@ export class Player extends Thing {
     // move player
     const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
     const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
-    this.move_player(Vector.create(move_x, move_y), 1);
+    this.move_player(Vector.create(move_x, move_y), this.speed_boost_time ? 2 : 1);
     // shoot player
     this.shooting = this.player_autofire || this.controls.shoot;
     // dash player
@@ -104,10 +110,17 @@ export class Player extends Thing {
       case "none": {
         break;
       }
+      case "speed_boost": {
+        if (this.health.use_ability(100)) {
+          // speed boost mode on
+          this.speed_boost_time = 75;
+        }
+        break;
+      }
       case "speed": {
         if (this.health.use_ability(2)) {
           // additional move
-          this.move_player(Vector.create(move_x, move_y), 1);
+          this.move_player(Vector.create(move_x, move_y), 1.1);
         }
         break;
       }
