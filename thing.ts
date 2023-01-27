@@ -733,7 +733,7 @@ export class Thing {
       deco: Math.round(this.deco),
       hp: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
       ab: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
-      tl: (this.show_time_left ? math_util.round_to(this.time_death_ratio, 0.01) : 0),
+      tl: (this.show_health ? math_util.round_to(this.time_death_ratio, 0.01) : 0),
       fov: math_util.round_to(this.fov, 0.1),
       c: this.color,
       t: this.team,
