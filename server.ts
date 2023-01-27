@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
   console.log(`socket #${id} "${socket.id}" connected`);
 
   const player = new Player();
-  player.make(make.player_basic);
+  player.make(make.player_trap);
   player.team = id;
   player.create();
 
