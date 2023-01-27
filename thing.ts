@@ -32,6 +32,7 @@ export interface thing_data {
   a: number;
   r: number;
   shape: number;
+  deco: number;
   hp: number;
   ab: number;
   fov: number;
@@ -145,6 +146,7 @@ export class Thing {
   // display variables
   color = 0;
   shape = 0;
+  deco = 0;
   
   // pew
   shooting = false;
@@ -192,7 +194,7 @@ export class Thing {
           }
           for (const S of o.shoots) {
             if (typeof S === "string") continue;
-            const to_push: shoot_stats = { type: "basic", reload: 50, size: 7, speed: 10, spread: 0.03, damage: 15, health: 10, time: 1.5, };
+            const to_push: shoot_stats = {};
             const recursive_add = (shoot_obj: shoot_stats, parented = false) => {
               if (shoot_obj.parent != undefined && !parented) {
                 recursive_add(shoot_obj.parent);
@@ -416,7 +418,7 @@ export class Thing {
 
   tick_shoot() {
     for (let i = 0; i < this.shoots.length; i++) {
-      const reload = this.shoots[i].reload;
+      const reload = this.shoots[i].reload || 0;
       const duration = this.shoots[i].duration;
       const duration_reload = this.shoots[i].duration_reload;
       let canshoot = this.shoots[i].auto;
@@ -520,7 +522,7 @@ export class Thing {
   shoot_index(index: number) {
     const s = this.shoots[index];
     let t = this.shoots_time[index];
-    while (t >= s.reload) {
+    while (s.reload != undefined && t >= s.reload) {
       if (s.duration != undefined && s.duration > 0 && s.duration_reload) {
         // duration_reload time
         while (this.shoots_duration_time[index] >= s.duration_reload) {
@@ -559,7 +561,7 @@ export class Thing {
 
   shoot_bullet(S: shoot_stats) {
     if (this.body == undefined) return;
-    const location = Vector.clone(this.position);
+    const location = Vector.add(this.position, Vector.rotate(Vector.create((S.x || 0) * this.size, (S.y || 0) * this.size, this.rotation)));
     const b = new Thing(location);
     b.make(make.bullet);
     b.make(make["bullet_" + S.type]);
@@ -569,8 +571,8 @@ export class Thing {
       const size = spreadsize === 0 ? S.size : math_util.randgauss(S.size, spreadsize);
       b.size = size;
     }
-    b.damage = S.damage;
-    b.health.set_capacity(S.health);
+    b.damage = S.damage || 0;
+    b.health.set_capacity(S.health || 0);
     if (S.color != undefined) {
       b.color = S.color;
     }
@@ -595,7 +597,7 @@ export class Thing {
     const rot = math_util.randgauss(this.target.angle + (Vector.deg_to_rad(S.rotation || 0)), S.spread || 0);
     const facing = this.target.facing;
     const spreadv = S.spreadv || 0;
-    let spd = spreadv === 0 ? S.speed : math_util.randgauss(S.speed, spreadv);
+    let spd = spreadv === 0 ? (S.speed || 0) : math_util.randgauss(S.speed || 0, spreadv);
     const thing_velocity = Vector.rotate(this.velocity, -rot).x;
     if (spd !== 0) spd += thing_velocity * config.physics.velocity_shoot_boost;
     if (S.target_type != undefined) {
@@ -628,7 +630,7 @@ export class Thing {
 
   shoot_move(S: shoot_stats) {
     if (!S.move || this.body == undefined) return;
-    this.push_to(this.target.facing, S.speed * this.body.mass * config.physics.force_factor);
+    this.push_to(this.target.facing, (S.speed || 0) * this.body.mass * config.physics.force_factor);
   }
 
   create() {
@@ -721,6 +723,7 @@ export class Thing {
       a: math_util.round_to(this.angle, 0.001),
       r: Math.round(this.size),
       shape: this.shape,
+      deco: Math.round(this.deco),
       hp: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
       ab: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
       fov: math_util.round_to(this.fov, 0.1),

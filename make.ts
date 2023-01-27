@@ -16,6 +16,7 @@ export class maketype {
   show_health?: boolean;
   size?: number;
   shape?: number;
+  deco?: number;
   speed?: number;
   density?: number;
   friction?: number;
@@ -50,6 +51,7 @@ make.player = {
   rotation_controller: "player",
   size: 30,
   shape: 0,
+  deco: 1,
   speed: 50,
   density: 0.001,
   friction: 0.1,
@@ -68,14 +70,26 @@ make.player = {
 
 make.player_basic = {
   shoots: [shoots.p_basic],
+  deco: 1,
 };
 
 make.player_fast = {
   shoots: [shoots.p_fast],
+  deco: 1,
+};
+
+make.player_double = {
+  shoots: [{
+    parent: shoots.p_double, y: -0.2,
+  }, {
+    parent: shoots.p_double, y: 0.2, delay: 20,
+  }],
+  deco: 2,
 };
 
 make.player_trap = {
   shoots: [shoots.p_trap],
+  deco: 1,
 };
 
 
