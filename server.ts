@@ -40,8 +40,8 @@ io.on("connection", (socket) => {
   player.make(make.player_basic);
   player.team = id;
   player.create();
-  //player.temp_remove(false);
-  //player.killer = player.nearest_player(true) || { x: 0, y: 0, };
+  player.temp_remove(false);
+  player.killer = player.nearest_player(true) || { x: 0, y: 0, };
 
   // socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
@@ -51,6 +51,7 @@ io.on("connection", (socket) => {
   socket.on("join", (data: { upgrade: string, ability: string }) => {
     player.make(make["player_" + data.upgrade]);
     player.ability = data.ability;
+    player.temp_create();
   });
 
   socket.on("controls", (controls: Controls) => {
