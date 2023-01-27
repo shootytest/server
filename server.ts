@@ -49,6 +49,7 @@ io.on("connection", (socket) => {
   socket.emit("mapdata", mapmaker.get_current_map());
 
   socket.on("join", (data: { upgrade: string, ability: string }) => {
+    player.remove_shoots();
     player.make(make["player_" + data.upgrade]);
     player.ability = data.ability;
     player.temp_create();

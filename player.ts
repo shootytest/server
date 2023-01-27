@@ -90,6 +90,32 @@ export class Player extends Thing {
     }
   }
 
+  do_ability() {
+    const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
+    const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
+    switch (this.ability) {
+      case "none": {
+        break;
+      }
+      case "speed": {
+        if (this.health.use_ability(2)) {
+          // additional move
+          this.move_player(Vector.create(move_x, move_y), 1);
+        }
+        break;
+      }
+      case "tower_basic": {
+        if (this.health.use_ability(100)) {
+          this.shoot_bullet(shoots.ability_tower);
+        }
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+
   tick_player_test() {
     // nothing for now
   }

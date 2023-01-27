@@ -824,6 +824,13 @@ export class Thing {
     }
   }
 
+  remove_shoots() {
+    this.shoots = [];
+    this.shoots_time = [];
+    this.shoots_duration = [];
+    this.shoots_duration_time = [];
+  }
+
   query_point(x: number | _vectortype, y?: number) {
     let v: _vectortype | number; // actually only _vectortype
     if (y != undefined) v = Vector.create(x, y);
