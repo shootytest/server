@@ -120,7 +120,7 @@ export class Player extends Thing {
       case "speed": {
         if (this.health.use_ability(2)) {
           // additional move
-          this.move_player(Vector.create(move_x, move_y), 1.1);
+          this.move_player(Vector.create(move_x, move_y), 1.25);
         }
         break;
       }

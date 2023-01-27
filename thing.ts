@@ -33,8 +33,9 @@ export interface thing_data {
   r: number;
   shape: number;
   deco: number;
-  hp: number;
-  ab: number;
+  hp: number; // health
+  ab: number; // ability
+  tl: number; // time left
   fov: number;
   c: number;
   t: number;
@@ -130,6 +131,7 @@ export class Thing {
   speed_death = -1;
   size_death = -1;
   time_death = -1;
+  time_death_original?: number;
   homing_amount = 0.05;
   spin_rate = 0;
 
@@ -297,6 +299,10 @@ export class Thing {
 
   set velocity(velocity) {
     this.target.velocity = Vector.create(velocity.x, velocity.y);
+  }
+
+  get time_death_ratio() {
+    return this.time_death_original ? this.time_death / this.time_death_original : 0;
   }
 
   tick() {
@@ -578,6 +584,7 @@ export class Thing {
     }
     if (S.time != undefined) {
       b.time_death = S.time * 60;
+      b.time_death_original = S.time * 60;
     }
     if (S.friction != undefined) {
       b.friction = S.friction;
@@ -726,13 +733,14 @@ export class Thing {
       deco: Math.round(this.deco),
       hp: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
       ab: (this.show_health ? math_util.round_to(this.health.ability_display, 0.01) : 0),
+      tl: (this.show_time_left ? math_util.round_to(this.time_death_ratio, 0.01) : 0),
       fov: math_util.round_to(this.fov, 0.1),
       c: this.color,
       t: this.team,
-      f: (this.player ? 0x0001 : 0) +
-            (this.show_health ? 0x0002 : 0) +
-            (this.invisible ? 0x0004 : 0) +
-            (this.health.invincible ? 0x0008 : 0),
+      f:  (this.player ? 0x0001 : 0) +
+          (this.show_health ? 0x0002 : 0) +
+          (this.invisible ? 0x0004 : 0) +
+          (this.health.invincible ? 0x0008 : 0),
     };
   }
 
