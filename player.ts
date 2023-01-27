@@ -80,13 +80,7 @@ export class Player extends Thing {
     this.shooting = this.player_autofire || this.controls.shoot;
     // dash player
     if (this.controls.rshoot) {
-      if (this.health.use_ability(100)) {
-        this.shoot_bullet(shoots.ability_tower);
-      }
-      if (this.health.use_ability(2)) {
-        // additional move
-        this.move_player(Vector.create(move_x, move_y), 1);
-      }
+      this.do_ability();
     }
   }
 
@@ -173,7 +167,7 @@ export class Player extends Thing {
     } else {
       this.player_dead_time = 0;
     }
-    Body.setVelocity(this.body, Vector.create());
+    Body.setVelocity(this.body, Vector.create(0, 0));
     this.make_invisible();
   }
 
@@ -181,6 +175,7 @@ export class Player extends Thing {
     this.player_dead = false;
     this.player_dead_time = 0;
     this.health.restore();
+    this.killer = Vector.create(0, 0);
     this.make_visible();
     const new_spawn_position = Player.random_spawn_location();
     this.position = new_spawn_position;

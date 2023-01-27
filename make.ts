@@ -82,7 +82,7 @@ make.player_double = {
   shoots: [{
     parent: shoots.p_double, y: -0.2,
   }, {
-    parent: shoots.p_double, y: 0.2, delay: 20,
+    parent: shoots.p_double, y: 0.2, delay: 15,
   }],
   deco: 2,
 };

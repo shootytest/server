@@ -134,7 +134,7 @@ export class Thing {
   spin_rate = 0;
 
   // properties
-  killer: Thing | _vectortype | undefined = undefined;
+  killer: Thing | _vectortype = Vector.create(0, 0);
   make_type = "";
 
   // physics
