@@ -887,6 +887,7 @@ export class Thing {
     // if not ignore_fov, the thing only can see within its field of view
     let best = ignore_fov ? 1234567890 : (this.fov * this.size) * (this.fov * this.size);
     for (const player of Thing.players) {
+      if (player.player_dead || player.invisible) continue;
       if (player.team === this.shoot_parent.team) continue;
       distance2 = Vector.magnitudeSquared(Vector.sub(disposition, player.position)) - player.size;
       if (distance2 <= best) {
