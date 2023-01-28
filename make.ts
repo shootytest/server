@@ -79,6 +79,11 @@ make.player_fast = {
   deco: 6,
 };
 
+make.player_faster = {
+  shoots: [shoots.p_faster],
+  deco: 8,
+};
+
 make.player_double = {
   shoots: [{
     parent: shoots.p_double, y: -0.2,
@@ -101,6 +106,11 @@ make.player_triple = {
 
 make.player_trap = {
   shoots: [shoots.p_trap],
+  deco: 4,
+};
+
+make.player_trap_large = {
+  shoots: [shoots.p_trap_large],
   deco: 4,
 };
 

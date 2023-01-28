@@ -732,7 +732,7 @@ export class Thing {
       x: Math.round(this.x),
       y: Math.round(this.y),
       a: math_util.round_to(this.angle, 0.001),
-      r: Math.round(this.size),
+      r: math_util.round_to(this.size, 0.1),
       shape: this.shape,
       deco: Math.round(this.deco),
       hp: (this.show_health ? math_util.round_to(this.health.display, 0.01) : 0),
