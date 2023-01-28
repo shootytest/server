@@ -158,11 +158,11 @@ export class Player extends Thing {
       if (!this.player_dead) {
         this.temp_remove(false);
       }
-      if (this.killer != undefined) {
-        Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
-      }
     }
-    if (this.player_dead_time != 0 && this.player_dead_time < Thing.time) {
+    if (this.player_dead && this.killer != undefined) {
+      Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
+    }
+    if (this.player_dead_time !== 0 && this.player_dead_time < Thing.time) {
       this.temp_create();
     }
     if (this.player_invincibility_time != 0 && this.player_invincibility_time < Thing.time) {

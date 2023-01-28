@@ -33,20 +33,24 @@ const p_double: shoot_stats = { type: "basic", reload: 50, size: 6, speed: 9, sp
 const p_triple: shoot_stats = { type: "basic", reload: 60, size: 6, speed: 8.5, spread: 0.02, damage: 7, health: 5, time: 2.5, };
 const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.025, damage: 7, health: 6, time: 2.0, };
 const p_faster: shoot_stats = { type: "basic", reload: 10, size: 3.5, speed: 6, spread: 0.035, damage: 4, health: 3.5, time: 1.7, };
+const p_large: shoot_stats = { type: "basic", reload: 70, size: 9, speed: 9, spread: 0.015, damage: 20, health: 15, time: 4.0, };
 const p_trap: shoot_stats = { type: "trap", reload: 30, size: 8, speed: 5, spreadv: 1, friction: 0.03, spread: 0.025, damage: 9, health: 10, time: 5.0, };
-const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 14, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 25, health: 25, time: 8.0, };
+const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 14, speed: 4, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 25, health: 25, time: 8.0, };
+const p_trap_tower: shoot_stats = { type: "trap_basic", reload: 120, size: 15, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 20, health: 30, time: 10.0, };
 
-const ability_tower: shoot_stats = { type: "tower_basic", reload: 1000000, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 12, health: 10, time: 10.0, };
+const ability_tower: shoot_stats = { type: "tower_basic", reload: 1000000, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 15, health: 30, time: 10.0, };
 
-const tower_basic: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 7.5, spread: 0.01, damage: 8, health: 10, time: 2.0, };
+const t_basic: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 7.5, spread: 0.01, damage: 8, health: 10, time: 2.0, };
+const t_trap_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 7, spread: 0.01, damage: 5, health: 5, time: 2.0, };
 
 export const shoots = {
   basic,
   p_basic, 
   p_double, p_triple,
   p_fast, p_faster,
-  p_trap, p_trap_large,
+  p_large,
+  p_trap, p_trap_large, p_trap_tower,
   ability_tower,
-  tower_basic,
+  t_basic, t_trap_basic,
   // reload server
 };

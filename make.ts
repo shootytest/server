@@ -111,7 +111,12 @@ make.player_trap = {
 
 make.player_trap_large = {
   shoots: [shoots.p_trap_large],
-  deco: 4,
+  deco: 9,
+};
+
+make.player_trap_tower = {
+  shoots: [shoots.p_trap_tower],
+  deco: 11,
 };
 
 
@@ -169,7 +174,7 @@ make.bullet_tower = {
 
 make.bullet_tower_basic = {
   parent: ["bullet_tower"],
-  shoots: [shoots.tower_basic],
+  shoots: [shoots.t_basic],
 };
 
 make.bullet_trap = {
@@ -183,4 +188,9 @@ make.bullet_trap_large = {
   tower: true,
   show_time_left: true,
   fov: 12.5,
+};
+
+make.bullet_trap_basic = {
+  parent: ["bullet_tower"],
+  shoots: [shoots.t_trap_basic],
 };
