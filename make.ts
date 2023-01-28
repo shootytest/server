@@ -176,6 +176,7 @@ make.bullet_tower = {
   parent: ["bullet"],
   controller: "target",
   rotation_controller: "target",
+  deco: 1,
   tower: true,
   show_health: true,
   show_time_left: true,
@@ -197,7 +198,7 @@ make.bullet_trap_large = {
   parent: ["bullet"],
   tower: true,
   show_time_left: true,
-  fov: 12.5,
+  fov: 12,
 };
 
 make.bullet_trap_basic = {
@@ -208,5 +209,6 @@ make.bullet_trap_basic = {
 make.bullet_launch = {
   parent: ["bullet"],
   shooting: true,
+  deco: 1,
   shoots: [shoots.t_launch],
 };
