@@ -426,17 +426,16 @@ export class Thing {
 
   tick_shoot() {
     for (let i = 0; i < this.shoots.length; i++) {
-      const reload_ = (this.shoots[i].reload || 0);
-      const reload = this.reload_boost_time ? reload_ / 2 : reload_;
+      const reload = (this.shoots[i].reload || 0);
       const duration = this.shoots[i].duration;
       const duration_reload = this.shoots[i].duration_reload;
       let canshoot = this.shoots[i].auto;
       if (this.shoots_time[i] < reload && this.shoots_duration[i] <= 0) {
-        this.shoots_time[i]++;
+        this.shoots_time[i] += this.reload_boost_time ? 2 : 1;
       }
       if (duration != undefined && duration > 0) {
         if ((this.shooting || this.shoots_duration[i] > 0) && this.shoots_time[i] >= reload && this.shoots_duration[i] < duration) {
-          this.shoots_duration[i]++;
+          this.shoots_duration[i] += 1;
           canshoot = true;
         }
         if (duration_reload != undefined && duration_reload > 0 && this.shoots_duration_time[i] < duration_reload) {
@@ -530,7 +529,7 @@ export class Thing {
 
   shoot_index(index: number) {
     const s = this.shoots[index];
-    const reload = this.reload_boost_time ? (this.shoots[index].reload || 0) / 2 : this.shoots[index].reload;
+    const reload = (this.shoots[index].reload || 0);
     let t = this.shoots_time[index];
     while (reload != undefined && t >= reload) {
       if (s.duration != undefined && s.duration > 0 && s.duration_reload) {
