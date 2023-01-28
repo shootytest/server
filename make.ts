@@ -104,6 +104,16 @@ make.player_triple = {
   deco: 7,
 };
 
+make.player_large = {
+  shoots: [shoots.p_large],
+  deco: 5,
+};
+
+make.player_launch = {
+  shoots: [shoots.p_launch],
+  deco: 12,
+};
+
 make.player_trap = {
   shoots: [shoots.p_trap],
   deco: 4,
@@ -115,7 +125,7 @@ make.player_trap_large = {
 };
 
 make.player_trap_tower = {
-  shoots: [shoots.p_trap_tower],
+  shoots: [shoots.p_trap_t_basic],
   deco: 11,
 };
 
@@ -193,4 +203,10 @@ make.bullet_trap_large = {
 make.bullet_trap_basic = {
   parent: ["bullet_tower"],
   shoots: [shoots.t_trap_basic],
+};
+
+make.bullet_launch = {
+  parent: ["bullet"],
+  shooting: true,
+  shoots: [shoots.t_launch],
 };

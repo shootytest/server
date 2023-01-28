@@ -14,6 +14,8 @@ export const SQRT_2 = Math.sqrt(2);
 export const SQRT_3 = Math.sqrt(3);
 export const SQRT_5 = Math.sqrt(5);
 
+export const PI = Math.PI;
+
 const regpoly = function(sides: number, size: number, angle = 0, x = 0, y = 0) {
   const ans: _vectortype[] = [];
   let a = angle;

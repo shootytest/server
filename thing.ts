@@ -569,6 +569,12 @@ export class Thing {
     }
   }
 
+  shoot_bullets(S: shoot_stats[]) {
+    for (const s of S) {
+      this.shoot_bullet(s);
+    }
+  }
+
   shoot_bullet(S: shoot_stats) {
     if (this.body == undefined) return;
     const location: _vectortype = Vector.add(this.position, Vector.rotate(Vector.create((S.x || 0) * this.size, (S.y || 0) * this.size), this.angle));
@@ -605,7 +611,7 @@ export class Thing {
     b.team = this.team;
     b.shoot_parent = this.shoot_parent;
     // shoot the bullet with correct rotation and speed
-    const rot = math_util.randgauss(this.target.angle + (Vector.deg_to_rad(S.rotation || 0)), S.spread || 0);
+    const rot = math_util.randgauss(this.target.angle + (Vector.deg_to_rad(S.angle || 0)), S.spread || 0);
     const facing = this.target.facing;
     const spreadv = S.spreadv || 0;
     let spd = spreadv === 0 ? (S.speed || 0) : math_util.randgauss(S.speed || 0, spreadv);

@@ -141,6 +141,12 @@ export class Player extends Thing {
         }
         break;
       }
+      case "octopus": {
+        if (this.health.use_ability(100)) {
+          this.shoot_bullets(shoots.ability_octopus);
+        }
+        break;
+      }
       default: {
         break;
       }
