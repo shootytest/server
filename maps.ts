@@ -107,10 +107,10 @@ maps.hello = {
     { type: "line", x: -60, y: 120, x2: -60, y2: -60, },
     { type: "line", x: -120, y: -60, x2: 60, y2: -60, },
     */
-    { type: "circle", x: -160, y: 40, size: 60, bouncy: true, },
-    { type: "circle", x: 40, y: -160, size: 60, bouncy: true, },
-    { type: "circle", x: -120, y: -120, size: 40, bouncy: true, },
-    { type: "circle", x: 40, y: 40, size: 40, bouncy: true, },
+    { type: "circle", x: -100, y: 100, size: 60, bouncy: true, },
+    { type: "circle", x: 100, y: -100, size: 60, bouncy: true, },
+    { type: "circle", x: -80, y: -80, size: 40, bouncy: true, },
+    { type: "circle", x: 80, y: 80, size: 40, bouncy: true, },
 
     // corridor
     { type: "line", x: 240, y: -380, x2: 380, y2: -380, },
