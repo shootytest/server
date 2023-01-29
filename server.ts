@@ -40,7 +40,7 @@ io.on("connection", (socket) => {
 
   console.log(`socket #${id} "${socket.id}" connected`);
 
-  const player = new Player();
+  const player = new Player(socket);
   player.make(make.player_basic);
   player.team = id;
   player.create();
@@ -49,8 +49,8 @@ io.on("connection", (socket) => {
 
   // socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
-  socket.emit("gamemap", memo_walldata);
-  socket.emit("mapdata", mapmaker.get_current_map());
+  socket.emit("game_map", memo_walldata);
+  socket.emit("map_data", mapmaker.get_current_map());
 
   socket.on("join", (data: { upgrade: string, ability: string, name: string, }) => {
     player.remove_shoots();
@@ -79,7 +79,7 @@ io.on("connection", (socket) => {
 
 setInterval(() => {
   tick(0);
-  io.emit("gamedata", Thing.data());
+  io.emit("game_data", Thing.data());
 }, 16);
 
 const html = `

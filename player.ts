@@ -1,3 +1,4 @@
+import { Socket } from "https://deno.land/x/socket_io@0.2.0/mod.ts";
 import { config } from "./config.ts";
 import { Controls } from "./controls.ts";
 import { make } from "./make.ts";
@@ -54,6 +55,8 @@ export class Player extends Thing {
     return playerdata;
   }
 
+  socket?: Socket;
+
   player_autofire = false;
   player_dead = false;
   player_dead_time = 0;
@@ -67,8 +70,16 @@ export class Player extends Thing {
   speed_boost_time?: number;
   reload_boost_time?: number;
 
-  constructor() {
+  // damage numbers
+  damage_numbers: {
+    x: number;
+    y: number;
+    d: number;
+  }[] = [];
+
+  constructor(socket?: Socket) {
     super(Player.random_spawn_location());
+    this.socket = socket;
     Player.players.push(this);
     this.make(make.player);
   }
@@ -184,6 +195,14 @@ export class Player extends Thing {
   shoot() {
     if (this.player_dead) return;
     super.shoot();
+  }
+
+  data() {
+    if (this.damage_numbers.length > 0) {
+      this.socket?.emit("damage_numbers", this.damage_numbers);
+      this.damage_numbers = [];
+    }
+    return super.data();
   }
 
   remove() {

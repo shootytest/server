@@ -21,6 +21,13 @@ function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
     if (t.player && u.bullet) {
       u.deleted = true;
     }
+    if (t.player && u.shoot_parent.player) {
+      u.shoot_parent.damage_numbers.push({
+        x: u.x,
+        y: u.y,
+        d: u.damage,
+      });
+    }
   }
   /*
   if (t.health.damage > 0 && u.health.capacity > 0 && t.team !== u.team) {
