@@ -10,7 +10,7 @@ import { make } from "./make.ts";
 // initialize main
 console.log("initializing...");
 main();
-mapmaker.make("test");
+mapmaker.make("hello");
 const memo_walldata = Thing.walldata();
 
 // helper functions
