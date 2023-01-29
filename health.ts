@@ -38,6 +38,14 @@ export class Health {
     return this.ratio * 100;
   }
 
+  get full() {
+    return this.health >= this.capacity;
+  }
+
+  get ability_full() {
+    return this.ability >= this.ability_capacity;
+  }
+
   tick() {
     this.display = math_util.lerp(this.display, this.ratio, config.game.health_display_smoothness);
     this.ability_display = math_util.lerp(this.ability_display, this.ability_ratio, config.game.health_display_smoothness);

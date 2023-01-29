@@ -25,10 +25,10 @@ const use = (player: Player) => {
       break;
     }
     case "speed": {
-      if (player.health.use_ability(2.5)) {
+      const move_x = (player.controls.right ? 1 : 0) - (player.controls.left ? 1 : 0);
+      const move_y = (player.controls.down ? 1 : 0) - (player.controls.up ? 1 : 0);
+      if ((move_x !== 0 || move_y !== 0) && player.health.use_ability(2.5)) {
         // additional move
-        const move_x = (player.controls.right ? 1 : 0) - (player.controls.left ? 1 : 0);
-        const move_y = (player.controls.down ? 1 : 0) - (player.controls.up ? 1 : 0);
         player.move_player(Vector.create(move_x, move_y), 1.2);
       }
       break;
@@ -46,13 +46,13 @@ const use = (player: Player) => {
       break;
     }
     case "heal": {
-      if (player.health.use_ability(25)) {
+      if (!player.health.full && player.health.use_ability(25)) {
         player.health.heal_percent(0.1);
       }
       break;
     }
     case "heal_bulk": {
-      if (player.health.use_ability(100)) {
+      if (!player.health.full && player.health.use_ability(100)) {
         player.health.heal_percent(0.8);
       }
       break;

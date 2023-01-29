@@ -96,7 +96,14 @@ export class Player extends Thing {
       this.do_controls();
     }
     // boosts
-    for (const boost_time of ["speed_boost_time", "reload_boost_time"]) {
+    if (this.speed_boost_time != undefined && this.speed_boost_time > 0) {
+      const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
+      const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
+      if (move_x !== 0 || move_y !== 0) {
+        this.speed_boost_time -= 1;
+      }
+    }
+    for (const boost_time of ["reload_boost_time"]) {
       if (this[boost_time] != undefined && this[boost_time] > 0) {
         this[boost_time] -= 1;
       }
