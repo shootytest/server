@@ -64,8 +64,9 @@ export class Health {
     if (this.invincible) return 0;
     const old_health = this.health;
     this.health -= damage;
+    this.bound_health();
     this.hit_time = Thing.time;
-    const real_damage = Math.max(0, Math.min(damage, old_health));
+    const real_damage = old_health - this.health; // math_util.bound(old_health, 0, damage);
     return real_damage;
   }
 
@@ -77,6 +78,28 @@ export class Health {
   hit_remove(damage: number) {
     if (this.invincible) return;
     this.hit_tick -= damage;
+  }
+
+  heal(health: number) {
+    const old_health = this.health;
+    this.health += health;
+    this.bound_health();
+    if (this.thing.player) {
+      const player = this.thing;
+      player.damage_numbers.push({
+        x: player.x,
+        y: player.y,
+        d: old_health - this.health, // yes this is negative
+      });
+    }
+  }
+
+  heal_percent(health_percent: number) {
+    this.heal(this.capacity * health_percent);
+  }
+
+  bound_health() {
+    this.health = math_util.bound(this.health, 0, this.capacity);
   }
 
   restore() {

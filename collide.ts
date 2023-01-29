@@ -25,7 +25,7 @@ function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
       u.shoot_parent.damage_numbers.push({
         x: u.x,
         y: u.y,
-        d: u.damage,
+        d: _damage <= 0 ? 0 : u.damage,
       });
     }
   }

@@ -158,6 +158,12 @@ export class Player extends Thing {
         }
         break;
       }
+      case "heal": {
+        if (this.health.use_ability(100)) {
+          this.health.heal_percent(0.8);
+        }
+        break;
+      }
       default: {
         break;
       }
