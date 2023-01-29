@@ -1,3 +1,3 @@
-## just a test server
+## a test server for shooty
 
-for testing
+[click here for the site! (temporary URL)](https://shootytest.surge.sh)
