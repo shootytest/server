@@ -198,7 +198,7 @@ make.bullet_trap_large = {
   parent: ["bullet"],
   tower: true,
   show_time_left: true,
-  fov: 12,
+  fov: 10,
 };
 
 make.bullet_trap_basic = {
