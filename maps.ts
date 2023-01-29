@@ -97,13 +97,21 @@ maps.hello = {
   spawn: [
     { x: -320, y: 200, w: 120, h: 120, },
     { x: 200, y: -320, w: 120, h: 120, },
+    // { x: 0, y: 0, w: 0, h: 0, },
   ],
   shapes: [
     // center walls
+    /*
     { type: "line", x: 60, y: -120, x2: 60, y2: 60, },
     { type: "line", x: 120, y: 60, x2: -60, y2: 60, },
     { type: "line", x: -60, y: 120, x2: -60, y2: -60, },
     { type: "line", x: -120, y: -60, x2: 60, y2: -60, },
+    */
+    { type: "circle", x: -160, y: 40, size: 60, bouncy: true, },
+    { type: "circle", x: 40, y: -160, size: 60, bouncy: true, },
+    { type: "circle", x: -120, y: -120, size: 40, bouncy: true, },
+    { type: "circle", x: 40, y: 40, size: 40, bouncy: true, },
+
     // corridor
     { type: "line", x: 240, y: -380, x2: 380, y2: -380, },
     { type: "line", x: 380, y: -380, x2: 380, y2: -60, },
@@ -114,5 +122,10 @@ maps.hello = {
     { type: "line", x: -380, y: 380, x2: -380, y2: 60, },
     { type: "line", x: -380, y: 60, x2: -380, y2: -120, window: true, },
     { type: "line", x: -380, y: -120, x2: -380, y2: -380, },
+    // debug...
+    /*
+    { type: "line", x: -800, y: -800, x2: -1200, y2: -800 },
+    { type: "line", x: -800, y: -800, x2: -800, y2: -1200 },
+    */
   ],
 };
