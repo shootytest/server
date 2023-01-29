@@ -1,11 +1,11 @@
 import { Socket } from "https://deno.land/x/socket_io@0.2.0/mod.ts";
+import { ability } from "./ability.ts";
 import { config } from "./config.ts";
 import { Controls } from "./controls.ts";
 import { make } from "./make.ts";
 import { mapmaker } from "./mapmaker.ts";
 import { math_util, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
-import { shoots } from "./shoot.ts";
 import { Thing } from "./thing.ts";
 
 const Body = Matter.Body,
@@ -114,60 +114,13 @@ export class Player extends Thing {
     this.shooting = this.player_autofire || this.controls.shoot;
     // dash player
     if (this.controls.rshoot) {
-      this.do_ability();
+      ability.use(this);
     }
   }
 
-  do_ability() {
-    const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
-    const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
-    switch (this.ability) {
-      case "none": {
-        break;
-      }
-      case "reload_boost": {
-        if (this.health.use_ability(100)) {
-          // reload boost mode on
-          this.reload_boost_time = 60;
-        }
-        break;
-      }
-      case "speed_boost": {
-        if (this.health.use_ability(100)) {
-          // speed boost mode on
-          this.speed_boost_time = 75;
-        }
-        break;
-      }
-      case "speed": {
-        if (this.health.use_ability(2)) {
-          // additional move
-          this.move_player(Vector.create(move_x, move_y), 1.25);
-        }
-        break;
-      }
-      case "tower_basic": {
-        if (this.health.use_ability(100)) {
-          this.shoot_bullet(shoots.ability_tower);
-        }
-        break;
-      }
-      case "octopus": {
-        if (this.health.use_ability(100)) {
-          this.shoot_bullets(shoots.ability_octopus);
-        }
-        break;
-      }
-      case "heal": {
-        if (this.health.use_ability(100)) {
-          this.health.heal_percent(0.8);
-        }
-        break;
-      }
-      default: {
-        break;
-      }
-    }
+  set_ability(ab: string) {
+    this.ability = ab;
+    ability.set(this);
   }
 
   tick_player_test() {

@@ -43,7 +43,7 @@ const ability_tower: shoot_stats = { type: "tower_basic", reload: 1000000, size:
 const ability_octopus: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 8; i++) {
-    result.push({ type: "basic", reload: 1000000, size: 10, speed: 4, spread: 0.005, damage: 10, health: 8, time: 6.0, angle: 45 * i, });
+    result.push({ type: "basic", reload: 1000000, size: 10, speed: 3.5, spread: 0.005, damage: 7, health: 2, time: 6.0, angle: 45 * i, });
   }
   return result;
 })();
