@@ -52,7 +52,7 @@ make.player = {
   rotation_controller: "player",
   size: 30,
   shape: 0,
-  deco: 1,
+  deco: 101,
   speed: 50,
   density: 0.001,
   friction: 0.1,
@@ -71,17 +71,17 @@ make.player = {
 
 make.player_basic = {
   shoots: [shoots.p_basic],
-  deco: 1,
+  deco: 101,
 };
 
 make.player_fast = {
   shoots: [shoots.p_fast],
-  deco: 6,
+  deco: 301,
 };
 
 make.player_faster = {
   shoots: [shoots.p_faster],
-  deco: 8,
+  deco: 302,
 };
 
 make.player_double = {
@@ -90,7 +90,7 @@ make.player_double = {
   }, {
     parent: shoots.p_double, y: 0.2, delay: 15,
   }],
-  deco: 2,
+  deco: 102,
 };
 
 make.player_triple = {
@@ -101,32 +101,32 @@ make.player_triple = {
   }, {
     parent: shoots.p_triple, y: 0.3, delay: 20,
   }],
-  deco: 7,
+  deco: 103,
 };
 
 make.player_large = {
   shoots: [shoots.p_large],
-  deco: 5,
+  deco: 501,
 };
 
 make.player_launch = {
   shoots: [shoots.p_launch],
-  deco: 12,
+  deco: 511,
 };
 
 make.player_trap = {
   shoots: [shoots.p_trap],
-  deco: 4,
+  deco: 401,
 };
 
 make.player_trap_large = {
   shoots: [shoots.p_trap_large],
-  deco: 9,
+  deco: 402,
 };
 
 make.player_trap_tower = {
   shoots: [shoots.p_trap_t_basic],
-  deco: 11,
+  deco: 412,
 };
 
 
@@ -176,7 +176,7 @@ make.bullet_tower = {
   parent: ["bullet"],
   controller: "target",
   rotation_controller: "target",
-  deco: 1,
+  deco: 101,
   tower: true,
   show_health: true,
   show_time_left: true,
@@ -209,6 +209,6 @@ make.bullet_trap_basic = {
 make.bullet_launch = {
   parent: ["bullet"],
   shooting: true,
-  deco: 1,
+  deco: 101,
   shoots: [shoots.t_launch],
 };
