@@ -47,7 +47,6 @@ io.on("connection", (socket) => {
   player.temp_remove(false);
   player.killer = player.nearest_player(true) || { x: 0, y: 0, };
 
-  // socket.emit("log", "joined: " + socket.id);
   socket.emit("id", id);
   socket.emit("game_map", memo_walldata);
   socket.emit("map_data", mapmaker.get_current_map());
@@ -55,7 +54,7 @@ io.on("connection", (socket) => {
   socket.on("join", (data: { upgrade: string, ability: string, name: string, }) => {
     player.remove_shoots();
     player.make(make["player_" + data.upgrade]);
-    player.set_ability(data.ability)
+    player.set_ability(data.ability);
     player.name = data.name;
     player.temp_create();
     broadcast_players();
@@ -67,12 +66,12 @@ io.on("connection", (socket) => {
 
   socket.on("disconnecting", (_reason) => {
     player.remove();
-    //console.log(`socket ${socket.id} disconnecting due to ${reason}`);
+    // console.log(`socket ${socket.id} disconnecting due to ${reason}`);
   });
 
   socket.on("disconnect", (_reason) => {
     player.remove();
-    //console.log(`socket ${socket.id} disconnected due to ${reason}`);
+    // console.log(`socket ${socket.id} disconnected due to ${reason}`);
   });
 
 });
@@ -84,8 +83,7 @@ const main_tick = () => {
 
 const _main_interval = setInterval(main_tick, 16);
 
-const html = `
-<!DOCTYPE html>
+const html = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -96,8 +94,7 @@ const html = `
     <h1>shooty.deno.dev</h1>
     <p>this is a server for shootytest.surge.sh</p>
   </body>
-</html>
-`;
+</html>`;
 
 await serve((request: Request, connection_info: ConnInfo) => {
   const is_ws = request.url.includes("socket.io"); // haha a hack
