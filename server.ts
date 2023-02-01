@@ -77,24 +77,26 @@ io.on("connection", (socket) => {
 
 });
 
-setInterval(() => {
+const main_tick = () => {
   tick(0);
   io.emit("game_data", Thing.data());
-}, 16);
+};
+
+const _main_interval = setInterval(main_tick, 16);
 
 const html = `
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>deno socket test</title>
-    </head>
-    <body>
-      <h1>shooty.deno.dev</h1>
-      <p>this is a server for shootytest.surge.sh</p>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deno socket test</title>
+  </head>
+  <body>
+    <h1>shooty.deno.dev</h1>
+    <p>this is a server for shootytest.surge.sh</p>
+  </body>
+</html>
 `;
 
 await serve((request: Request, connection_info: ConnInfo) => {
