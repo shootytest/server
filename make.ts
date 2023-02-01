@@ -129,6 +129,11 @@ make.player_trap_tower = {
   deco: 412,
 };
 
+make.player_sniper = {
+  shoots: [shoots.p_sniper],
+  deco: 601,
+};
+
 
 // _WALLS
 
