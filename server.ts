@@ -47,9 +47,13 @@ io.on("connection", (socket) => {
   player.temp_remove(false);
   player.killer = player.nearest_player(true) || { x: 0, y: 0, };
 
-  socket.emit("id", id);
-  socket.emit("game_map", memo_walldata);
-  socket.emit("map_data", mapmaker.get_current_map());
+  setTimeout(() => {
+    
+    socket.emit("id", id);
+    socket.emit("game_map", memo_walldata);
+    socket.emit("map_data", mapmaker.get_current_map());
+    
+  }, 100);
 
   socket.on("join", (data: { upgrade: string, ability: string, name: string, }) => {
     player.remove_shoots();
