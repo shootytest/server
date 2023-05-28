@@ -1,5 +1,5 @@
-import { colors } from "./color";
-import { maketype } from "./make";
+import { colors } from "./color.ts";
+import { maketype } from "./make.ts";
 
 export interface shoot_stats {
   parent?: shoot_stats;

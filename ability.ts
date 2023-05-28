@@ -1,7 +1,7 @@
-import { config } from "./config";
-import { Matter } from "./matter";
-import { Player } from "./player";
-import { shoots } from "./shoot";
+import { config } from "./config.ts";
+import { Matter } from "./matter.js";
+import { Player } from "./player.ts";
+import { shoots } from "./shoot.ts";
 
 const Vector = Matter.Vector;
 
