@@ -131,7 +131,7 @@ make.player_trap_tower = {
 
 make.player_sniper = {
   shoots: [shoots.p_sniper],
-  deco: 601,
+  deco: 602,
 };
 
 
