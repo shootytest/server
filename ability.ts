@@ -35,7 +35,13 @@ const use = (player: Player) => {
     }
     case "tower_basic": {
       if (player.health.use_ability(100)) {
-        player.shoot_bullet(shoots.ability_tower);
+        player.shoot_bullet(shoots.ability_tower_basic);
+      }
+      break;
+    }
+    case "tower_place": {
+      if (player.health.use_ability(100)) {
+        player.shoot_bullet(shoots.ability_tower_place);
       }
       break;
     }
@@ -64,6 +70,10 @@ const use = (player: Player) => {
 };
 
 const stats: Record<string, { capacity?: number, regen?: number, }> = {
+  default: {
+    capacity: 100,
+    regen: 20,
+  }
   speed: {
     regen: 25,
   },
@@ -79,9 +89,9 @@ const set = (player: Player) => {
   const ab = player.ability;
   player.make({
     health: {
-      ability_capacity: stats[ab]?.capacity || config.game.player_ability_capacity,
-      ability_regen: stats[ab]?.regen || config.game.player_ability_regen,
-    }
+      ability_capacity: stats[ab]?.capacity || stats.default.capacity,
+      ability_regen: stats[ab]?.regen || stats.default.regen,
+    },
   });
 };
 

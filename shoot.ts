@@ -37,14 +37,15 @@ const p_large: shoot_stats = { type: "basic", reload: 70, size: 14, speed: 6, sp
 const p_launch: shoot_stats = { type: "launch", reload: 80, size: 12, speed: 4, spread: 0.015, damage: 18, health: 16, time: 5.0, };
 const p_sniper: shoot_stats = { type: "basic", reload: 85, size: 6.5, speed: 17.5, spread: 0.005, damage: 25, health: 5, time: 4.0, };
 const p_trap: shoot_stats = { type: "trap", reload: 30, size: 8, speed: 5, spreadv: 1, friction: 0.03, spread: 0.025, damage: 9, health: 10, time: 4.5, };
-const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 20, speed: 0, spreadv: 0, friction: 1, spread: 0, damage: 30, health: 30, time: 7.0, };
+const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 20, speed: 3.5, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 30, health: 25, time: 7.0, };
 const p_trap_t_basic: shoot_stats = { type: "trap_basic", reload: 120, size: 15, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 15, health: 20, time: 8.0, };
 
-const ability_tower: shoot_stats = { type: "tower_basic", reload: 1000000, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 15, health: 30, time: 10.0, };
+const ability_tower_basic: shoot_stats = { type: "tower_basic", reload: 9999999, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 12, health: 20, time: 9.0, };
+const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, size: 30, speed: 0, friction: 1, spread: 0, damage: 15, health: 30, time: 10.0, };
 const ability_octopus: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 8; i++) {
-    result.push({ type: "basic", reload: 1000000, size: 10, speed: 3.5, spread: 0.005, damage: 7, health: 2, time: 6.0, angle: 45 * i, });
+    result.push({ type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 6, health: 2, time: 6.0, angle: 45 * i, });
   }
   return result;
 })();
