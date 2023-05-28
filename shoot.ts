@@ -1,4 +1,5 @@
-import { maketype } from "./make.ts";
+import { colors } from "./color";
+import { maketype } from "./make";
 
 export interface shoot_stats {
   parent?: shoot_stats;
@@ -62,7 +63,7 @@ export const shoots = {
   p_large, p_launch,
   p_sniper,
   p_trap, p_trap_large, p_trap_t_basic,
-  ability_tower, ability_octopus,
+  ability_tower_basic, ability_tower_place, ability_octopus,
   t_basic, t_trap_basic, t_launch,
   // reload server
 };

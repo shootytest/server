@@ -1,7 +1,7 @@
-import { config } from "./config.ts";
-import { Matter } from "./matter.js";
-import { Player } from "./player.ts";
-import { shoots } from "./shoot.ts";
+import { config } from "./config";
+import { Matter } from "./matter";
+import { Player } from "./player";
+import { shoots } from "./shoot";
 
 const Vector = Matter.Vector;
 
@@ -73,7 +73,7 @@ const stats: Record<string, { capacity?: number, regen?: number, }> = {
   default: {
     capacity: 100,
     regen: 20,
-  }
+  },
   speed: {
     regen: 25,
   },
