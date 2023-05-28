@@ -121,7 +121,7 @@ make.player_trap = {
 
 make.player_trap_large = {
   shoots: [shoots.p_trap_large],
-  deco: 402,
+  deco: 403,
 };
 
 make.player_trap_tower = {
