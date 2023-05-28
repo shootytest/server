@@ -4,6 +4,8 @@ export const colors = {
   red: 2,
   green: 3,
   yellow: 4,
+  purple: 5,
+  yellowgreen: 6,
   wall_yellow: 11,
   wall_blue: 12,
 }
