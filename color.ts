@@ -8,4 +8,5 @@ export const colors = {
   yellowgreen: 6,
   wall_yellow: 11,
   wall_blue: 12,
+  wall_purple: 13,
 }

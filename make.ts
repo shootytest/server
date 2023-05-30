@@ -60,7 +60,7 @@ make.player = {
   density: 0.001,
   friction: 0.1,
   color: colors.blue,
-  damage: 5,
+  damage: 10,
   health: {
     capacity: config.game.player_health,
     ability_capacity: config.game.player_ability_capacity,
@@ -76,7 +76,8 @@ make.player_basic = {
   shoots: [shoots.p_basic],
   deco: 101,
   health: {
-    capacity: 50,
+    capacity_mult: 1,
+    regen_mult: 1,
   },
 };
 
@@ -163,6 +164,14 @@ make.wall_window = {
   parent: ["wall"],
   blocks_sight: false,
   color: colors.wall_blue,
+};
+
+make.wall_curtain = {
+  parent: ["wall"],
+  blocks_sight: true,
+  bullet_deleter: false,
+  color: colors.wall_purple,
+  collision_filter: category.none,
 };
 
 

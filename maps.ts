@@ -9,6 +9,7 @@ export interface map_shape {
   angle?: number;
   bouncy?: boolean;
   window?: boolean;
+  curtain?: boolean;
 }
 
 export interface map_zone {
@@ -127,5 +128,26 @@ maps.hello = {
     { type: "line", x: -800, y: -800, x2: -1200, y2: -800 },
     { type: "line", x: -800, y: -800, x2: -800, y2: -1200 },
     */
+  ],
+};
+
+maps.test2 = {
+  name: "Test 2",
+  width: 500,
+  height: 500,
+  spawn: [
+    { x: -220, y: 220, w: 120, h: 120, },
+    { x: 220, y: -220, w: 120, h: 120, },
+  ],
+  shapes: [
+    // side circles
+    { type: "circle", x: -390, y: 390, size: 110, bouncy: true, },
+    { type: "circle", x: 390, y: -390, size: 110, bouncy: true, },
+
+    // center walls
+    { type: "line", x: -500, y: -500, x2: -250, y2: -250, window: true, },
+    { type: "line", x: -250, y: -250, x2: 0, y2: 0, curtain: true, },
+    { type: "line", x: 0, y: 0, x2: 250, y2: 250, window: true, },
+    { type: "line", x: 250, y: 250, x2: 500, y2: 500, curtain: true, },
   ],
 };

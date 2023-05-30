@@ -67,6 +67,9 @@ const _make = (map_key: string) => {
     if (S.window) {
       wall.make(make.wall_window);
     }
+    if (S.curtain) {
+      wall.make(make.wall_curtain);
+    }
     /*
     if (S.bulletblock) {
       wall.make(make.wall_bulletblock);
