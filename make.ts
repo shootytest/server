@@ -55,7 +55,7 @@ make.player = {
   rotation_controller: "player",
   size: 30,
   shape: 0,
-  deco: 101,
+  deco: 100,
   speed: 50,
   density: 0.001,
   friction: 0.1,
@@ -75,6 +75,7 @@ make.player = {
 make.player_basic = {
   shoots: [shoots.p_basic],
   deco: 101,
+  speed: 50,
   health: {
     capacity_mult: 1,
     regen_mult: 1,
@@ -84,11 +85,19 @@ make.player_basic = {
 make.player_fast = {
   shoots: [shoots.p_fast],
   deco: 301,
+  speed: 50,
+  health: {
+    capacity_mult: 0.9,
+  },
 };
 
 make.player_faster = {
   shoots: [shoots.p_faster],
   deco: 302,
+  speed: 55,
+  health: {
+    capacity_mult: 0.75,
+  },
 };
 
 make.player_double = {
@@ -98,6 +107,10 @@ make.player_double = {
     parent: shoots.p_double, y: 0.2, delay: 15,
   }],
   deco: 102,
+  speed: 50,
+  health: {
+    capacity_mult: 1,
+  },
 };
 
 make.player_triple = {
@@ -109,36 +122,64 @@ make.player_triple = {
     parent: shoots.p_triple, y: 0.3, delay: 20,
   }],
   deco: 103,
+  speed: 50,
+  health: {
+    capacity_mult: 0.9,
+  },
 };
 
 make.player_large = {
   shoots: [shoots.p_large],
   deco: 501,
+  speed: 45,
+  health: {
+    capacity_mult: 1.1,
+  },
 };
 
 make.player_launch = {
   shoots: [shoots.p_launch],
   deco: 511,
+  speed: 40,
+  health: {
+    capacity_mult: 1.25,
+  },
 };
 
 make.player_trap = {
   shoots: [shoots.p_trap],
   deco: 401,
+  speed: 45,
+  health: {
+    capacity_mult: 1.0,
+  },
 };
 
 make.player_trap_large = {
   shoots: [shoots.p_trap_large],
   deco: 403,
+  speed: 40,
+  health: {
+    capacity_mult: 1.0,
+  },
 };
 
 make.player_trap_tower = {
   shoots: [shoots.p_trap_t_basic],
   deco: 412,
+  speed: 35,
+  health: {
+    capacity_mult: 1.3,
+  },
 };
 
 make.player_sniper = {
   shoots: [shoots.p_sniper],
   deco: 602,
+  speed: 40,
+  health: {
+    capacity_mult: 0.64,
+  },
 };
 
 
