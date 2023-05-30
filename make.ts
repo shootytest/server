@@ -169,7 +169,7 @@ make.player_trap_tower = {
   deco: 412,
   speed: 35,
   health: {
-    capacity_mult: 1.3,
+    capacity_mult: 1.25,
   },
 };
 

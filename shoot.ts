@@ -53,7 +53,7 @@ const ability_octopus: shoot_stats[] = (() => {
 })();
 
 const t_basic: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 7.5, recoil: 0.1, spread: 0.01, damage: 8, health: 10, time: 2.0, };
-const t_trap_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 7, recoil: 0.1, spread: 0.01, damage: 5, health: 5, time: 2.0, };
+const t_trap_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 7, recoil: 0.1, spread: 0.01, damage: 6, health: 3, time: 2.0, };
 const t_launch: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 6, recoil: 0.5, spread: 0.01, damage: 5, health: 5, time: 2.0, };
 
 export const shoots = {
