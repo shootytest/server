@@ -1,4 +1,3 @@
-import { config } from "./config.ts";
 import { Matter } from "./matter.js";
 import { Player } from "./player.ts";
 import { shoots } from "./shoot.ts";

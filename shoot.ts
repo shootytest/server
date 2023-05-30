@@ -14,6 +14,7 @@ export interface shoot_stats {
   health?: number;
   time?: number;
   color?: number;
+  deco?: number;
   friction?: number;
   recoil?: number;
   duration_reload?: number;
@@ -27,19 +28,19 @@ export interface shoot_stats {
   [key: string]: unknown;
 }
 
-const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.03, damage: 15, health: 10, time: 3.0, };
+const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spread: 0.03, damage: 30, health: 20, time: 3.0, };
 
-const p_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 10, spread: 0.015, damage: 12, health: 10, time: 3.0, };
-const p_double: shoot_stats = { type: "basic", reload: 50, size: 6, speed: 9, spread: 0.02, damage: 8.5, health: 7.5, time: 2.5, };
-const p_triple: shoot_stats = { type: "basic", reload: 60, size: 6, speed: 8.5, spread: 0.02, damage: 7, health: 5, time: 2.5, };
-const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.025, damage: 7, health: 6, time: 2.0, };
-const p_faster: shoot_stats = { type: "basic", reload: 10, size: 3.5, speed: 6.5, spread: 0.035, damage: 4, health: 3.5, time: 1.7, };
-const p_large: shoot_stats = { type: "basic", reload: 70, size: 14, speed: 6, spread: 0.015, damage: 20, health: 16, time: 4.5, };
-const p_launch: shoot_stats = { type: "launch", reload: 80, size: 12, speed: 4, spread: 0.015, damage: 18, health: 16, time: 5.0, };
-const p_sniper: shoot_stats = { type: "basic", reload: 85, size: 6.5, speed: 17.5, spread: 0.005, damage: 25, health: 5, time: 4.0, color: colors.yellowgreen, };
-const p_trap: shoot_stats = { type: "trap", reload: 30, size: 8, speed: 5, spreadv: 1, friction: 0.03, spread: 0.025, damage: 9, health: 10, time: 4.5, };
-const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 20, speed: 3.5, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 30, health: 25, time: 7.0, };
-const p_trap_t_basic: shoot_stats = { type: "trap_basic", reload: 120, size: 15, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 15, health: 20, time: 8.0, };
+const p_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 10, spread: 0.015, damage: 24, health: 20, time: 3.0, };
+const p_double: shoot_stats = { type: "basic", reload: 50, size: 6, speed: 9, spread: 0.02, damage: 17, health: 15, time: 2.5, };
+const p_triple: shoot_stats = { type: "basic", reload: 60, size: 6, speed: 8.5, spread: 0.02, damage: 14, health: 10, time: 2.5, };
+const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.025, damage: 14, health: 12, time: 2.0, };
+const p_faster: shoot_stats = { type: "basic", reload: 10, size: 3.5, speed: 6.5, spread: 0.035, damage: 8, health: 7, time: 1.7, };
+const p_large: shoot_stats = { type: "basic", reload: 70, size: 14, speed: 6, spread: 0.015, damage: 40, health: 32, time: 4.5, };
+const p_launch: shoot_stats = { type: "launch", reload: 80, size: 12, speed: 4, spread: 0.015, damage: 36, health: 32, time: 5.0, };
+const p_sniper: shoot_stats = { type: "basic", reload: 85, size: 6.5, speed: 17.5, spread: 0.005, damage: 50, health: 10, time: 4.0, color: colors.yellowgreen, };
+const p_trap: shoot_stats = { type: "trap", reload: 30, size: 8, speed: 5, spreadv: 1, friction: 0.03, spread: 0.025, damage: 18, health: 20, time: 4.5, };
+const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 20, speed: 3.5, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 60, health: 50, time: 7.0, };
+const p_trap_t_basic: shoot_stats = { type: "trap_basic", reload: 120, size: 15, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 30, health: 40, time: 8.0, };
 
 const ability_tower_basic: shoot_stats = { type: "tower_basic", reload: 9999999, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 12, health: 20, time: 9.0, };
 const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, size: 30, speed: 0, friction: 1, spread: 0, damage: 15, health: 30, time: 10.0, };

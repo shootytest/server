@@ -2,5 +2,5 @@
     "deno.enable": true,
     "deno.unstable": true,
     "editor.tabSize": 2,
-    "typescript.preferences.importModuleSpecifierEnding": "js"
+    "typescript.preferences.importModuleSpecifierEnding": "js",
 }

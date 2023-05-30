@@ -25,9 +25,12 @@ export class maketype {
   color?: number;
   health?: {
     capacity?: number;
+    capacity_mult?: number;
     ability_capacity?: number;
+    ability_capacity_mult?: number;
     ability_regen?: number;
     regen?: number;
+    regen_mult?: number;
     regen_time?: number;
   };
   controller?: string;
@@ -72,6 +75,9 @@ make.player = {
 make.player_basic = {
   shoots: [shoots.p_basic],
   deco: 101,
+  health: {
+    capacity: 50,
+  },
 };
 
 make.player_fast = {

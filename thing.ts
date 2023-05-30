@@ -228,14 +228,23 @@ export class Thing {
           if (h.capacity != undefined) {
             this.health.set_capacity(h.capacity);
           }
+          if (h.capacity_mult != undefined) {
+            this.health.set_capacity(this.health.capacity * h.capacity_mult);
+          }
           if (h.ability_capacity != undefined) {
             this.health.set_ability_capacity(h.ability_capacity);
+          }
+          if (h.ability_capacity_mult != undefined) {
+            this.health.set_capacity(this.health.ability_capacity * h.ability_capacity_mult);
           }
           if (h.ability_regen != undefined) {
             this.health.ability_regen = h.ability_regen / 60;
           }
           if (h.regen != undefined) {
             this.health.regen = h.regen / 60;
+          }
+          if (h.regen_mult != undefined) {
+            this.health.regen *= h.regen_mult;
           }
           if (h.regen_time != undefined) {
             this.health.hit_clear = h.regen_time * 60;
@@ -433,7 +442,7 @@ export class Thing {
       if (this.shoots_time[i] < reload && this.shoots_duration[i] <= 0) {
         this.shoots_time[i] += this.reload_boost_time ? 2 : 1;
       }
-      if (duration != undefined && duration > 0) {
+      if (typeof duration === "number" && duration > 0) {
         if ((this.shooting || this.shoots_duration[i] > 0) && this.shoots_time[i] >= reload && this.shoots_duration[i] < duration) {
           this.shoots_duration[i] += 1;
           canshoot = true;
@@ -532,7 +541,7 @@ export class Thing {
     const reload = (this.shoots[index].reload || 0);
     let t = this.shoots_time[index];
     while (reload != undefined && t >= reload) {
-      if (s.duration != undefined && s.duration > 0 && s.duration_reload) {
+      if (typeof s.duration === "number" && s.duration > 0 && s.duration_reload) {
         // duration_reload time
         while (this.shoots_duration_time[index] >= s.duration_reload) {
           this.shoot_do(s);
@@ -542,7 +551,7 @@ export class Thing {
         // shoot!
         this.shoot_do(s);
       }
-      if (s.duration != undefined && s.duration > 0) {
+      if (typeof s.duration === "number" && s.duration > 0) {
         if (this.shoots_duration[index] >= s.duration) {
           t -= reload;
           this.shoots_duration[index] = 0;
@@ -602,6 +611,8 @@ export class Thing {
     if (S.death) {
       b.keep_this = true;
     }
+    if (S.color) b.color = S.color;
+    if (S.deco) b.deco = S.deco;
     if (S.options != undefined) {
       for (const k in S.options) {
         if (S.options[k] == undefined) continue;
