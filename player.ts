@@ -81,11 +81,7 @@ export class Player extends Thing {
     super(Player.random_spawn_location());
     this.socket = socket;
     Player.players.push(this);
-  }
-
-  make(o: maketype) {
-    super.make(make.player);
-    super.make(o);
+    this.make(make.player);
   }
 
   tick() {

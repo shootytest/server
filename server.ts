@@ -57,6 +57,7 @@ io.on("connection", (socket) => {
 
   socket.on("join", (data: { upgrade: string, ability: string, name: string, }) => {
     player.remove_shoots();
+    player.make(make.player);
     player.make(make["player_" + data.upgrade]);
     player.set_ability(data.ability);
     player.name = data.name;
