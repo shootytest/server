@@ -42,19 +42,19 @@ const p_trap: shoot_stats = { type: "trap", reload: 30, size: 8, speed: 5, sprea
 const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 20, speed: 3.5, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 60, health: 50, time: 7.0, };
 const p_trap_t_basic: shoot_stats = { type: "trap_basic", reload: 120, size: 15, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 30, health: 40, time: 8.0, };
 
-const ability_tower_basic: shoot_stats = { type: "tower_basic", reload: 9999999, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 12, health: 20, time: 9.0, };
-const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, size: 30, speed: 0, friction: 1, spread: 0, damage: 15, health: 30, time: 10.0, };
+const ability_tower_basic: shoot_stats = { type: "tower_basic", reload: 9999999, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 24, health: 40, time: 9.0, };
+const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, size: 30, speed: 0, friction: 1, spread: 0, damage: 30, health: 60, time: 10.0, };
 const ability_octopus: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 8; i++) {
-    result.push({ type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 6, health: 2, time: 6.0, angle: 45 * i, });
+    result.push({ type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 12, health: 4, time: 6.0, angle: 45 * i, });
   }
   return result;
 })();
 
-const t_basic: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 7.5, recoil: 0.1, spread: 0.01, damage: 8, health: 10, time: 2.0, };
-const t_trap_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 7, recoil: 0.1, spread: 0.01, damage: 6, health: 3, time: 2.0, };
-const t_launch: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 6, recoil: 0.5, spread: 0.01, damage: 5, health: 5, time: 2.0, };
+const t_basic: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 7.5, recoil: 0.1, spread: 0.01, damage: 16, health: 20, time: 2.0, };
+const t_trap_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 7, recoil: 0.1, spread: 0.01, damage: 12, health: 6, time: 2.0, };
+const t_launch: shoot_stats = { type: "basic", reload: 40, size: 5, speed: 6, recoil: 0.5, spread: 0.01, damage: 10, health: 10, time: 2.0, };
 
 export const shoots = {
   basic,
