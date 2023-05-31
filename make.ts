@@ -87,7 +87,7 @@ make.player_fast = {
   deco: 301,
   speed: 50,
   health: {
-    capacity_mult: 0.9,
+    capacity: 90,
   },
 };
 
@@ -96,7 +96,7 @@ make.player_faster = {
   deco: 302,
   speed: 55,
   health: {
-    capacity_mult: 0.75,
+    capacity: 75,
   },
 };
 
@@ -109,7 +109,7 @@ make.player_double = {
   deco: 102,
   speed: 50,
   health: {
-    capacity_mult: 1,
+    capacity: 100,
   },
 };
 
@@ -124,7 +124,7 @@ make.player_triple = {
   deco: 103,
   speed: 50,
   health: {
-    capacity_mult: 0.9,
+    capacity: 90,
   },
 };
 
@@ -133,7 +133,7 @@ make.player_large = {
   deco: 501,
   speed: 45,
   health: {
-    capacity_mult: 1.1,
+    capacity: 110,
   },
 };
 
@@ -142,7 +142,7 @@ make.player_launch = {
   deco: 511,
   speed: 40,
   health: {
-    capacity_mult: 1.25,
+    capacity: 125,
   },
 };
 
@@ -151,7 +151,7 @@ make.player_trap = {
   deco: 401,
   speed: 45,
   health: {
-    capacity_mult: 1.0,
+    capacity: 100,
   },
 };
 
@@ -160,7 +160,7 @@ make.player_trap_large = {
   deco: 403,
   speed: 40,
   health: {
-    capacity_mult: 1.0,
+    capacity: 100,
   },
 };
 
@@ -169,7 +169,7 @@ make.player_trap_tower = {
   deco: 412,
   speed: 35,
   health: {
-    capacity_mult: 1.25,
+    capacity: 125,
   },
 };
 
@@ -178,7 +178,7 @@ make.player_sniper = {
   deco: 602,
   speed: 40,
   health: {
-    capacity_mult: 0.64,
+    capacity: 64,
   },
 };
 

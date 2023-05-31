@@ -2,7 +2,7 @@ import { Socket } from "https://deno.land/x/socket_io@0.2.0/mod.ts";
 import { ability } from "./ability.ts";
 import { config } from "./config.ts";
 import { Controls } from "./controls.ts";
-import { make } from "./make.ts";
+import { make, maketype } from "./make.ts";
 import { mapmaker } from "./mapmaker.ts";
 import { math_util, _vectortype } from "./math.ts";
 import { Matter } from "./matter.js";
@@ -81,7 +81,11 @@ export class Player extends Thing {
     super(Player.random_spawn_location());
     this.socket = socket;
     Player.players.push(this);
+  }
+
+  make(o: maketype) {
     this.make(make.player);
+    super.make(o);
   }
 
   tick() {
