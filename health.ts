@@ -47,8 +47,8 @@ export class Health {
   }
 
   tick() {
-    this.display = math_util.lerp(this.display, this.ratio, config.game.health_display_smoothness);
-    this.ability_display = math_util.lerp(this.ability_display, this.ability_ratio, config.game.health_display_smoothness);
+    this.display = math_util.lerp(this.display, this.health, config.game.health_display_smoothness);
+    this.ability_display = math_util.lerp(this.ability_display, this.ability, config.game.health_display_smoothness);
     const time = Thing.time;
     if (this.hit_tick > 0.000001) {
       this.hit(this.hit_tick);
