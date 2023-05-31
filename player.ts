@@ -84,7 +84,7 @@ export class Player extends Thing {
   }
 
   make(o: maketype) {
-    this.make(make.player);
+    super.make(make.player);
     super.make(o);
   }
 
