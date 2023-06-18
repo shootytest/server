@@ -63,7 +63,7 @@ export class Player extends Thing {
   player_invincibility_time = 0;
   ability = "none";
   name = "unnamed";
-  chat: string[] = [];
+  chat: { m: string, t: number }[] = [];
   controls: Controls = new Controls();
   // old_player_position: _vectortype = Vector.create();
 
@@ -170,7 +170,19 @@ export class Player extends Thing {
       this.damage_numbers = [];
     }
     const d = super.data();
-    d.chat = this.chat;
+    const chat = [];
+    const to_remove = [];
+    for (const c of this.chat) {
+      if (Thing.time > c.t) {
+        to_remove.push(c);
+        continue;
+      }
+      chat.push(c.m);
+    }
+    for (const c of to_remove) {
+      this.chat.splice(this.chat.indexOf(c), 1);
+    }
+    d.chat = chat;
     return d;
   }
 

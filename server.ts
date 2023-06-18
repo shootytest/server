@@ -70,7 +70,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("chat", (message: string) => {
-    player.chat.push(message);
+    player.chat.push({
+      m: message,
+      t: Thing.time + 60 * 5,
+    });
   });
 
   socket.on("disconnecting", (_reason) => {
