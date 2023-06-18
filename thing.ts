@@ -42,6 +42,7 @@ export interface thing_data {
   c: number;
   t: number;
   f: number;
+  chat?: string[],
 }
 
 export interface wall_data {
@@ -756,8 +757,8 @@ export class Thing {
       deco: Math.round(this.deco),
       hp: (this.show_health ? Math.round(this.health.display) : 0),
       hc: (this.show_health ? Math.round(this.health.capacity) : 0),
-      ab: (this.show_health ? Math.round(this.health.ability_display) : 0),
-      ac: (this.show_health ? Math.round(this.health.ability_capacity) : 0),
+      ab: (this.player ? Math.round(this.health.ability_display) : 0),
+      ac: (this.player ? Math.round(this.health.ability_capacity) : 0),
       tl: (this.show_time_left ? math_util.round_to(this.time_death_ratio, 0.01) : 0),
       fov: math_util.round_to(this.fov, 0.1),
       c: this.color,

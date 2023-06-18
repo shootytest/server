@@ -63,6 +63,7 @@ export class Player extends Thing {
   player_invincibility_time = 0;
   ability = "none";
   name = "unnamed";
+  chat: string[] = [];
   controls: Controls = new Controls();
   // old_player_position: _vectortype = Vector.create();
 
@@ -169,6 +170,7 @@ export class Player extends Thing {
       this.damage_numbers = [];
     }
     const d = super.data();
+    d.chat = this.chat;
     return d;
   }
 

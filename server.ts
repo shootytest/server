@@ -69,6 +69,10 @@ io.on("connection", (socket) => {
     player.controls = controls;
   });
 
+  socket.on("chat", (message: string) => {
+    player.chat.push(message);
+  });
+
   socket.on("disconnecting", (_reason) => {
     player.remove();
     // console.log(`socket ${socket.id} disconnecting due to ${reason}`);
