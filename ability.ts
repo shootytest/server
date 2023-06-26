@@ -50,15 +50,21 @@ const use = (player: Player) => {
       }
       break;
     }
+    case "jellyfish": {
+      if (player.health.use_ability(100)) {
+        player.shoot_bullets(shoots.ability_jellyfish);
+      }
+      break;
+    }
     case "heal": {
-      if (!player.health.full && player.health.use_ability(25)) {
-        player.health.heal_percent(0.1);
+      if (!player.health.full && player.health.use_ability(20)) {
+        player.health.heal_percent(0.05);
       }
       break;
     }
     case "heal_bulk": {
       if (!player.health.full && player.health.use_ability(100)) {
-        player.health.heal_percent(0.8);
+        player.health.heal_percent(0.5);
       }
       break;
     }

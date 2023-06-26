@@ -630,7 +630,7 @@ export class Thing {
     const spreadv = S.spreadv || 0;
     let spd = spreadv === 0 ? (S.speed || 0) : math_util.randgauss(S.speed || 0, spreadv);
     const thing_velocity = Vector.rotate(this.velocity, -rot).x;
-    if (spd !== 0) spd += thing_velocity * config.physics.velocity_shoot_boost;
+    if (spd !== 0) spd += thing_velocity * config.physics.velocity_shoot_boost * (S.boost_mult == undefined ? 1 : S.boost_mult);
     if (S.target_type != undefined) {
       /*
       if (S.target_type === "enemy") {

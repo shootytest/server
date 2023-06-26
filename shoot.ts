@@ -22,6 +22,7 @@ export interface shoot_stats {
   x?: number;
   y?: number;
   target_type?: string;
+  boost_mult?: number;
   move?: boolean;
   always_shoot?: boolean;
   options?: maketype;
@@ -47,7 +48,20 @@ const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, 
 const ability_octopus: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 8; i++) {
-    result.push({ type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 12, health: 4, time: 6.0, angle: 45 * i, });
+    result.push({
+      type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 12, health: 4, time: 6.0, boost_mult: 0,
+      angle: 45 * i,
+    });
+  }
+  return result;
+})();
+const ability_jellyfish: shoot_stats[] = (() => {
+  const result: shoot_stats[] = [];
+  for (let i = 0; i < 32; i++) {
+    result.push({
+      type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 5, health: 2, time: 5.0, boost_mult: 0,
+      angle: (22.5 * i) % 360, delay: 6,
+    });
   }
   return result;
 })();
@@ -64,7 +78,7 @@ export const shoots = {
   p_large, p_launch,
   p_sniper,
   p_trap, p_trap_large, p_trap_t_basic,
-  ability_tower_basic, ability_tower_place, ability_octopus,
+  ability_tower_basic, ability_tower_place, ability_octopus, ability_jellyfish,
   t_basic, t_trap_basic, t_launch,
   // reload server
 };
