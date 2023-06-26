@@ -583,7 +583,12 @@ export class Thing {
 
   shoot_bullets(S: shoot_stats[]) {
     for (const s of S) {
-      this.shoot_bullet(s);
+      if (s.delay != undefined && s.delay > 0) {
+        const delay = this.reload_boost_time ? s.delay / 2 : s.delay;
+        this.shoot_delay.push({ time: Thing.time + delay, s: s });
+      } else {
+        this.shoot_bullet(s);
+      }
     }
   }
 
