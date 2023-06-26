@@ -83,7 +83,7 @@ make.player_basic = {
 };
 
 make.player_circle = {
-  shoots: [],
+  shoots: [{ type: "delete", }],
   deco: 100,
   speed: 65,
   damage: 20,
