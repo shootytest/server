@@ -82,6 +82,16 @@ make.player_basic = {
   },
 };
 
+make.player_circle = {
+  shoots: [],
+  deco: 100,
+  speed: 65,
+  damage: 20,
+  health: {
+    capacity: 120,
+  },
+};
+
 make.player_fast = {
   shoots: [shoots.p_fast],
   deco: 301,
@@ -125,6 +135,21 @@ make.player_triple = {
   speed: 50,
   health: {
     capacity: 90,
+  },
+};
+
+make.player_split3 = {
+  shoots: [{
+    parent: shoots.p_split3, angle: -10,
+  }, {
+    parent: shoots.p_split3,
+  }, {
+    parent: shoots.p_split3, angle: 10,
+  }],
+  deco: 103,
+  speed: 50,
+  health: {
+    capacity: 100,
   },
 };
 
