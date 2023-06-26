@@ -61,7 +61,7 @@ const ability_jellyfish: shoot_stats[] = (() => {
   for (let i = 0; i < 32; i++) {
     result.push({
       type: "basic", reload: 9999999, size: 8.5, speed: 3.5, spread: 0.005, damage: 5, health: 2, time: 5.0, boost_mult: 0,
-      angle: (22.5 * i) % 360, delay: 6,
+      angle: (22.5 * i) % 360, delay: 6 * i,
     });
   }
   return result;
