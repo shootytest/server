@@ -193,7 +193,8 @@ export class Thing {
       if (o[k] != undefined && Object.prototype.hasOwnProperty.call(o, k)) {
 
         if (k === "shoots" && o.shoots != undefined) {
-          if (o.shoots[0].type === "delete") {
+          if (o.shoots.length <= 0 || o.shoots[0].type === "delete") {
+            o.shoots = [];
             this.shoots = [];
             this.shoots_time = [];
             this.shoots_duration = [];

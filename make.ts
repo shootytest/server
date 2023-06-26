@@ -83,7 +83,7 @@ make.player_basic = {
 };
 
 make.player_circle = {
-  shoots: [{ type: "delete", }],
+  shoots: [],
   deco: 100,
   speed: 65,
   damage: 20,
@@ -140,13 +140,13 @@ make.player_triple = {
 
 make.player_split3 = {
   shoots: [{
-    parent: shoots.p_split3, angle: -10,
+    parent: shoots.p_split3, angle: -12.5,
   }, {
     parent: shoots.p_split3,
   }, {
-    parent: shoots.p_split3, angle: 10,
+    parent: shoots.p_split3, angle: 12.5,
   }],
-  deco: 103,
+  deco: 113,
   speed: 50,
   health: {
     capacity: 100,
