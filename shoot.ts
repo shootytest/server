@@ -34,7 +34,7 @@ const basic: shoot_stats = { type: "basic", reload: 30, size: 10, speed: 5, spre
 const p_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 10, spread: 0.015, damage: 24, health: 20, time: 3.0, };
 const p_double: shoot_stats = { type: "basic", reload: 50, size: 6, speed: 9, spread: 0.02, damage: 17, health: 15, time: 2.5, };
 const p_triple: shoot_stats = { type: "basic", reload: 60, size: 6, speed: 8.5, spread: 0.02, damage: 14, health: 10, time: 2.5, };
-const p_split3: shoot_stats = { type: "basic", reload: 55, size: 7, speed: 9, spread: 0.02, damage: 15, health: 10, time: 2.5, };
+const p_split3: shoot_stats = { type: "basic", reload: 55, size: 7, speed: 9, spread: 0.02, damage: 12, health: 10, time: 2.5, };
 const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.025, damage: 14, health: 12, time: 2.0, };
 const p_faster: shoot_stats = { type: "basic", reload: 10, size: 4, speed: 7, spread: 0.03, damage: 10, health: 5, time: 1.7, };
 const p_large: shoot_stats = { type: "basic", reload: 70, size: 14, speed: 6, spread: 0.015, damage: 40, health: 32, time: 4.5, };
@@ -60,8 +60,8 @@ const ability_jellyfish: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 32; i++) {
     result.push({
-      type: "basic", reload: 9999999, size: 5, speed: 2.8, spread: 0.0025, damage: 5, health: 2, time: 5.0, boost_mult: 0,
-      angle: (22.5 * i) % 360, delay: i,
+      type: "basic", reload: 9999999, size: 5, speed: 2.8, spread: 0.0025, damage: 3, health: 1, time: 5.0, boost_mult: 0,
+      angle: (22.5 * i) % 360 + (i >= 16 ? 22.5 / 2 : 0), delay: i,
     });
   }
   return result;
