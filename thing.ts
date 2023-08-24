@@ -43,7 +43,8 @@ export interface thing_data {
   t: number;
   f: number;
   chat?: string[],
-  points?: number,
+  pt?: number,
+  die?: boolean,
 }
 
 export interface wall_data {
