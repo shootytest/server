@@ -1,3 +1,4 @@
 ## a test server for shooty
 
-[click here for the site! (temporary URL)](https://shootytest.surge.sh)
+[click here for the site!](https://shootytest.surge.sh)
+

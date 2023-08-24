@@ -22,11 +22,16 @@ function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
       u.deleted = true;
     }
     if (t.player && u.shoot_parent.player) {
+      const damage = _damage <= 0 ? 0 : u.damage;
       u.shoot_parent.damage_numbers.push({
         x: u.x,
         y: u.y,
-        d: _damage <= 0 ? 0 : u.damage,
+        d: Math.round(damage),
       });
+      u.shoot_parent.points += Math.round(100 * damage / t.health.capacity);
+      if (t.health.zero()) {
+        u.shoot_parent.points += 100;
+      }
     }
   }
   /*

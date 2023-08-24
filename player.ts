@@ -61,6 +61,7 @@ export class Player extends Thing {
   player_dead = false;
   player_dead_time = 0;
   player_invincibility_time = 0;
+  points = 0;
   ability = "none";
   name = "unnamed";
   chat: { m: string, t: number }[] = [];
@@ -183,6 +184,7 @@ export class Player extends Thing {
       this.chat.splice(this.chat.indexOf(c), 1);
     }
     d.chat = chat;
+    d.points = Math.round(this.points);
     return d;
   }
 

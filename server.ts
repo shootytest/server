@@ -15,8 +15,8 @@ const memo_walldata = Thing.walldata();
 
 // helper functions
 
-// socket ids start from 100
-let socket_cumulative_id = 100;
+// socket ids start from 12941
+let socket_cumulative_id = 12941;
 const new_socket_id = () => ++socket_cumulative_id;
 
 
@@ -24,7 +24,7 @@ const new_socket_id = () => ++socket_cumulative_id;
 
 const io = new Server({
   cors: {
-    origin: "*",
+    origin: "*", // ho ho
   },
 });
 
@@ -55,6 +55,7 @@ io.on("connection", (socket) => {
     
   }, 100);
 
+  // the client is asking for a map again because the transfer failed the first time for some reason... hmmm this keeps happening
   socket.on("map_please", () => {
     socket.emit("game_map", memo_walldata);
     socket.emit("map_data", mapmaker.get_current_map());
