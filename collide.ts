@@ -27,7 +27,7 @@ function collide(a: matter_body, b: matter_body, _pair: matter_pair) {
         y: u.y,
         d: Math.round(_damage <= 0 ? 0 : u.damage),
       });
-      u.shoot_parent.points += Math.round(100 * (_damage <= 0 ? 0 : _damage) / t.health.capacity);
+      u.shoot_parent.points += 100 * (_damage <= 0 ? 0 : _damage) / t.health.capacity;
       if (t.health.zero()) {
         u.shoot_parent.points += 100;
       }

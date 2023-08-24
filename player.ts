@@ -141,6 +141,7 @@ export class Player extends Thing {
     if (this.health.zero()) {
       // you are dead
       if (!this.player_dead) {
+        this.points = 0;
         this.temp_remove(false);
       }
     }
