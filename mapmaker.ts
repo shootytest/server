@@ -18,7 +18,7 @@ const makeborder = (x1: number, y1: number, x2: number, y2: number) => {
   const x = (x1 + x2) / 2;
   const y = (y1 + y2) / 2;
   const wall = new Thing(Vector.create(x, y));
-  wall.make(make.wall);
+  wall.make(make.wall_bounce);
   wall.shape = 1;
   wall.size = 1;
   wall.angle = Math.atan2(x - x2, y2 - y);
@@ -66,6 +66,9 @@ const _make = (map_key: string) => {
     }
     if (S.window) {
       wall.make(make.wall_window);
+    }
+    if (S.window_pass) {
+      wall.make(make.wall_window_pass);
     }
     if (S.curtain) {
       wall.make(make.wall_curtain);

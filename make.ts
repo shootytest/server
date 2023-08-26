@@ -232,6 +232,13 @@ make.wall_window = {
   color: colors.wall_blue,
 };
 
+make.wall_window_pass = {
+  parent: ["wall"],
+  blocks_sight: false,
+  color: colors.wall_blue,
+  collision_filter: category.pass,
+};
+
 make.wall_curtain = {
   parent: ["wall"],
   blocks_sight: true,
@@ -251,7 +258,7 @@ make.bullet = {
   damage: 1,
   shape: 0,
   deco: 0,
-  collision_filter: category.thing,
+  collision_filter: category.bullet,
 };
 
 make.bullet_basic = {

@@ -9,6 +9,7 @@ export interface map_shape {
   angle?: number;
   bouncy?: boolean;
   window?: boolean;
+  window_pass?: boolean;
   curtain?: boolean;
 }
 
@@ -115,14 +116,18 @@ maps.hello = {
 
     // corridor
     { type: "line", x: 240, y: -380, x2: 380, y2: -380, },
-    { type: "line", x: 380, y: -380, x2: 380, y2: -60, },
-    { type: "line", x: 380, y: -60, x2: 380, y2: 120, window: true, },
-    { type: "line", x: 380, y: 120, x2: 380, y2: 380, },
+    { type: "line", x: 380, y: -380, x2: 380, y2: -210, },
+    { type: "line", x: 380, y: -210, x2: 380, y2: -60, window_pass: true, },
+    { type: "line", x: 380, y: -60, x2: 380, y2: 120, },
+    { type: "line", x: 380, y: 120, x2: 380, y2: 270, window_pass: true, },
+    { type: "line", x: 380, y: 270, x2: 380, y2: 380, },
 
     { type: "line", x: -240, y: 380, x2: -380, y2: 380, },
-    { type: "line", x: -380, y: 380, x2: -380, y2: 60, },
-    { type: "line", x: -380, y: 60, x2: -380, y2: -120, window: true, },
-    { type: "line", x: -380, y: -120, x2: -380, y2: -380, },
+    { type: "line", x: -380, y: 380, x2: -380, y2: 210, },
+    { type: "line", x: -380, y: 210, x2: -380, y2: 60, window_pass: true, },
+    { type: "line", x: -380, y: 60, x2: -380, y2: -120, },
+    { type: "line", x: -380, y: -120, x2: -380, y2: -270, },
+    { type: "line", x: -380, y: -270, x2: -380, y2: -380, },
     // debug...
     /*
     { type: "line", x: -800, y: -800, x2: -1200, y2: -800 },
@@ -132,6 +137,7 @@ maps.hello = {
 };
 
 maps.test2 = {
+  // weird unused layout
   name: "Test 2",
   width: 500,
   height: 500,

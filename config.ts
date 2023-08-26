@@ -27,7 +27,8 @@ export const config = {
 const category_group = {
   none: 0x0000,
   thing: 0x0001,
-  wall: 0x0002,
+  bullet: 0x0002,
+  wall: 0x0004,
   all: 0xFFFF,
 };
 
@@ -54,9 +55,19 @@ export const category = {
     category: category_group.thing,
     mask: category_group.all,
   },
+  bullet: {
+    group: -1,
+    category: category_group.bullet,
+    mask: category_group.all,
+  },
   wall: {
     group: 0,
     category: category_group.wall,
     mask: category_group.all,
+  },
+  pass: {
+    group: 0,
+    category: category_group.wall,
+    mask: category_group.thing,
   },
 };
