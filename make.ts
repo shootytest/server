@@ -255,6 +255,7 @@ make.bullet = {
   player: false,
   friction: 0,
   density: 0.002,
+  restitution: 1,
   damage: 1,
   shape: 0,
   deco: 0,
