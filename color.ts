@@ -9,4 +9,5 @@ export const colors = {
   wall_yellow: 11,
   wall_blue: 12,
   wall_purple: 13,
-}
+  wall_ball: 14,
+};

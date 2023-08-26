@@ -226,6 +226,15 @@ make.wall_bounce = {
   color: colors.wall_yellow,
 };
 
+make.wall_ball = {
+  fixed: false,
+  parent: ["wall"],
+  bullet_deleter: false,
+  restitution: 1,
+  color: colors.wall_ball,
+  collision_filter: category.wall,
+};
+
 make.wall_window = {
   parent: ["wall"],
   blocks_sight: false,
@@ -274,7 +283,7 @@ make.bullet_tower = {
   tower: true,
   show_health: true,
   show_time_left: true,
-  fov: 20,
+  fov: 18,
 };
 
 make.bullet_tower_basic = {

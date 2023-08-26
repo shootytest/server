@@ -11,6 +11,7 @@ export interface map_shape {
   window?: boolean;
   window_pass?: boolean;
   curtain?: boolean;
+  ball?: boolean;
 }
 
 export interface map_zone {
@@ -113,6 +114,7 @@ maps.hello = {
     { type: "circle", x: 100, y: -100, size: 60, bouncy: true, },
     { type: "circle", x: -80, y: -80, size: 40, bouncy: true, },
     { type: "circle", x: 80, y: 80, size: 40, bouncy: true, },
+    { type: "circle", x: 0, y: 0, size: 30, ball: true, },
 
     // corridor
     { type: "line", x: 240, y: -380, x2: 380, y2: -380, },
