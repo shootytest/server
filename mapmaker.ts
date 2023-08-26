@@ -21,6 +21,7 @@ const makeborder = (x1: number, y1: number, x2: number, y2: number) => {
   wall.make(make.wall);
   wall.shape = 1;
   wall.size = 1;
+  wall.position = Vector.create(x, y);
   wall.angle = Math.atan2(x - x2, y2 - y);
   wall.wall_border = true;
   wall.segment = {

@@ -95,8 +95,8 @@ maps.test = {
 
 maps.hello = {
   name: "Hello",
-  width: 500,
-  height: 500,
+  width: 505,
+  height: 505,
   spawn: [
     { x: -320, y: 200, w: 120, h: 120, },
     { x: 200, y: -320, w: 120, h: 120, },
@@ -135,6 +135,12 @@ maps.hello = {
     { type: "line", x: -800, y: -800, x2: -1200, y2: -800 },
     { type: "line", x: -800, y: -800, x2: -800, y2: -1200 },
     */
+
+    // borders
+    { type: "line", x: -500, y: -500, x2: -500, y2: 500, },
+    { type: "line", x: -500, y: 500, x2: 500, y2: 500, },
+    { type: "line", x: 500, y: 500, x2: 500, y2: -500, },
+    { type: "line", x: 500, y: -500, x2: -500, y2: -500, },
   ],
 };
 

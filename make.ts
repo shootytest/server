@@ -227,13 +227,14 @@ make.wall_bounce = {
 };
 
 make.wall_ball = {
+  parent: ["wall"], // fake
   fixed: false,
   wall: false,
-  parent: ["wall"],
   bullet_deleter: false,
   blocks_sight: false,
   restitution: 1,
   color: colors.wall_ball,
+  deco: 211212,
   collision_filter: category.wall,
 };
 
