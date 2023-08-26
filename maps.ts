@@ -126,7 +126,7 @@ maps.hello = {
     { type: "line", x: -380, y: 380, x2: -380, y2: 210, },
     { type: "line", x: -380, y: 210, x2: -380, y2: 60, window_pass: true, },
     { type: "line", x: -380, y: 60, x2: -380, y2: -120, },
-    { type: "line", x: -380, y: -120, x2: -380, y2: -270, },
+    { type: "line", x: -380, y: -120, x2: -380, y2: -270, window_pass: true, },
     { type: "line", x: -380, y: -270, x2: -380, y2: -380, },
     // debug...
     /*

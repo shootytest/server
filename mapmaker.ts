@@ -18,7 +18,7 @@ const makeborder = (x1: number, y1: number, x2: number, y2: number) => {
   const x = (x1 + x2) / 2;
   const y = (y1 + y2) / 2;
   const wall = new Thing(Vector.create(x, y));
-  wall.make(make.wall_bounce);
+  wall.make(make.wall);
   wall.shape = 1;
   wall.size = 1;
   wall.angle = Math.atan2(x - x2, y2 - y);
