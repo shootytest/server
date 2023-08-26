@@ -228,8 +228,10 @@ make.wall_bounce = {
 
 make.wall_ball = {
   fixed: false,
+  wall: false,
   parent: ["wall"],
   bullet_deleter: false,
+  blocks_sight: false,
   restitution: 1,
   color: colors.wall_ball,
   collision_filter: category.wall,
