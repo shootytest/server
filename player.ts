@@ -148,8 +148,7 @@ export class Player extends Thing {
     if (this.player_dead) {
       if (this.killer != undefined) {
         Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
-      }
-      else if (Thing.ball != undefined) {
+      } else if (Thing.ball != undefined) {
         Body.setPosition(this.body, { x: Thing.ball.x, y: Thing.ball.y });
       }
     }
@@ -227,7 +226,7 @@ export class Player extends Thing {
     this.player_dead = false;
     this.player_dead_time = 0;
     this.health.restore();
-    this.killer = Vector.create(0, 0);
+    this.killer = Thing.ball ?? Vector.create(0, 0);
     this.make_visible();
     const new_spawn_position = Player.random_spawn_location();
     this.position = new_spawn_position;

@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
   player.team = id;
   player.create();
   player.temp_remove(false);
-  player.killer = player.nearest_player(true) || { x: 0, y: 0, };
+  player.killer = player.nearest_player(true) ?? Thing.ball ?? { x: 0, y: 0, };
 
   setTimeout(() => {
     
