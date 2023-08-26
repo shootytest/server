@@ -145,8 +145,13 @@ export class Player extends Thing {
         this.temp_remove(false);
       }
     }
-    if (this.player_dead && this.killer != undefined) {
-      Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
+    if (this.player_dead) {
+      if (this.killer != undefined) {
+        Body.setPosition(this.body, { x: this.killer.x, y: this.killer.y });
+      }
+      else if (Thing.ball != undefined) {
+        Body.setPosition(this.body, { x: Thing.ball.x, y: Thing.ball.y });
+      }
     }
     if (this.player_dead_time !== 0 && this.player_dead_time < Thing.time) {
       this.temp_create();

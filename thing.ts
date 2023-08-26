@@ -66,6 +66,8 @@ export class Thing {
   static cumulative_id = 0;
   static time = 1;
 
+  static ball?: Thing = undefined;
+
   static tick_things = () => {
     for (const thing of Thing.things) {
       thing.tick();
@@ -691,6 +693,9 @@ export class Thing {
     }
     if (this.wall && !Thing.walls.includes(this)) {
       Thing.walls.push(this);
+    }
+    if (this.deco === 211212) {
+      Thing.ball = this;
     }
   }
 
