@@ -190,6 +190,15 @@ make.player_trap_large = {
   },
 };
 
+make.player_trap_fast = {
+  shoots: [shoots.p_trap_fast],
+  deco: 401,
+  speed: 40,
+  health: {
+    capacity: 100,
+  },
+};
+
 make.player_trap_tower = {
   shoots: [shoots.p_trap_t_basic],
   deco: 412,
@@ -283,7 +292,7 @@ make.bullet_square = {
   parent: ["bullet"],
   shape: 4,
   rotation_controller: "spin",
-  spin_rate: 0.1,
+  spin_rate: 3,
 };
 
 make.bullet_tower = {
@@ -305,6 +314,7 @@ make.bullet_tower_basic = {
 make.bullet_trap = {
   parent: ["bullet"],
   tower: true,
+  shape: 5,
   fov: 15,
 };
 
@@ -312,11 +322,13 @@ make.bullet_trap_large = {
   parent: ["bullet"],
   tower: true,
   show_time_left: true,
+  shape: 5,
   fov: 10,
 };
 
 make.bullet_trap_basic = {
   parent: ["bullet_tower"],
+  shape: 5,
   shoots: [shoots.t_trap_basic],
 };
 
