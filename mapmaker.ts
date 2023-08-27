@@ -76,6 +76,9 @@ const _make = (map_key: string) => {
     }
     if (S.ball) {
       wall.make(make.wall_ball);
+      const an_angle = Math.random() * Math.PI * 2;
+      const a_speed = 3 + Math.random() * 2;
+      wall.velocity = Vector.create(Math.cos(an_angle) * a_speed, Math.sin(an_angle) * a_speed);
     }
     /*
     if (S.bulletblock) {
