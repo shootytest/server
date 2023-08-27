@@ -278,6 +278,11 @@ make.bullet_basic = {
   parent: ["bullet"],
 };
 
+make.bullet_line = {
+  parent: ["bullet"],
+  shape: 2,
+};
+
 make.bullet_tower = {
   parent: ["bullet"],
   controller: "target",

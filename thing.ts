@@ -731,6 +731,12 @@ export class Thing {
       const w = 1;
       const h = Math.sqrt(dx * dx + dy * dy);
       body = Bodies.rectangle(x, y, w, h, options);
+    } else if (shape === 2) {
+      const x = 0;
+      const y = 0;
+      const w = 1 / this.size;
+      const h = 1;
+      body = Bodies.rectangle(x, y, w, h, options);      
     } else if (shape < 0) {
       // body = Bodies.rectangle(x, y, w, h, options);
       console.error("negative thing shape: " + shape);
