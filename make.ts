@@ -23,6 +23,7 @@ export class maketype {
   friction?: number;
   restitution?: number;
   color?: number;
+  spin_rate?: number;
   health?: {
     capacity?: number;
     capacity_mult?: number;
@@ -278,9 +279,11 @@ make.bullet_basic = {
   parent: ["bullet"],
 };
 
-make.bullet_line = {
+make.bullet_square = {
   parent: ["bullet"],
-  shape: 2,
+  shape: 4,
+  rotation_controller: "spin",
+  spin_rate: 0.1,
 };
 
 make.bullet_tower = {
