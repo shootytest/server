@@ -298,12 +298,8 @@ make.bullet_square = {
 
 make.bullet_push = {
   parent: ["bullet"],
-  shape: 1,
-  segment: {
-    x1: -0.5, x2: 0.5,
-    y1: 0, y2: 0,
-  },
-  density: 0.1,
+  shape: 4,
+  density: 1,
 };
 
 make.bullet_tower = {

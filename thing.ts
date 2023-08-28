@@ -265,6 +265,13 @@ export class Thing {
           const seg = o.segment;
           const newx = (seg.x1 + seg.x2) / 2;
           const newy = (seg.y1 + seg.y2) / 2;
+          this.segment = {
+            // ensure it's cloned
+            x1: seg.x1,
+            x2: seg.x2,
+            y1: seg.y1,
+            y2: seg.y2,
+          };
           this.angle = Math.atan2(newx - seg.x2, seg.y2 - newy); // it's x, y and not y, x... angle definition issue probably
         }
 
