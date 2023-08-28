@@ -650,12 +650,12 @@ export class Thing {
     b.team = this.team;
     b.shoot_parent = this.shoot_parent;
     // shoot the bullet with correct rotation and speed
-    const rot = math_util.randgauss(this.target.angle + (Vector.deg_to_rad(S.angle || 0)), S.spread || 0);
+    const rot = math_util.randgauss(this.target.angle + (Vector.deg_to_rad(S.angle ?? 0)), S.spread ?? 0);
     const facing = this.target.facing;
-    const spreadv = S.spreadv || 0;
-    let spd = spreadv === 0 ? (S.speed || 0) : math_util.randgauss(S.speed || 0, spreadv);
+    const spreadv = S.spreadv ?? 0;
+    let spd = spreadv === 0 ? (S.speed ?? 0) : math_util.randgauss(S.speed ?? 0, spreadv);
     const thing_velocity = Vector.rotate(this.velocity, -rot).x;
-    if (spd !== 0) spd += thing_velocity * config.physics.velocity_shoot_boost * (S.boost_mult == undefined ? 1 : S.boost_mult);
+    if (spd !== 0) spd += thing_velocity * config.physics.velocity_shoot_boost * (S.boost_mult ?? 1);
     if (S.target_type != undefined) {
       /*
       if (S.target_type === "enemy") {
