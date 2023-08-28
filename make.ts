@@ -303,8 +303,8 @@ make.bullet_push = {
   //shape: 4,
   //angle: 90,
   shape: 2,
-  dimensions: { width: 1, height: 0.1, },
-  fov: 8,
+  dimensions: { width: 0.2, height: 2, },
+  fov: 6,
 };
 
 make.bullet_tower = {

@@ -758,8 +758,9 @@ export class Thing {
     } else if (shape === 2 && this.dimensions != undefined) {
       const x = 0;
       const y = 0;
-      body = Bodies.rectangle(x, y, this.dimensions.width * this.size, this.dimensions.height * this.size, options);      
+      body = Bodies.rectangle(x, y, this.dimensions.width * this.size, this.dimensions.height * this.size, options);
     } else if (shape < 0) {
+      // star shape here?
       // body = Bodies.rectangle(x, y, w, h, options);
       console.error("negative thing shape: " + shape);
       return;
