@@ -38,6 +38,7 @@ export class maketype {
   movement_controller?: string;
   rotation_controller?: string;
   segment?: _segmenttype;
+  dimensions?: { width: number, height: number };
   collision_filter?: _collision_filter;
   shoots?: shoot_stats[];
   [key: string]: unknown;
@@ -298,8 +299,12 @@ make.bullet_square = {
 
 make.bullet_push = {
   parent: ["bullet"],
-  shape: 4,
   density: 1,
+  //shape: 4,
+  //angle: 90,
+  shape: 2,
+  dimensions: { width: 1, height: 0.1, },
+  fov: 8,
 };
 
 make.bullet_tower = {

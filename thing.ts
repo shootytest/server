@@ -170,6 +170,7 @@ export class Thing {
 
   // only for walls
   segment?: _segmenttype;
+  dimensions?: { width: number, height: number };
 
   // deno-lint-ignore no-explicit-any
   [key: string]: any;
@@ -231,7 +232,7 @@ export class Thing {
         }
 
         // health stuff
-        if (k === "health" && o.health != undefined) {
+        else if (k === "health" && o.health != undefined) {
           const h = o.health;
           if (h.capacity != undefined) {
             this.health.set_capacity(h.capacity);
@@ -261,7 +262,7 @@ export class Thing {
         }
 
         // segment
-        if (k === "segment" && o.segment != undefined) {
+        else if (k === "segment" && o.segment != undefined) {
           const seg = o.segment;
           const newx = (seg.x1 + seg.x2) / 2;
           const newy = (seg.y1 + seg.y2) / 2;
@@ -273,6 +274,14 @@ export class Thing {
             y2: seg.y2,
           };
           this.angle = Math.atan2(newx - seg.x2, seg.y2 - newy); // it's x, y and not y, x... angle definition issue probably
+        }
+        
+        else if (k === "dimensions" && o.dimensions != undefined) {
+          this.dimensions = {
+            // ensure it's cloned
+            width: o.dimensions.width,
+            height: o.dimensions.height,
+          };
         }
 
         // normal properties
@@ -746,12 +755,10 @@ export class Thing {
       const w = 1;
       const h = Math.sqrt(dx * dx + dy * dy);
       body = Bodies.rectangle(x, y, w, h, options);
-    } else if (shape === 2) {
+    } else if (shape === 2 && this.dimensions != undefined) {
       const x = 0;
       const y = 0;
-      const w = 1 / this.size;
-      const h = 1;
-      body = Bodies.rectangle(x, y, w, h, options);      
+      body = Bodies.rectangle(x, y, this.dimensions.width * this.size, this.dimensions.height * this.size, options);      
     } else if (shape < 0) {
       // body = Bodies.rectangle(x, y, w, h, options);
       console.error("negative thing shape: " + shape);
