@@ -46,7 +46,7 @@ const p_trap_t_basic: shoot_stats = { type: "trap_basic", reload: 120, size: 15,
 
 const ability_tower_basic: shoot_stats = { type: "tower_basic", reload: 9999999, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 24, health: 40, time: 9.0, };
 const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, size: 30, speed: 0, friction: 1, spread: 0, damage: 30, health: 60, time: 10.0, };
-const ability_push: shoot_stats = { type: "push", reload: 9999999, size: 30, speed: 5, spread: 0, damage: 0, health: 150, time: 3.0, };
+const ability_push: shoot_stats = { type: "push", reload: 9999999, size: 30, speed: 5, spread: 0, damage: 0, health: 150, time: 3.0, boost_mult: 0, };
 const ability_octopus: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 8; i++) {
