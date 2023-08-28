@@ -1,6 +1,6 @@
 import { colors } from "./color.ts";
 import { category, config, _collision_filter } from "./config.ts";
-import { _vectortype  } from "./math.ts";
+import { _segmenttype, _vectortype  } from "./math.ts";
 import { shoots, shoot_stats } from "./shoot.ts";
 
 export class maketype {
@@ -37,6 +37,7 @@ export class maketype {
   controller?: string;
   movement_controller?: string;
   rotation_controller?: string;
+  segment?: _segmenttype;
   collision_filter?: _collision_filter;
   shoots?: shoot_stats[];
   [key: string]: unknown;
@@ -293,6 +294,16 @@ make.bullet_square = {
   shape: 4,
   rotation_controller: "spin",
   spin_rate: 3,
+};
+
+make.bullet_push = {
+  parent: ["bullet"],
+  shape: 1,
+  segment: {
+    x1: -0.5, x2: 0.5,
+    y1: 0, y2: 0,
+  },
+  density: 0.1,
 };
 
 make.bullet_tower = {

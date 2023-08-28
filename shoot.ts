@@ -41,11 +41,12 @@ const p_launch: shoot_stats = { type: "launch", reload: 80, size: 12, speed: 4, 
 const p_sniper: shoot_stats = { type: "basic", reload: 85, size: 7, speed: 16, spread: 0.005, damage: 50, health: 10, time: 4.0, deco: 603, };
 const p_trap: shoot_stats = { type: "trap", reload: 30, size: 8, speed: 5, spreadv: 1, friction: 0.03, spread: 0.025, damage: 18, health: 20, time: 4.5, };
 const p_trap_large: shoot_stats = { type: "trap_large", reload: 80, size: 20, speed: 3.5, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 60, health: 50, time: 7.0, };
-const p_trap_fast: shoot_stats = { type: "trap", reload: 10, size: 5, speed: 6, spreadv: 1.2, friction: 0.03, spread: 0.03, damage: 10, health: 15, time: 6.0, };
+const p_trap_fast: shoot_stats = { type: "trap", reload: 10, size: 5, speed: 6, spreadv: 1.2, friction: 0.03, spread: 0.03, damage: 10, health: 15, time: 4.0, };
 const p_trap_t_basic: shoot_stats = { type: "trap_basic", reload: 120, size: 15, speed: 3, spreadv: 0.5, friction: 0.03, spread: 0.015, damage: 30, health: 40, time: 8.0, };
 
 const ability_tower_basic: shoot_stats = { type: "tower_basic", reload: 9999999, size: 12, speed: 5, friction: 0.05, spread: 0.02, damage: 24, health: 40, time: 9.0, };
 const ability_tower_place: shoot_stats = { type: "trap_large", reload: 9999999, size: 30, speed: 0, friction: 1, spread: 0, damage: 30, health: 60, time: 10.0, };
+const ability_push: shoot_stats = { type: "push", reload: 9999999, size: 25, speed: 5, spread: 0, damage: 0, health: 150, time: 3.0, };
 const ability_octopus: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
   for (let i = 0; i < 8; i++) {
@@ -68,10 +69,10 @@ const ability_jellyfish: shoot_stats[] = (() => {
 })();
 const ability_speed_trail: shoot_stats[] = (() => {
   const result: shoot_stats[] = [];
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 12; i++) {
     result.push({
-      type: "basic", reload: 9999999, size: 5, speed: 2.8, spread: 0.025, damage: 3, health: 2, time: 4.0, boost_mult: 0,
-      angle: 180, delay: i * 3,
+      type: "basic", reload: 9999999, size: 4, speed: 5, spread: 0.025, damage: 3, health: 2, time: 4.0, boost_mult: 0,
+      angle: 180, delay: i * 6,
     });
   }
   return result;
@@ -90,7 +91,8 @@ export const shoots = {
   p_large, p_launch,
   p_sniper,
   p_trap, p_trap_large, p_trap_fast, p_trap_t_basic,
-  ability_tower_basic, ability_tower_place, ability_octopus, ability_jellyfish, ability_speed_trail,
+  ability_tower_basic, ability_tower_place, ability_push,
+  ability_octopus, ability_jellyfish, ability_speed_trail,
   t_basic, t_trap_basic, t_launch,
   // reload server
 };
