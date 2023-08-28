@@ -20,6 +20,7 @@ const use = (player: Player) => {
       if (player.health.use_ability(100)) {
         // speed boost mode on
         player.speed_boost_time = 75;
+        player.shoot_bullets(shoots.ability_speed_trail);
       }
       break;
     }
