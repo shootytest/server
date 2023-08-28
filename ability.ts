@@ -33,6 +33,12 @@ const use = (player: Player) => {
       }
       break;
     }
+    case "push": {
+      if (player.health.use_ability(100)) {
+        player.shoot_bullet(shoots.ability_push);
+      }
+      break;
+    }
     case "tower_basic": {
       if (player.health.use_ability(100)) {
         player.shoot_bullet(shoots.ability_tower_basic);
