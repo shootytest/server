@@ -125,6 +125,9 @@ export class Player extends Thing {
     if (this.controls.rshoot) {
       ability.use(this);
     }
+    if (this.controls.exit) {
+      this.health.hit(this.health.capacity);
+    }
   }
 
   set_ability(ab: string) {

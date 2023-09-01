@@ -7,4 +7,5 @@ export class Controls {
   rshoot = false;
   facingx = 0;
   facingy = 0;
+  exit = false;
 }

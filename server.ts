@@ -29,6 +29,7 @@ const io = new Server({
 });
 
 const broadcast_players = () => {
+  // tell all clients about all other clients
   io.emit("players", Player.player_data());
 }
 
