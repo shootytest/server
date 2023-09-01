@@ -106,7 +106,7 @@ const main_tick = () => {
   tick(0);
   io.emit("game_data", Thing.data());
   const question: { t: number, r?: number, } = {
-    t: (Thing.time - Thing.question_offset) % 120 * 60,
+    t: (Thing.time - Thing.question_offset) % (120 * 60),
   };
   if (question.t === 0) {
     question.r = math_util.better_rand();
