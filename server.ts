@@ -6,6 +6,7 @@ import { Controls } from "./controls.ts";
 import { Player } from "./player.ts";
 import { mapmaker } from "./mapmaker.ts";
 import { make } from "./make.ts";
+import { math_util } from "./math.ts";
 
 // initialize main
 console.log("initializing...");
@@ -39,7 +40,12 @@ io.on("connection", (socket) => {
 
   const id = new_socket_id();
 
-  console.log(`socket #${id} "${socket.id}" connected`);
+  const number_of_players = Player.players.length;
+  console.log(`socket #${id} "${socket.id}" connected! players: ${number_of_players}`);
+
+  if (number_of_players <= 0) {
+    Thing.question_offset = Thing.time - 1; // -1 because it's as though the question just appeared 1 tick ago
+  }
 
   const player = new Player(socket);
   player.make(make.player_basic);
@@ -48,6 +54,7 @@ io.on("connection", (socket) => {
   player.temp_remove(false);
   player.killer = player.nearest_player(true) ?? Thing.ball ?? { x: 0, y: 0, };
 
+  // only do this after a while (it is more consistent like that, but still not 100%)
   setTimeout(() => {
     
     socket.emit("id", id);
@@ -98,6 +105,13 @@ io.on("connection", (socket) => {
 const main_tick = () => {
   tick(0);
   io.emit("game_data", Thing.data());
+  const question: { t: number, r?: number, } = {
+    t: (Thing.time - Thing.question_offset) % 120 * 60,
+  };
+  if (question.t === 0) {
+    question.r = math_util.better_rand();
+  }
+  io.emit("question", question);
 };
 
 const _main_interval = setInterval(main_tick, 16);

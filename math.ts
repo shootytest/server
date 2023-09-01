@@ -157,7 +157,11 @@ const randstring = (length = 10) => {
 
 const randpick = <Type>(array: Type[]) => {
   return array[randint(0, array.length - 1)];
-}
+};
+
+const better_rand = () => {
+  return crypto.getRandomValues(new Uint32Array(1))[0]/(2 ** 32)
+};
 
 export const math_util = {
   regpoly, get_real_regpoly_size,
@@ -167,5 +171,5 @@ export const math_util = {
   deg_to_rad, rad_to_deg,
   lerp, bounce,
   vector_create,
-  rand, randint, randbool, randgauss, randstring, randpick,
+  rand, randint, randbool, randgauss, randstring, randpick, better_rand
 };

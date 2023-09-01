@@ -45,6 +45,7 @@ export interface thing_data {
   chat?: string[],
   pt?: number,
   die?: boolean,
+  q?: number, // time to question
 }
 
 export interface wall_data {
@@ -65,6 +66,7 @@ export class Thing {
 
   static cumulative_id = 0;
   static time = 1;
+  static question_offset = 0;
 
   static ball?: Thing = undefined;
 
