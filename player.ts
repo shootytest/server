@@ -118,7 +118,9 @@ export class Player extends Thing {
     // move player
     const move_x = (this.controls.right ? 1 : 0) - (this.controls.left ? 1 : 0);
     const move_y = (this.controls.down ? 1 : 0) - (this.controls.up ? 1 : 0);
-    this.move_player(Vector.create(move_x, move_y), this.speed_boost_time ? 2 : 1);
+    let move_speed = this.speed_boost_time ? 2 : 1;
+    if (this.controls.slow) move_speed /= 1.75;
+    this.move_player(Vector.create(move_x, move_y), move_speed);
     // shoot player
     this.shooting = this.player_autofire || this.controls.shoot;
     // dash player

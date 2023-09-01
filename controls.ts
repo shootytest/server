@@ -8,4 +8,5 @@ export class Controls {
   facingx = 0;
   facingy = 0;
   exit = false;
+  slow = false;
 }
