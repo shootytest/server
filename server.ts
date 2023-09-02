@@ -90,8 +90,8 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("question", (id) => {
-    if (player.id === id) {
+  socket.on("question", (_id) => {
+    if (id === _id) {
       player.points += 100;
     }
   });
