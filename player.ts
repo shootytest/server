@@ -191,7 +191,7 @@ export class Player extends Thing {
         continue;
       }
       chat.push(c.m);
-      ttl.push(Thing.time - c.t);
+      ttl.push(c.t - Thing.time);
     }
     for (const c of to_remove) {
       this.chat.splice(this.chat.indexOf(c), 1);
