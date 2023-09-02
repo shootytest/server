@@ -46,6 +46,7 @@ export const tick = (_time: number) => {
 
 const done = () => {
   // done!
+  // nothing here for now
 };
 
 export const main = () => {

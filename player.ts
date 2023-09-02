@@ -197,6 +197,7 @@ export class Player extends Thing {
       this.chat.splice(this.chat.indexOf(c), 1);
     }
     d.chat = chat;
+    d.ttl = ttl;
     d.pt = Math.round(this.points);
     d.die = this.player_dead;
     return d;
