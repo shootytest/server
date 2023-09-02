@@ -42,7 +42,8 @@ export interface thing_data {
   c: number;
   t: number;
   f: number;
-  chat?: string[],
+  chat?: string[], // chat messages
+  ttl?: number[], // each chat message's "time to live"
   pt?: number,
   die?: boolean,
   q?: number, // time to question

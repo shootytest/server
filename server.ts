@@ -84,6 +84,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("chat", (message: string) => {
+    if (message.length <= 0) return;
     player.chat.push({
       m: message,
       t: Thing.time + 60 * 5,

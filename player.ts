@@ -183,6 +183,7 @@ export class Player extends Thing {
     }
     const d = super.data();
     const chat = [];
+    const ttl  = [];
     const to_remove = [];
     for (const c of this.chat) {
       if (Thing.time > c.t) {
@@ -190,6 +191,7 @@ export class Player extends Thing {
         continue;
       }
       chat.push(c.m);
+      ttl.push(Thing.time - c.t);
     }
     for (const c of to_remove) {
       this.chat.splice(this.chat.indexOf(c), 1);
