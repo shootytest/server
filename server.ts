@@ -90,6 +90,12 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("question", (id) => {
+    if (player.id === id) {
+      player.points += 100;
+    }
+  });
+
   socket.on("disconnecting", (_reason) => {
     player.remove();
     // console.log(`socket ${socket.id} disconnecting due to ${reason}`);

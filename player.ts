@@ -128,6 +128,7 @@ export class Player extends Thing {
       ability.use(this);
     }
     if (this.controls.exit) {
+      this.health.invincible = false;
       this.health.hit(this.health.capacity);
     }
   }
