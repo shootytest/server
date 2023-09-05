@@ -89,6 +89,9 @@ const stats: Record<string, { capacity?: number, regen?: number, }> = {
   speed: {
     regen: 25,
   },
+  push: {
+    regen: 55,
+  },
   octopus: {
     regen: 40,
   },

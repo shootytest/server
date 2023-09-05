@@ -34,6 +34,7 @@ const p_basic: shoot_stats = { type: "basic", reload: 40, size: 7, speed: 10, sp
 const p_double: shoot_stats = { type: "basic", reload: 50, size: 6, speed: 9, spread: 0.02, damage: 17, health: 15, time: 2.5, };
 const p_triple: shoot_stats = { type: "basic", reload: 60, size: 6, speed: 8.5, spread: 0.02, damage: 14, health: 10, time: 2.5, };
 const p_split3: shoot_stats = { type: "basic", reload: 55, size: 7, speed: 9, spread: 0.02, damage: 12, health: 10, time: 2.5, };
+const p_short3: shoot_stats = { type: "basic", reload: 25, size: 8, speed: 8, spread: 0.005, damage: 20, health: 11, time: 0.4, };
 const p_fast: shoot_stats = { type: "basic", reload: 20, size: 5, speed: 7.5, spread: 0.025, damage: 14, health: 12, time: 2.0, };
 const p_faster: shoot_stats = { type: "basic", reload: 10, size: 4, speed: 7, spread: 0.03, damage: 10, health: 5, time: 1.7, };
 const p_large: shoot_stats = { type: "square", reload: 70, size: 14, speed: 6, spread: 0.015, damage: 40, health: 32, time: 4.5, };
@@ -86,7 +87,7 @@ export const shoots = {
   basic,
   p_basic, 
   p_double, p_triple,
-  p_split3,
+  p_split3, p_short3,
   p_fast, p_faster,
   p_large, p_launch,
   p_sniper,

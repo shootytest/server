@@ -156,6 +156,21 @@ make.player_split3 = {
   },
 };
 
+make.player_short3 = {
+  shoots: [{
+    parent: shoots.p_short3, y: -0.6666,
+  }, {
+    parent: shoots.p_short3,
+  }, {
+    parent: shoots.p_short3, y: 0.6666,
+  }],
+  deco: 123,
+  speed: 60,
+  health: {
+    capacity: 100,
+  },
+};
+
 make.player_large = {
   shoots: [shoots.p_large],
   deco: 501,
