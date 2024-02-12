@@ -65,6 +65,7 @@ io.on("connection", (socket) => {
 
   // the client is asking for a map again because the transfer failed the first time for some reason... hmmm this keeps happening
   socket.on("map_please", () => {
+    socket.emit("id", id);
     socket.emit("game_map", memo_walldata);
     socket.emit("map_data", mapmaker.get_current_map());
   });
