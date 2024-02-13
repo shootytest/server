@@ -32,7 +32,7 @@ const io = new Server({
 const broadcast_players = () => {
   // tell all clients about all other clients
   io.emit("players", Player.player_data());
-}
+};
 
 io.on("connection", (socket) => {
 
@@ -129,13 +129,16 @@ const html = `<!DOCTYPE html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="https://shootytest.surge.sh/">
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
     <title>deno socket test</title>
   </head>
   <body>
     <h1>shooty.deno.dev</h1>
     <p>this is a server for shootytest.surge.sh</p>
   </body>
-</html>`;
+</html>
+`;
 
 await serve((request: Request, connection_info: ConnInfo) => {
   const is_ws = request.url.includes("socket.io"); // haha a hack
